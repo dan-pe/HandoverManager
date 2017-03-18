@@ -45,17 +45,9 @@
     <Compile Include="RadioNetworkParameters.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HandoverAlgorithmBase\HandoverAlgorithmBase.csproj">
-      <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
-      <Name>HandoverAlgorithmBase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\handovermgr\HandoverManagerApp.csproj">
       <Project>{7c64e5a7-024c-4ba6-a905-57e4ab4b6e70}</Project>
       <Name>HandoverManagerApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NovelNetworkAlgorithm\NovelNetworkAlgorithm.csproj">
-      <Project>{98b5cbc6-7c8e-41ce-aad2-faae6ae9bc20}</Project>
-      <Name>NovelNetworkAlgorithm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

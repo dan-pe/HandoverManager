@@ -41,7 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HandoverAlgorithmBase.cs" />
+    <Compile Include="NovelNetworkAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RadioNetworkModel\RadioNetworkModel.csproj">
+      <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
+      <Name>RadioNetworkModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
