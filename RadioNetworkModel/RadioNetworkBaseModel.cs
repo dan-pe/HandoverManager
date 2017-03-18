@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RadioNetworkModel
+namespace RadioNetwork
 {
-    public abstract class RadioNetworkModelBase
+    public class RadioNetworkModel
     {
         #region Properties
 

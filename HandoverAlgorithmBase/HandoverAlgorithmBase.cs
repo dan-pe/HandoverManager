@@ -1,14 +1,16 @@
-﻿using System;
+﻿#region Usings
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RadioNetworkModel;
+using RadioNetwork;
+
+#endregion
+
 
 namespace HandoverAlgorithmBase
 {
     public abstract class HandoverAlgorithmBase
     {
-        public RadioNetworkModelBase RadioNetworkModel { get; set; }
+        public List<RadioNetworkModel> RadioNetworksList { get; set; }
     }
 }
