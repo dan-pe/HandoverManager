@@ -11,6 +11,28 @@ namespace HandoverAlgorithmBase
 {
     public abstract class HandoverAlgorithmBase
     {
-        public List<RadioNetworkModel> RadioNetworksList { get; set; }
+        #region Properties
+
+        protected List<RadioNetwork.RadioNetworkModel> RadioNetworksList { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        protected HandoverAlgorithmBase(List<RadioNetwork.RadioNetworkModel> radioNetworksList)
+        {
+            RadioNetworksList = radioNetworksList;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public virtual void RunSelection()
+        {
+        }
+
+        #endregion
+
     }
 }

@@ -41,17 +41,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HandoverAlgorithmBase.cs" />
-    <Compile Include="NovelNetworkAlgorithm.cs" />
+    <Compile Include="NovelHandoverAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RadioNetworkModel\RadioNetworkModel.csproj">
-      <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
-      <Name>RadioNetworkModel</Name>
+    <ProjectReference Include="..\MathTools\MathTools.csproj">
+      <Project>{112835d9-0ff0-4126-9490-0130759d85e7}</Project>
+      <Name>MathTools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RadioNetworks\RadioNetwork.csproj">
+      <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
+      <Name>RadioNetwork</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FuzzyAlgoriths\" />
+    <Folder Include="PlainAlogirhtms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
