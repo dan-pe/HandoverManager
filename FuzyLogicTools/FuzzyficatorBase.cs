@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FuzyLogicTools
+﻿namespace MamdaniFuzzy
 {
-    public static class FuzyLogicBase
+    public static class FuzzyficatiorBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// Fuzzy value based on 
+        /// </returns>
+        public  static string FuzzyficateInput(float inputVaue, FuzzyRegules fuzzyRegules)
+        {
+            return null;
+        }
     }
 }

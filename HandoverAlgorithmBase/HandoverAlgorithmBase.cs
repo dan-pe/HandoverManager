@@ -19,6 +19,10 @@ namespace HandoverAlgorithmBase
 
         #region Constructors
 
+        /// <summary>
+        /// The Handover Alogithm Base
+        /// </summary>
+        /// <param name="radioNetworksList"></param>
         protected HandoverAlgorithmBase(List<RadioNetwork.RadioNetworkModel> radioNetworksList)
         {
             RadioNetworksList = radioNetworksList;
