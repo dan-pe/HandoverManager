@@ -14,7 +14,7 @@ namespace MamdaniFuzzySystem
     {
         #region Properties
 
-        public List<FuzzyValue> FuzzyRegulesList { get; set }
+        public List<FuzzyValue> FuzzyRegulesList { get; set; }
 
         #endregion
 

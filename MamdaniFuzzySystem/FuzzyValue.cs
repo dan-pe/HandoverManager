@@ -10,8 +10,6 @@ namespace MamdaniFuzzySystem
     {
         #region Properties
 
-      
-
         public string FuzzyValueName { get; set; }
 
         public float CrispValueMin { get; set; }
