@@ -13,7 +13,7 @@ namespace HandoverAlgorithmBase
     {
         #region Properties
 
-        protected List<RadioNetwork.RadioNetworkModel> RadioNetworksList { get; set; }
+        protected List<RadioNetworkModel> RadioNetworksList { get; set; }
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace HandoverAlgorithmBase
         /// The Handover Alogithm Base
         /// </summary>
         /// <param name="radioNetworksList"></param>
-        protected HandoverAlgorithmBase(List<RadioNetwork.RadioNetworkModel> radioNetworksList)
+        protected HandoverAlgorithmBase(List<RadioNetworkModel> radioNetworksList)
         {
             RadioNetworksList = radioNetworksList;
         }

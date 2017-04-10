@@ -20,6 +20,10 @@ namespace MamdaniFuzzySystem
 
         #region Public Methods
 
+        public FuzzyReguleSet()
+        {
+            
+        }
 
         #endregion
 
