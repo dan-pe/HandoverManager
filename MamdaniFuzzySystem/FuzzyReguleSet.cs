@@ -14,15 +14,26 @@ namespace MamdaniFuzzySystem
     {
         #region Properties
 
-        public List<FuzzyValue> FuzzyRegulesList { get; set; }
+        private List<FuzzyValue> FuzzyRegulesList { get; set; }
+
+        #endregion
+
+        #region Constructors
+        public FuzzyReguleSet(List<FuzzyValue> fuzzyValues )
+        {
+            FuzzyRegulesList = fuzzyValues;
+        }
 
         #endregion
 
         #region Public Methods
 
-        public FuzzyReguleSet()
+        public FuzzyValue GetFuzzyValueByName(string name)
         {
-            
+            var fuzzyValue = FuzzyRegulesList.FirstOrDefault(
+                value => value.FuzzyValueName.Equals(name));
+
+            return fuzzyValue;
         }
 
         #endregion
