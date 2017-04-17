@@ -2,7 +2,7 @@
 using System.Windows;
 using HandoverAlgorithmBase;
 using RadioNetwork;
-
+using MamdaniFuzzySystem;
 
 namespace handovermgr
 {
@@ -112,18 +112,24 @@ namespace handovermgr
             PrepareNetworkObjects();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            var isOpen = UserPopup.IsOpen;
-            UserPopup.IsOpen = !isOpen;
-        }
-
+        /// <summary>
+        /// Open/Close user weights windows.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InputWeightsAccept_Click(object sender, RoutedEventArgs e)
         {
             var isOpen = UserPopup.IsOpen;
             UserPopup.IsOpen = !isOpen;
         }
 
+        private PrepareFuzzyRegulesSet()
+        {
+            FuzzyReguleSet mamdani = new FuzzyRegulesSet(
+            {
+                FuzzyValue reg = new FuzzyValue();
+            });
+        }
 
     }
 }

@@ -11,7 +11,6 @@ using MathTools;
 
 #endregion
 
-
 namespace HandoverAlgorithmBase
 {
     public class NovelHanoverAlgorithm : HandoverAlgorithmBase
@@ -28,6 +27,10 @@ namespace HandoverAlgorithmBase
 
         #region Constructors
 
+        /// <summary>
+        /// Instantiate Novel Handover Algoithm.
+        /// </summary>
+        /// <param name="radioNetworksList"></param>
         public NovelHanoverAlgorithm(List<RadioNetwork.RadioNetworkModel> radioNetworksList) : base(radioNetworksList)
         {
             NovelNetworkModels = new List<NovelNetworkModel>();
@@ -49,6 +52,9 @@ namespace HandoverAlgorithmBase
 
         #region Public Methods
 
+        /// <summary>
+        /// Run Selection.
+        /// </summary>
         public override void RunSelection()
         {
             CalculateDecisiveFactors();
@@ -59,8 +65,11 @@ namespace HandoverAlgorithmBase
 
         #endregion
 
-        #region Methods
+        #region Private Methods
 
+        /// <summary>
+        /// Calculate decive factors for current networks.
+        /// </summary>
         private void CalculateDecisiveFactors()
         {
             IEnumerable<float> througoutputs = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps);
