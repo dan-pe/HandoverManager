@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UIConfig\InputWeights.cs" />
+    <Compile Include="UIConfig\UserConfig.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +96,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HandoverAlgorithmBase\HandoverAlgorithms.csproj">
+      <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
+      <Name>HandoverAlgorithms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RadioNetworks\RadioNetwork.csproj">
+      <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
+      <Name>RadioNetwork</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using HandoverAlgorithmBase;
+using RadioNetwork;
+
 
 namespace handovermgr
 {
@@ -24,5 +15,121 @@ namespace handovermgr
         {
             InitializeComponent();
         }
+
+       /// <summary>
+       /// Prepares radio network objects
+       /// </summary>
+        private void PrepareNetworkObjects()
+        {
+            var networkList = new List<RadioNetworkModel>();
+
+            #region Newtwork Objects
+
+            var network1 = new RadioNetworkModel(
+                Network1.Name,
+                NetworkType.LTE,
+                new NetworkParameters()
+                {
+                    ThroughputInMbps = float.Parse(N1Throu.Text),
+                    BitErrorRate = float.Parse(N1Ber.Text),
+                    BurstErrorRate = float.Parse(N1Burst.Text),
+                    PacketLossPercentage = float.Parse(N1PacketLoss.Text),
+                    DelayInMsec = float.Parse(N1Delay.Text),
+                    ResponseTimeInMsec = float.Parse(N1Response.Text),
+                    JitterInMsec = float.Parse(N1Jitter.Text),
+                    SecurityLevel = float.Parse(N1Security.Text),
+                    CostInUnitsPerByte = float.Parse(N1SCost.Text)
+
+                });
+            var network2 = new RadioNetworkModel(
+               Network2.Name,
+               NetworkType.LTE,
+               new NetworkParameters()
+               {
+                   ThroughputInMbps = float.Parse(N2Throu.Text),
+                   BitErrorRate = float.Parse(N2Ber.Text),
+                   BurstErrorRate = float.Parse(N2Burst.Text),
+                   PacketLossPercentage = float.Parse(N2PacketLoss.Text),
+                   DelayInMsec = float.Parse(N2Delay.Text),
+                   ResponseTimeInMsec = float.Parse(N2Response.Text),
+                   JitterInMsec = float.Parse(N2Jitter.Text),
+                   SecurityLevel = float.Parse(N2Security.Text),
+                   CostInUnitsPerByte = float.Parse(N2SCost.Text)
+
+               });
+
+            var network3 = new RadioNetworkModel(
+               Network3.Name,
+               NetworkType.LTE,
+               new NetworkParameters()
+               {
+                   ThroughputInMbps = float.Parse(N3Throu.Text),
+                   BitErrorRate = float.Parse(N3Ber.Text),
+                   BurstErrorRate = float.Parse(N3Burst.Text),
+                   PacketLossPercentage = float.Parse(N3PacketLoss.Text),
+                   DelayInMsec = float.Parse(N3Delay.Text),
+                   ResponseTimeInMsec = float.Parse(N3Response.Text),
+                   JitterInMsec = float.Parse(N3Jitter.Text),
+                   SecurityLevel = float.Parse(N3Security.Text),
+                   CostInUnitsPerByte = float.Parse(N3SCost.Text)
+
+               });
+            var network4 = new RadioNetworkModel(
+               Network4.Name,
+               NetworkType.LTE,
+               new NetworkParameters()
+               {
+                   ThroughputInMbps = float.Parse(N4Throu.Text),
+                   BitErrorRate = float.Parse(N4Ber.Text),
+                   BurstErrorRate = float.Parse(N4Burst.Text),
+                   PacketLossPercentage = float.Parse(N4PacketLoss.Text),
+                   DelayInMsec = float.Parse(N4Delay.Text),
+                   ResponseTimeInMsec = float.Parse(N4Response.Text),
+                   JitterInMsec = float.Parse(N4Jitter.Text),
+                   SecurityLevel = float.Parse(N4Security.Text),
+                   CostInUnitsPerByte = float.Parse(N4SCost.Text)
+
+               });
+
+            #endregion
+
+            networkList.Add(network1);
+            networkList.Add(network2);
+            networkList.Add(network3);
+            networkList.Add(network4);
+
+            var novelAlgo = new NovelHanoverAlgorithm(networkList);
+            ResultNetwork.Text = novelAlgo.SelectResultNetwork();
+        }
+
+        /// <summary>
+        /// Peforms decision action.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DecisionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            PrepareNetworkObjects();
+        }
+
+        /// <summary>
+        /// Open/Close user weights windows.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InputWeightsAccept_Click(object sender, RoutedEventArgs e)
+        {
+            var isOpen = UserPopup.IsOpen;
+            UserPopup.IsOpen = !isOpen;
+        }
+
+        private void PrepareFuzzyRegulesSet()
+        {
+            //FuzzyReguleSet mamdani = new FuzzyRegulesSet(
+            //{
+            //    FuzzyValue reg = new FuzzyValue();
+            //})
+        }
+
     }
 }
