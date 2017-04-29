@@ -2,7 +2,7 @@
 using System.Windows;
 using HandoverAlgorithmBase;
 using RadioNetwork;
-using MamdaniFuzzySystem;
+
 
 namespace handovermgr
 {
@@ -123,12 +123,12 @@ namespace handovermgr
             UserPopup.IsOpen = !isOpen;
         }
 
-        private PrepareFuzzyRegulesSet()
+        private void PrepareFuzzyRegulesSet()
         {
-            FuzzyReguleSet mamdani = new FuzzyRegulesSet(
-            {
-                FuzzyValue reg = new FuzzyValue();
-            });
+            //FuzzyReguleSet mamdani = new FuzzyRegulesSet(
+            //{
+            //    FuzzyValue reg = new FuzzyValue();
+            //})
         }
 
     }

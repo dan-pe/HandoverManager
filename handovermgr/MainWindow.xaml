@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <!--#region UserInput-->
         <StackPanel Grid.Column="0" Orientation="Vertical">
-            <Button Margin="4 60 4 10" Click="ButtonBase_OnClick">User Profile</Button>
+            <Button Margin="4 60 4 10" Click="InputWeightsAccept_Click">User Profile</Button>
             <Button Margin="4 0 4 10">Costam</Button>
             <Button Margin="4 0 4 10" >Costam</Button>
         </StackPanel>
