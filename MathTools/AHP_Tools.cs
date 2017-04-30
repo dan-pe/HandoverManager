@@ -11,41 +11,73 @@ using System.Threading.Tasks;
 
 namespace MathTools
 {
-    public class AHP_Tools
+    public class AHPModel
     {
 
         #region Private Fields
 
-        private float[,] InputWeights { get; set; }
+        private double[,] InputWeights { get; set; }
+
+        private int NumberOfCriterias { get; }
 
         #endregion
 
         #region Constructors
 
-        public AHP_Tools(float[,] inputWeights)
+        public AHPModel(double[,] inputWeights)
         {
             this.InputWeights = inputWeights;
-
-           
+            this.NumberOfCriterias = (int)Math.Sqrt(inputWeights.Length);
         }
 
         #endregion
 
         #region Public Methods
 
-        public float[] GetOutputWeights()
+        /// <summary>
+        /// Computes AHP weights.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="double[]"/>
+        /// Output weights computed with AHP method.
+        /// </returns>
+        public double[] GetOutputWeights()
         {
-            var costam = InputWeights;
-            for (int i = 0; i < Math.Sqrt(costam.Length); i++)
+            var meansVector = new double[NumberOfCriterias];
+            var criteriaVector = new double[NumberOfCriterias];
+            var weightCoefficients = new double[NumberOfCriterias];
+            
+            for (int i = 0; i < NumberOfCriterias; i++)
             {
-                costam = Normalize(costam);
+                for (int j = 0; j < NumberOfCriterias; j++)
+                {
+                    criteriaVector[j] = InputWeights[i, j];
+                }
+                meansVector[i] = GeometricMean(criteriaVector);
             }
-            return null;
+
+            for (int i = 0; i < NumberOfCriterias; i++)
+            {
+                weightCoefficients[i] = meansVector[i] / meansVector.Sum();
+            }
+            
+            return weightCoefficients;
         }
 
-        private static float[,] Normalize(float[,] inputArray)
+        private static double[,] Normalize(double[,] inputArray)
         {
             return inputArray;
+        }
+
+        private static double GeometricMean(double[] inputVector)
+        {
+            double quotient = inputVector[0];
+
+            for (int i = 1; i < inputVector.Length; i++)
+            {
+                quotient *= inputVector[i];
+            }
+            return Math.Pow(quotient, 1/inputVector.Length);
         }
 
         #endregion
