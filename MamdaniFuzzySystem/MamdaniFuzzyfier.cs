@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MamdaniFuzzySystem
 {
-    class MamdaniuFuzzyfier
+    static public class MamdaniFuzzyfier
     {
+        public string Elo()
+        {
+            return String.Empty;
+        }
     }
 }
