@@ -19,6 +19,7 @@ namespace MamdaniFuzzySystem
         #endregion
 
         #region Constructors
+
         public FuzzyReguleSet(List<FuzzyValue> fuzzyValues )
         {
             FuzzyRegulesList = fuzzyValues;

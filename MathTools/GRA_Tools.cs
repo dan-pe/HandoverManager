@@ -13,15 +13,22 @@ namespace MathTools
 {
     public static class GRATools
     {
+        #region Public Methods
+
         public static float NormalizateSmallerTheBetter(IEnumerable<float> passedValues, float value)
         {
-            return (passedValues.Max() - value)/(passedValues.Max() - passedValues.Min());
+            var enumerable = passedValues as float[] ?? passedValues.ToArray();
+            return (enumerable.Max() - value) / (enumerable.Max() - enumerable.Min());
         }
 
         public static float NormalizeLargerTheBetter(IEnumerable<float> passedValues, float value)
         {
-            return (value - passedValues.Min())/(passedValues.Max() - passedValues.Min());
+            var enumerable = passedValues as float[] ?? passedValues.ToArray();
+            return (value - enumerable.Min()) / (enumerable.Max() - enumerable.Min());
         }
+
+        #endregion
+
     }
 
 }
