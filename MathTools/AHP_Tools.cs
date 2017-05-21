@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MathTools
 {
-    public class AHPModel
+    public class AhpModel
     {
 
         #region Private Fields
@@ -24,7 +24,7 @@ namespace MathTools
 
         #region Constructors
 
-        public AHPModel(double[,] inputWeights)
+        public AhpModel(double[,] inputWeights)
         {
             this.InputWeights = inputWeights;
             this.NumberOfCriterias = (int)Math.Sqrt(inputWeights.Length);
@@ -63,26 +63,30 @@ namespace MathTools
             
             return weightCoefficients;
         }
+        
+        #endregion
 
-        private static double[,] Normalize(double[,] inputArray)
-        {
-            return inputArray;
-        }
+        #region Private Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputVector"></param>
+        /// <returns>
+        /// The <see cref="double"/>
+        /// Geometric mean of input vector.
+        /// </returns>
         private static double GeometricMean(double[] inputVector)
         {
-            double quotient = inputVector[0];
+            var quotient = inputVector[0];
 
             for (int i = 1; i < inputVector.Length; i++)
             {
                 quotient *= inputVector[i];
             }
-            return Math.Pow(quotient, 1/inputVector.Length);
+
+            return Math.Pow(quotient, 1 / inputVector.Length);
         }
-
-        #endregion
-
-        #region Private Methods
 
         #endregion
     }
