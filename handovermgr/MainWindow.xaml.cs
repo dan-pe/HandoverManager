@@ -1,24 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using HandoverAlgorithmBase;
-using RadioNetwork;
-
-
-namespace handovermgr
+﻿namespace handovermgr
 {
+    #region Usings
+
+    using System.Collections.Generic;
+    using System.Windows;
+    using HandoverAlgorithmBase;
+    using RadioNetwork;
+
+    #endregion
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Constructors and Destructor
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-       /// <summary>
-       /// Prepares radio network objects
-       /// </summary>
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Prepares radio network objects
+        /// </summary>
         private void PrepareNetworkObjects()
         {
             var networkList = new List<RadioNetworkModel>();
@@ -103,7 +112,7 @@ namespace handovermgr
         }
 
         /// <summary>
-        /// Peforms decision action.
+        /// Performs decision action.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -130,6 +139,8 @@ namespace handovermgr
             //    FuzzyValue reg = new FuzzyValue();
             //})
         }
+
+        #endregion
 
     }
 }
