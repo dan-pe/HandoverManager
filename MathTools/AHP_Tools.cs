@@ -8,6 +8,9 @@ namespace MathTools
 
     #endregion
 
+    /// <summary>
+    /// The Analytic Hierarchy Model.
+    /// </summary>
     public class AhpModel
     {
 
