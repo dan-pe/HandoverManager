@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AHP_Tools.cs" />
     <Compile Include="GRATools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
