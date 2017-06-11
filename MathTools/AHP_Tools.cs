@@ -1,22 +1,19 @@
-﻿#region Usings
-
-using System;
-using System.Collections.Generic;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-#endregion
-
+﻿
 namespace MathTools
 {
+    #region Usings
+
+    using System;
+    using System.Linq;
+
+    #endregion
+
     public class AhpModel
     {
 
         #region Private Fields
 
-        private double[,] InputWeights { get; set; }
+        private double[,] InputWeights { get; }
 
         private int NumberOfCriterias { get; }
 
@@ -46,7 +43,7 @@ namespace MathTools
             var meansVector = new double[NumberOfCriterias];
             var criteriaVector = new double[NumberOfCriterias];
             var weightCoefficients = new double[NumberOfCriterias];
-            
+
             for (int i = 0; i < NumberOfCriterias; i++)
             {
                 for (int j = 0; j < NumberOfCriterias; j++)
@@ -60,16 +57,16 @@ namespace MathTools
             {
                 weightCoefficients[i] = meansVector[i] / meansVector.Sum();
             }
-            
+
             return weightCoefficients;
         }
-        
+
         #endregion
 
         #region Private Methods
 
         /// <summary>
-        /// 
+        /// Calculates geometric mean of input vector.
         /// </summary>
         /// <param name="inputVector"></param>
         /// <returns>
@@ -90,4 +87,4 @@ namespace MathTools
 
         #endregion
     }
-}  
+}
