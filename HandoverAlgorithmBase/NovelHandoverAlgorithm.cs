@@ -68,11 +68,11 @@ namespace HandoverAlgorithmBase
         #region Private Methods
 
         /// <summary>
-        /// Calculate decive factors for current networks.
+        /// Calculate decisive factors for current networks.
         /// </summary>
         private void CalculateDecisiveFactors()
         {
-            IEnumerable<float> througoutputs = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps);
+            var througoutputs = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps);
             var bers = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BitErrorRate);
             var burs = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BurstErrorRate);
             var packtloses = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.PacketLossPercentage);
@@ -125,10 +125,9 @@ namespace HandoverAlgorithmBase
 
     public class NovelNetworkModel
     {
-        public RadioNetwork.RadioNetworkModel RadioNetworkModel { get; set; }
+        public RadioNetworkModel RadioNetworkModel { get; set; }
         public float GRCFactor { get; set; }
 
     }
-  
 }
 
