@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace handovermgr.UIConfig { 
+﻿namespace handovermgr.UIConfig {
     class InputWeights
     {
         #region Properties
@@ -16,6 +14,5 @@ namespace handovermgr.UIConfig {
         public int CostWeight { get; set; }
 
     #endregion
-
     }
 }

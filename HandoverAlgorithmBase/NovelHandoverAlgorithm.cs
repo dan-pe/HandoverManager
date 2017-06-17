@@ -42,7 +42,7 @@ namespace HandoverAlgorithmBase
                     GRCFactor = 0.0f,
                     RadioNetworkModel = radioNetworkModel
                 };
-                
+
                 NovelNetworkModels.Add(novelNetworkModel);
             }
 
@@ -58,7 +58,7 @@ namespace HandoverAlgorithmBase
         public override void RunSelection()
         {
             CalculateDecisiveFactors();
-            
+
         }
 
 
@@ -123,11 +123,15 @@ namespace HandoverAlgorithmBase
 
     }
 
+    #region Novel Network Class Model
+
     public class NovelNetworkModel
     {
         public RadioNetworkModel RadioNetworkModel { get; set; }
         public float GRCFactor { get; set; }
 
     }
+
+    #endregion
 }
 
