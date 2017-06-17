@@ -45,8 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="inputNetworks.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RadioNetworks\RadioNetwork.csproj">
+      <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
+      <Name>RadioNetwork</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

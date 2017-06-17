@@ -57,7 +57,7 @@ namespace handovermgr
 
             var network1 = new RadioNetworkModel(
                 Network1.Name,
-                NetworkType.LTE,
+                "LTE",
                 new NetworkParameters()
                 {
                     ThroughputInMbps = float.Parse(N1Throu.Text),
@@ -73,7 +73,7 @@ namespace handovermgr
                 });
             var network2 = new RadioNetworkModel(
                Network2.Name,
-               NetworkType.LTE,
+               "LTE",
                new NetworkParameters()
                {
                    ThroughputInMbps = float.Parse(N2Throu.Text),
@@ -90,7 +90,7 @@ namespace handovermgr
 
             var network3 = new RadioNetworkModel(
                Network3.Name,
-               NetworkType.LTE,
+               "LTE",
                new NetworkParameters()
                {
                    ThroughputInMbps = float.Parse(N3Throu.Text),
@@ -106,7 +106,7 @@ namespace handovermgr
                });
             var network4 = new RadioNetworkModel(
                Network4.Name,
-               NetworkType.LTE,
+               "LTE",
                new NetworkParameters()
                {
                    ThroughputInMbps = float.Parse(N4Throu.Text),

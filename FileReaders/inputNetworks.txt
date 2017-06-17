@@ -1,4 +1,4 @@
 ﻿name, typee, throutp, ber, packetloss, delay, response, jiter, security, costinunitsperbyte
-DanNet, LTE-A, 10.0, 0.02, 2, 32, 18, 231, 8, 1
-OtherNet, WiMax, 2.0, 0.01, 2, 1, 18, 231, 8, 7
-OtheriestNet, WiFI, 24.0, 0.2, 22 241, 18, 231, 8, 6
+DanNet, LTE-A, 10.0, 0.02, 2.0, 32.0, 18.0, 231.0, 8.0, 1.0, 3.0
+OtherNet, WiMax, 2.0, 0.01, 2.0, 1.0, 18.0, 231.0, 8.0, 7, 4
+OtheriestNet, WiFI, 24.0, 0.2, 22.0, 241.0, 18.0, 231.0, 8.0, 6.0, 2.0
