@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Handover Manager" Height="342" Width="636.5">
+        Title="Handover Manager" Height="504" Width="636.5">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,6 +22,7 @@
             <Button Margin="4 60 4 10" Click="InputWeightsAccept_Click">User Profile</Button>
             <Button Margin="4 0 4 10">Cos tam</Button>
             <Button Margin="4 0 4 10" >Cos tam</Button>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
         </StackPanel>
         <!--#endregion-->
 
@@ -144,6 +145,7 @@
                 </Button>
             </StackPanel>
         </Popup>
+        <ListBox x:Name="LogList" Grid.ColumnSpan="6" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="0,324,0,0" VerticalAlignment="Top" Width="528"/>
 
     </Grid>
 </Window>

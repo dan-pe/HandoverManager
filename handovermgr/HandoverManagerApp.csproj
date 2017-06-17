@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,6 +106,10 @@
     <ProjectReference Include="..\HandoverAlgorithmBase\HandoverAlgorithms.csproj">
       <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
       <Name>HandoverAlgorithms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
+      <Name>Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetwork.csproj">
       <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.CompilerServices;
+using System.Windows.Controls;
+
+using Logger;
 
 namespace handovermgr
 {
@@ -24,13 +26,17 @@ namespace handovermgr
     {
         #region Fields
 
-        private static string fileName = ".../inputNetworks.txt";
+        private const string FileName = ".../inputNetworks.txt";
 
         private readonly string _filePath = Path.Combine(
                 Environment.CurrentDirectory,
                 "Debug",
-                fileName);
+                FileName);
 
+        private Logger.Logger logger
+        {
+            get { return Logger.Logger.GetLoggerInstance(LogList); }
+        }
 
         #endregion
 
@@ -38,11 +44,20 @@ namespace handovermgr
 
         public MainWindow()
         {
+
             InitializeComponent();
         }
 
         #endregion
 
+        #region Public Methods
+
+        public ListBox ServeLogBox()
+        {
+            return LogList;
+        }
+
+        #endregion
 
         #region Private Methods
 
@@ -53,7 +68,7 @@ namespace handovermgr
         {
             var networkList = new List<RadioNetworkModel>();
 
-            #region Newtwork Objects
+            #region Network Objects
 
             var network1 = new RadioNetworkModel(
                 Network1.Name,
@@ -152,6 +167,7 @@ namespace handovermgr
             var isOpen = UserPopup.IsOpen;
             UserPopup.IsOpen = !isOpen;
 
+            Logger.Logger.GetLoggerInstance(LogList).AddMessage("costam");
 
             CsvReader.ReadCsvFile(_filePath);
 
