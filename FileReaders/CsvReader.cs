@@ -10,14 +10,15 @@ namespace FileReaders
 
     #endregion
 
-    #region Fields
-
-    CultureInfo.
-
-    #endregion
-
     public static class CsvReader
     {
+
+        #region Fields
+
+        static readonly CultureInfo Culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+
+        #endregion
+
         #region Public Methods
 
         public static void ReadCsvFile(string pathToFile)
@@ -35,10 +36,6 @@ namespace FileReaders
             }
         }
 
-        var culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-        culture.NumberFormat.NumberDecimalSeparator = ".";
-        float number = float.Parse("0.54", culture);
-
         #endregion
 
         #region Private Methods
@@ -53,15 +50,15 @@ namespace FileReaders
                 NetworkType = networkElements[1],
                 Parameters = new NetworkParameters()
                 {
-                    ThroughputInMbps = float.Parse(networkElements[2], ),
-                    BitErrorRate = float.Parse(networkElements[3]),
-                    BurstErrorRate = float.Parse(networkElements[4]),
-                    PacketLossPercentage = float.Parse(networkElements[5]),
-                    DelayInMsec = float.Parse(networkElements[6]),
-                    ResponseTimeInMsec = float.Parse(networkElements[7]),
-                    JitterInMsec = float.Parse(networkElements[8]),
-                    CostInUnitsPerByte = float.Parse(networkElements[8]),
-                    SecurityLevel = float.Parse(networkElements[10]),
+                    ThroughputInMbps = float.Parse(networkElements[2], CultureInfo.InvariantCulture),
+                    BitErrorRate = float.Parse(networkElements[3], CultureInfo.InvariantCulture),
+                    BurstErrorRate = float.Parse(networkElements[4], CultureInfo.InvariantCulture),
+                    PacketLossPercentage = float.Parse(networkElements[5], CultureInfo.InvariantCulture),
+                    DelayInMsec = float.Parse(networkElements[6], CultureInfo.InvariantCulture),
+                    ResponseTimeInMsec = float.Parse(networkElements[7], CultureInfo.InvariantCulture),
+                    JitterInMsec = float.Parse(networkElements[8], CultureInfo.InvariantCulture),
+                    CostInUnitsPerByte = float.Parse(networkElements[8], CultureInfo.InvariantCulture),
+                    SecurityLevel = float.Parse(networkElements[10], CultureInfo.InvariantCulture),
                 }
 
             };
