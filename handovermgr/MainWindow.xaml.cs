@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace handovermgr
 {
@@ -20,6 +22,18 @@ namespace handovermgr
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
+
+        private static string fileName = ".../inputNetworks.txt";
+
+        private readonly string _filePath = Path.Combine(
+                Environment.CurrentDirectory,
+                "Debug",
+                fileName);
+
+
+        #endregion
+
         #region Constructors and Destructor
 
         public MainWindow()
@@ -28,6 +42,7 @@ namespace handovermgr
         }
 
         #endregion
+
 
         #region Private Methods
 
@@ -137,15 +152,14 @@ namespace handovermgr
             var isOpen = UserPopup.IsOpen;
             UserPopup.IsOpen = !isOpen;
 
-            string filePath = "C:\\Users\\Dan\\Desktop\\InputNetworks.txt";
 
-            CsvReader.ReadCsvFile(filePath);
+            CsvReader.ReadCsvFile(_filePath);
 
         }
 
         private void PrepareFuzzyRegulesSet()
         {
-            //FuzzyReguleSet mamdani = new FuzzyRegulesSet(
+            //FuzzyReguleSet Mamdani = new FuzzyRegulesSet(
             //{
             //    FuzzyValue reg = new FuzzyValue();
             //})
