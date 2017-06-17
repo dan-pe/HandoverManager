@@ -17,14 +17,15 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <!--#region UserInput-->
+
+        <!--#region UserInput -->
         <StackPanel Grid.Column="0" Orientation="Vertical">
             <Button Margin="4 60 4 10" Click="InputWeightsAccept_Click">User Profile</Button>
-            <Button Margin="4 0 4 10">Costam</Button>
-            <Button Margin="4 0 4 10" >Costam</Button>
+            <Button Margin="4 0 4 10">Cos tam</Button>
+            <Button Margin="4 0 4 10" >Cos tam</Button>
         </StackPanel>
         <!--#endregion-->
-        
+
         <!--#region Algorithm Tabs -->
         <TabControl x:Name="TabControl" Grid.Column="1" HorizontalAlignment="Left" Height="310" Margin="0,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="6" Width="523">
             <TabItem Header="Novel">
@@ -146,5 +147,4 @@
         </Popup>
 
     </Grid>
-   
 </Window>
