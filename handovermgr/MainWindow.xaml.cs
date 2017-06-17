@@ -1,10 +1,16 @@
-﻿namespace handovermgr
+﻿using System.Runtime.CompilerServices;
+
+namespace handovermgr
 {
     #region Usings
 
     using System.Collections.Generic;
     using System.Windows;
+
+    using FileReaders;
+
     using HandoverAlgorithmBase;
+
     using RadioNetwork;
 
     #endregion
@@ -130,6 +136,11 @@
         {
             var isOpen = UserPopup.IsOpen;
             UserPopup.IsOpen = !isOpen;
+
+            string filePath = "C:\\Users\\Dan\\Desktop\\InputNetworks.txt";
+
+            CsvReader.ReadCsvFile(filePath);
+
         }
 
         private void PrepareFuzzyRegulesSet()
