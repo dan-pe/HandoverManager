@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:handovermgr"
         mc:Ignorable="d"
         Title="Handover Manager" Height="342" Width="636.5">
 
@@ -132,13 +131,13 @@
 
         <Popup x:Name="UserPopup" IsOpen="False" Grid.Column="1" Grid.ColumnSpan="5" Placement="Center">
             <StackPanel Background="Aqua" Height="200" Width="200" Orientation="Vertical">
-                <Label>Througoutput</Label>
+                <Label>Throughput</Label>
                 <TextBox x:Name="ThrougoutputWeightInput"></TextBox>
                 <Label>Cost</Label>
                 <TextBox x:Name="CostWeightInput"></TextBox>
                 <Label>Security</Label>
                 <TextBox x:Name="SecurityWeightInput"></TextBox>
-                <Label>Througoutput</Label>
+                <Label>Throughput</Label>
                 <TextBox x:Name="ThrougoutputWageInput"></TextBox>
                 <Button x:Name="InputWeightsAccept" Click="InputWeightsAccept_Click">
                     Accept

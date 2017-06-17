@@ -9,7 +9,11 @@ namespace RadioNetwork
 {
     public class RadioNetworkModel
     {
-        public RadioNetworkModel(string name, NetworkType networkType, NetworkParameters networkParameters)
+        public RadioNetworkModel()
+        {
+        }
+
+        public RadioNetworkModel(string name, string networkType, NetworkParameters networkParameters)
         {
             NetworkName = name;
             NetworkType = networkType;
@@ -19,7 +23,7 @@ namespace RadioNetwork
         #region Properties
 
         public string NetworkName { get; set; }
-        public NetworkType NetworkType { get; set; }
+        public string NetworkType { get; set; }
         public NetworkParameters Parameters { get; set; }
 
         #endregion

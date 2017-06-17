@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MamdaniFuzzySystem
+﻿namespace MamdaniFuzzySystem
 {
-    static public class MamdaniFuzzyfier
+    #region Usings
+
+    #endregion
+
+    public class MamdaniFuzzyfier
     {
-        public string Elo()
+        #region Public Methods
+
+        public string Fuzzyfy()
         {
-            return String.Empty;
+            return "Not implemented.";
         }
+
+        #endregion
     }
 }

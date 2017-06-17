@@ -98,6 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileReaders\FileReaders.csproj">
+      <Project>{eb20c56d-a44f-4b7c-b4b1-ba3da787d4fc}</Project>
+      <Name>FileReaders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HandoverAlgorithmBase\HandoverAlgorithms.csproj">
       <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
       <Name>HandoverAlgorithms</Name>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandoverManagerApp", "handovermgr\HandoverManagerApp.csproj", "{7C64E5A7-024C-4BA6-A905-57E4AB4B6E70}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FuzzyLogicTools", "FuzzyLogicTools", "{D964B40D-A511-4A66-8454-E3F8DBC539B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MamdaniFuzzySystem", "MamdaniFuzzySystem\MamdaniFuzzySystem.csproj", "{AC2B3EED-B928-4257-B297-7A9D4347D714}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{2E781533-9DCB-471A-9AAB-CBF4CFF55939}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReaders", "FileReaders\FileReaders.csproj", "{EB20C56D-A44F-4B7C-B4B1-BA3DA787D4FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{AC2B3EED-B928-4257-B297-7A9D4347D714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC2B3EED-B928-4257-B297-7A9D4347D714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC2B3EED-B928-4257-B297-7A9D4347D714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB20C56D-A44F-4B7C-B4B1-BA3DA787D4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB20C56D-A44F-4B7C-B4B1-BA3DA787D4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB20C56D-A44F-4B7C-B4B1-BA3DA787D4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB20C56D-A44F-4B7C-B4B1-BA3DA787D4FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +67,6 @@ Global
 		{112835D9-0FF0-4126-9490-0130759D85E7} = {71285BC7-35D7-43D0-9A78-86E3D21473F5}
 		{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2} = {1603F975-37A9-40CE-B7AC-65AE9DE69298}
 		{AC2B3EED-B928-4257-B297-7A9D4347D714} = {D964B40D-A511-4A66-8454-E3F8DBC539B0}
+		{EB20C56D-A44F-4B7C-B4B1-BA3DA787D4FC} = {2E781533-9DCB-471A-9AAB-CBF4CFF55939}
 	EndGlobalSection
 EndGlobal

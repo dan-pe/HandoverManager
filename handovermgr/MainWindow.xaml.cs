@@ -1,10 +1,18 @@
-﻿namespace handovermgr
+﻿using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+
+namespace handovermgr
 {
     #region Usings
 
     using System.Collections.Generic;
     using System.Windows;
+
+    using FileReaders;
+
     using HandoverAlgorithmBase;
+
     using RadioNetwork;
 
     #endregion
@@ -14,6 +22,18 @@
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
+
+        private static string fileName = ".../inputNetworks.txt";
+
+        private readonly string _filePath = Path.Combine(
+                Environment.CurrentDirectory,
+                "Debug",
+                fileName);
+
+
+        #endregion
+
         #region Constructors and Destructor
 
         public MainWindow()
@@ -22,6 +42,7 @@
         }
 
         #endregion
+
 
         #region Private Methods
 
@@ -36,7 +57,7 @@
 
             var network1 = new RadioNetworkModel(
                 Network1.Name,
-                NetworkType.LTE,
+                "LTE",
                 new NetworkParameters()
                 {
                     ThroughputInMbps = float.Parse(N1Throu.Text),
@@ -52,7 +73,7 @@
                 });
             var network2 = new RadioNetworkModel(
                Network2.Name,
-               NetworkType.LTE,
+               "LTE",
                new NetworkParameters()
                {
                    ThroughputInMbps = float.Parse(N2Throu.Text),
@@ -69,7 +90,7 @@
 
             var network3 = new RadioNetworkModel(
                Network3.Name,
-               NetworkType.LTE,
+               "LTE",
                new NetworkParameters()
                {
                    ThroughputInMbps = float.Parse(N3Throu.Text),
@@ -85,7 +106,7 @@
                });
             var network4 = new RadioNetworkModel(
                Network4.Name,
-               NetworkType.LTE,
+               "LTE",
                new NetworkParameters()
                {
                    ThroughputInMbps = float.Parse(N4Throu.Text),
@@ -130,11 +151,15 @@
         {
             var isOpen = UserPopup.IsOpen;
             UserPopup.IsOpen = !isOpen;
+
+
+            CsvReader.ReadCsvFile(_filePath);
+
         }
 
         private void PrepareFuzzyRegulesSet()
         {
-            //FuzzyReguleSet mamdani = new FuzzyRegulesSet(
+            //FuzzyReguleSet Mamdani = new FuzzyRegulesSet(
             //{
             //    FuzzyValue reg = new FuzzyValue();
             //})
