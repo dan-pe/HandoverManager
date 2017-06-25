@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:handovermgr="clr-namespace:handovermgr"
         mc:Ignorable="d"
         Title="Handover Manager" Height="504" Width="636.5">
 
@@ -54,64 +55,15 @@
                     </StackPanel>
                     <!--#endregion-->
 
-                    <!--#region Network1-->
-                    <StackPanel x:Name="Network1" Orientation="Vertical" Grid.Column="1">
-                        <Label Content="Network1"  Margin="0 0 0 5" FontWeight="SemiBold"/>
-                        <TextBox x:Name="N1Throu" Margin="4"></TextBox>
-                        <TextBox x:Name="N1Ber" Margin="4"></TextBox>
-                        <TextBox x:Name="N1Burst" Margin="4"></TextBox>
-                        <TextBox x:Name="N1PacketLoss" Margin="4"></TextBox>
-                        <TextBox x:Name="N1Delay" Margin="4"></TextBox>
-                        <TextBox x:Name="N1Response" Margin="4"></TextBox>
-                        <TextBox x:Name="N1Jitter" Margin="4"></TextBox>
-                        <TextBox x:Name="N1Security" Margin="4"></TextBox>
-                        <TextBox x:Name="N1SCost" Margin="4"></TextBox>
-                    </StackPanel>
-                    <!--#endregion-->
+                    <!--#region Network Input Controls-->
+                    <handovermgr:NetworkInputModel Grid.Column="1"></handovermgr:NetworkInputModel>
 
-                    <!--#region Network2-->
-                    <StackPanel x:Name="Network2" Orientation="Vertical" Grid.Column="2">
-                        <Label Content="Network2"  Margin="0 0 0 5" FontWeight="SemiBold"/>
-                        <TextBox x:Name="N2Throu" Margin="4"></TextBox>
-                        <TextBox x:Name="N2Ber" Margin="4"></TextBox>
-                        <TextBox x:Name="N2Burst" Margin="4"></TextBox>
-                        <TextBox x:Name="N2PacketLoss" Margin="4"></TextBox>
-                        <TextBox x:Name="N2Delay" Margin="4"></TextBox>
-                        <TextBox x:Name="N2Response" Margin="4"></TextBox>
-                        <TextBox x:Name="N2Jitter" Margin="4"></TextBox>
-                        <TextBox x:Name="N2Security" Margin="4"></TextBox>
-                        <TextBox x:Name="N2SCost" Margin="4"></TextBox>
-                    </StackPanel>
-                    <!--#endregion-->
+                    <handovermgr:NetworkInputModel Grid.Column="2"></handovermgr:NetworkInputModel>
 
-                    <!--#region Network3-->
-                    <StackPanel x:Name="Network3" Orientation="Vertical" Grid.Column="3">
-                        <Label Content="Network3"  Margin="0 0 0 5" FontWeight="SemiBold"/>
-                        <TextBox x:Name="N3Throu" Margin="4"></TextBox>
-                        <TextBox x:Name="N3Ber" Margin="4"></TextBox>
-                        <TextBox x:Name="N3Burst" Margin="4"></TextBox>
-                        <TextBox x:Name="N3PacketLoss" Margin="4"></TextBox>
-                        <TextBox x:Name="N3Delay" Margin="4"></TextBox>
-                        <TextBox x:Name="N3Response" Margin="4"></TextBox>
-                        <TextBox x:Name="N3Jitter" Margin="4"></TextBox>
-                        <TextBox x:Name="N3Security" Margin="4"></TextBox>
-                        <TextBox x:Name="N3SCost" Margin="4"></TextBox>
-                    </StackPanel>
-                    <!--#endregion-->
+                    <handovermgr:NetworkInputModel Grid.Column="3"></handovermgr:NetworkInputModel>
 
-                    <!--#region Network4-->
-                    <StackPanel x:Name="Network4" Orientation="Vertical" Grid.Column="4">
-                        <Label Content="Network4"  Margin="0 0 0 5" FontWeight="SemiBold"/>
-                        <TextBox x:Name="N4Throu" Margin="4"></TextBox>
-                        <TextBox x:Name="N4Ber" Margin="4"></TextBox>
-                        <TextBox x:Name="N4Burst" Margin="4"></TextBox>
-                        <TextBox x:Name="N4PacketLoss" Margin="4"></TextBox>
-                        <TextBox x:Name="N4Delay" Margin="4"></TextBox>
-                        <TextBox x:Name="N4Response" Margin="4"></TextBox>
-                        <TextBox x:Name="N4Jitter" Margin="4"></TextBox>
-                        <TextBox x:Name="N4Security" Margin="4"></TextBox>
-                        <TextBox x:Name="N4SCost" Margin="4"></TextBox>
-                    </StackPanel>
+                    <handovermgr:NetworkInputModel Grid.Column="4"></handovermgr:NetworkInputModel>
+
                     <!--#endregion-->
 
                     <!--#region Deicision-->
