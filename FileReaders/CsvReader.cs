@@ -10,14 +10,25 @@ namespace FileReaders
 
     #endregion
 
+    /// <summary>
+    /// The CSV file reader.
+    /// </summary>
     public static class CsvReader
     {
         #region Public Methods
 
+        /// <summary>
+        /// Reads the specified CSV file and prints
+        /// output to console.
+        /// </summary>
+        /// <param name="pathToFile">
+        /// Path to file.
+        /// </param>
         public static void ReadCsvFile(string pathToFile)
         {
             using (var streamReader = new StreamReader(pathToFile))
             {
+                // Skips header line.
                 var line = streamReader.ReadLine();
 
                 while (!streamReader.EndOfStream)
@@ -25,7 +36,6 @@ namespace FileReaders
                     line = streamReader.ReadLine();
                     Console.WriteLine(ParseCsvLineForNetworkModel(line).NetworkName);
                 }
-
             }
         }
 
@@ -33,6 +43,15 @@ namespace FileReaders
 
         #region Private Methods
 
+        /// <summary>
+        /// Parses CSV file line to Network Model.
+        /// </summary>
+        /// <param name="line">
+        /// Single line.
+        /// </param>
+        /// <returns>
+        /// The Radio Network model.
+        /// </returns>
         private static RadioNetworkModel ParseCsvLineForNetworkModel(string line)
         {
             string[] networkElements = line.Split(',');
