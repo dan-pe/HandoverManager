@@ -12,13 +12,6 @@ namespace FileReaders
 
     public static class CsvReader
     {
-
-        #region Fields
-
-        static readonly CultureInfo Culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-
-        #endregion
-
         #region Public Methods
 
         public static void ReadCsvFile(string pathToFile)
