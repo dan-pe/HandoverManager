@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,9 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\NetworkInputModel.xaml.cs">
+      <DependentUpon>NetworkInputModel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIConfig\InputWeights.cs" />
     <Compile Include="UIConfig\UserConfig.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="MainView\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -65,10 +69,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="MainView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\NetworkInputModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -105,6 +113,10 @@
     <ProjectReference Include="..\HandoverAlgorithmBase\HandoverAlgorithms.csproj">
       <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
       <Name>HandoverAlgorithms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
+      <Name>Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetwork.csproj">
       <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
