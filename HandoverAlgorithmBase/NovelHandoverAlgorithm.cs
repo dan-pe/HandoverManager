@@ -1,11 +1,7 @@
 ﻿#region Usings
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using RadioNetwork;
 using MathTools;
 
@@ -17,18 +13,18 @@ namespace HandoverAlgorithmBase
     {
         #region Properties
 
-        public List<float> NetworkGRAFactors { get; set; }
+        public List<float> NetworkGraFactors { get; set; }
 
         protected List<NovelNetworkModel> NovelNetworkModels { get; set; }
 
-        public RadioNetwork.RadioNetworkModel ResultNetwork { get; set; }
+        public RadioNetworkModel ResultNetwork { get; set; }
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Instantiate Novel Handover Algoithm.
+        /// Instantiate Novel Handover Algorithm.
         /// </summary>
         /// <param name="radioNetworksList"></param>
         public NovelHanoverAlgorithm(List<RadioNetwork.RadioNetworkModel> radioNetworksList) : base(radioNetworksList)
@@ -45,7 +41,6 @@ namespace HandoverAlgorithmBase
 
                 NovelNetworkModels.Add(novelNetworkModel);
             }
-
         }
 
         #endregion
@@ -58,10 +53,7 @@ namespace HandoverAlgorithmBase
         public override void RunSelection()
         {
             CalculateDecisiveFactors();
-
         }
-
-
 
         #endregion
 
@@ -106,17 +98,16 @@ namespace HandoverAlgorithmBase
 
                 networkModel.GRCFactor = grc;
             }
-
         }
-
-
 
         public string SelectResultNetwork()
         {
             RunSelection();
-            var netwrok =
-                NovelNetworkModels.OrderByDescending(grc => grc.GRCFactor).First();
-            return netwrok.RadioNetworkModel.NetworkName;
+            var network =
+                NovelNetworkModels.
+                OrderByDescending(grc => grc.GRCFactor).First();
+
+            return network.RadioNetworkModel.NetworkName;
         }
 
         #endregion
