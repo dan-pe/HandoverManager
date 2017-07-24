@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MathTools
 {
-    public static class GRATools
+    public static class GraTools
     {
         #region Public Methods
 
@@ -37,7 +37,7 @@ namespace MathTools
         /// Normalizes passed value, by larger the better pattern.
         /// </summary>
         /// <param name="passedValues">
-        /// Passed values collecton.
+        /// Passed values collection.
         /// </param>
         /// <param name="value"></param>
         /// <returns>

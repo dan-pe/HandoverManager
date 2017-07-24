@@ -35,7 +35,7 @@ namespace HandoverAlgorithmBase
             {
                 var novelNetworkModel = new NovelNetworkModel()
                 {
-                    GRCFactor = 0.0f,
+                    GrcFactor = 0.0f,
                     RadioNetworkModel = radioNetworkModel
                 };
 
@@ -77,35 +77,34 @@ namespace HandoverAlgorithmBase
             foreach (var networkModel in NovelNetworkModels)
             {
                 float grc =
-                    GRATools.NormalizeLargerTheBetter(througoutputs,
+                    GraTools.NormalizeLargerTheBetter(througoutputs,
                         networkModel.RadioNetworkModel.Parameters.ThroughputInMbps) +
-                    GRATools.NormalizateSmallerTheBetter(bers,
+                    GraTools.NormalizateSmallerTheBetter(bers,
                         networkModel.RadioNetworkModel.Parameters.BitErrorRate) +
-                    GRATools.NormalizateSmallerTheBetter(burs,
+                    GraTools.NormalizateSmallerTheBetter(burs,
                         networkModel.RadioNetworkModel.Parameters.BurstErrorRate) +
-                    GRATools.NormalizateSmallerTheBetter(packtloses,
+                    GraTools.NormalizateSmallerTheBetter(packtloses,
                         networkModel.RadioNetworkModel.Parameters.PacketLossPercentage) +
-                    GRATools.NormalizateSmallerTheBetter(delays,
+                    GraTools.NormalizateSmallerTheBetter(delays,
                         networkModel.RadioNetworkModel.Parameters.DelayInMsec) +
-                    GRATools.NormalizateSmallerTheBetter(responses,
+                    GraTools.NormalizateSmallerTheBetter(responses,
                         networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) +
-                    GRATools.NormalizateSmallerTheBetter(jitters,
+                    GraTools.NormalizateSmallerTheBetter(jitters,
                         networkModel.RadioNetworkModel.Parameters.JitterInMsec) +
-                    GRATools.NormalizeLargerTheBetter(sec,
+                    GraTools.NormalizeLargerTheBetter(sec,
                         networkModel.RadioNetworkModel.Parameters.SecurityLevel) +
-                    GRATools.NormalizateSmallerTheBetter(cost,
+                    GraTools.NormalizateSmallerTheBetter(cost,
                         networkModel.RadioNetworkModel.Parameters.CostInUnitsPerByte);
 
-                networkModel.GRCFactor = grc;
+                networkModel.GrcFactor = grc;
             }
         }
 
         public string SelectResultNetwork()
         {
             RunSelection();
-            var network =
-                NovelNetworkModels.
-                OrderByDescending(grc => grc.GRCFactor).First();
+            var network = NovelNetworkModels.
+                            OrderByDescending(grc => grc.GrcFactor).First();
 
             return network.RadioNetworkModel.NetworkName;
         }
@@ -119,7 +118,7 @@ namespace HandoverAlgorithmBase
     public class NovelNetworkModel
     {
         public RadioNetworkModel RadioNetworkModel { get; set; }
-        public float GRCFactor { get; set; }
+        public float GrcFactor { get; set; }
 
     }
 
