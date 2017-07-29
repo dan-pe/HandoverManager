@@ -1,5 +1,6 @@
 ﻿#region Usings
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RadioNetwork;
@@ -27,7 +28,7 @@ namespace HandoverAlgorithmBase
         /// Instantiate Novel Handover Algorithm.
         /// </summary>
         /// <param name="radioNetworksList"></param>
-        public NovelHanoverAlgorithm(List<RadioNetwork.RadioNetworkModel> radioNetworksList) : base(radioNetworksList)
+        public NovelHanoverAlgorithm(List<RadioNetworkModel> radioNetworksList) : base(radioNetworksList)
         {
             NovelNetworkModels = new List<NovelNetworkModel>();
 
@@ -103,8 +104,18 @@ namespace HandoverAlgorithmBase
         public string SelectResultNetwork()
         {
             RunSelection();
-            var network = NovelNetworkModels.
-                            OrderByDescending(grc => grc.GrcFactor).First();
+            NovelNetworkModel network;
+
+            try
+            {
+                network = NovelNetworkModels.
+                    OrderByDescending(grc => grc.GrcFactor).First();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
 
             return network.RadioNetworkModel.NetworkName;
         }
@@ -119,7 +130,6 @@ namespace HandoverAlgorithmBase
     {
         public RadioNetworkModel RadioNetworkModel { get; set; }
         public float GrcFactor { get; set; }
-
     }
 
     #endregion
