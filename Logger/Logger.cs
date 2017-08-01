@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Windows.Controls;
-
-namespace Logger
+﻿namespace Logger
 {
     #region Usings
+
+    using System.Windows.Controls;
 
     #endregion
 

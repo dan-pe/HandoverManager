@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MathTools", "MathTools", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathTools", "MathTools\MathTools.csproj", "{112835D9-0FF0-4126-9490-0130759D85E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioNetwork", "RadioNetworks\RadioNetwork.csproj", "{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioNetworks", "RadioNetworks\RadioNetworks.csproj", "{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FuzzyLogicTools", "FuzzyLogicTools", "{D964B40D-A511-4A66-8454-E3F8DBC539B0}"
 EndProject

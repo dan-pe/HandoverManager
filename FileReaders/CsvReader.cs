@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using RadioNetwork;
+﻿using RadioNetworks;
 
 namespace FileReaders
 {
@@ -7,6 +6,7 @@ namespace FileReaders
 
     using System;
     using System.IO;
+    using System.Globalization;
 
     #endregion
 
@@ -34,6 +34,8 @@ namespace FileReaders
                 while (!streamReader.EndOfStream)
                 {
                     line = streamReader.ReadLine();
+
+                    //TODO: Actually do something with read line.
                     Console.WriteLine(ParseCsvLineForNetworkModel(line).NetworkName);
                 }
             }

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:handovermgr="clr-namespace:handovermgr"
+        xmlns:handovermgr="clr-namespace:handovermgr" 
+        xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
         Title="Handover Manager" Height="504" Width="636.5">
 
@@ -42,7 +43,8 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="ParametersList" Orientation="Vertical" Grid.Column="0">
-                        <Label Content="Parameters List:"  Margin="0 0 0 5" FontWeight="SemiBold"/>
+
+<Label Content="Parameters"  Margin="0 0 0 5" FontWeight="SemiBold"/>
                         <Label Content="Throughoutput:"/>
                         <Label Content="BER:"/>
                         <Label Content="Burst Error Rate:"/>
@@ -56,13 +58,13 @@
                     <!--#endregion-->
 
                     <!--#region Network Input Controls-->
-                    <handovermgr:NetworkInputModel Grid.Column="1"></handovermgr:NetworkInputModel>
+                    <controls:NetworkInputModel Grid.Column="1"></controls:NetworkInputModel>
 
-                    <handovermgr:NetworkInputModel Grid.Column="2"></handovermgr:NetworkInputModel>
+                    <controls:NetworkInputModel Grid.Column="2"></controls:NetworkInputModel>
 
-                    <handovermgr:NetworkInputModel Grid.Column="3"></handovermgr:NetworkInputModel>
+                    <controls:NetworkInputModel Grid.Column="3"></controls:NetworkInputModel>
 
-                    <handovermgr:NetworkInputModel Grid.Column="4"></handovermgr:NetworkInputModel>
+                    <controls:NetworkInputModel Grid.Column="4"></controls:NetworkInputModel>
 
                     <!--#endregion-->
 
@@ -101,3 +103,18 @@
 
     </Grid>
 </Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

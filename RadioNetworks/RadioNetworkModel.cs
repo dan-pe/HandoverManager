@@ -1,14 +1,16 @@
-﻿#region Usings
-
-using System.Collections.Generic;
-
-#endregion
-
-
-namespace RadioNetwork
+﻿namespace RadioNetworks
 {
+    #region Usings
+
+    #endregion
+
+    /// <summary>
+    /// The radio network model.
+    /// </summary>
     public class RadioNetworkModel
     {
+        #region Constructor
+
         public RadioNetworkModel()
         {
         }
@@ -20,6 +22,8 @@ namespace RadioNetwork
             Parameters = networkParameters;
         }
 
+        #endregion
+
         #region Properties
 
         public string NetworkName { get; set; }
@@ -27,19 +31,5 @@ namespace RadioNetwork
         public NetworkParameters Parameters { get; set; }
 
         #endregion
-
     }
-
-    #region Enums
-    public enum NetworkType
-    {
-        LTE,
-        WiFi,
-        WiMax,
-        LTE_Advanced,
-        UMTS,
-        GPRS
-    }
-    #endregion
-
 }

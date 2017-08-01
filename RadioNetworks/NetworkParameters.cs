@@ -1,4 +1,4 @@
-namespace RadioNetwork
+namespace RadioNetworks
 {
     public class NetworkParameters
     {

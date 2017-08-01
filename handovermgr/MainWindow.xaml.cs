@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Controls;
 
 using Logger;
+using RadioNetworks;
 
 namespace handovermgr
 {
@@ -14,8 +15,6 @@ namespace handovermgr
     using FileReaders;
 
     using HandoverAlgorithmBase;
-
-    using RadioNetwork;
 
     #endregion
 

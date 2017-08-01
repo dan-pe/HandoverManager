@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace handovermgr
+namespace handovermgr.Controls
 {
     /// <summary>
     /// Interaction logic for NetworkInputModel.xaml
