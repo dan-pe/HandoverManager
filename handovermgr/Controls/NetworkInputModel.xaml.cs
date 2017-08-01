@@ -1,7 +1,12 @@
-﻿using System.Windows.Controls;
-
+﻿
 namespace handovermgr.Controls
 {
+    #region Usings
+
+    using System.Windows.Controls;
+
+    #endregion
+
     /// <summary>
     /// Interaction logic for NetworkInputModel.xaml
     /// </summary>
