@@ -101,6 +101,10 @@ namespace HandoverAlgorithmBase
             }
         }
 
+        /// <summary>
+        /// Select the result network
+        /// </summary>
+        /// <returns></returns>
         public string SelectResultNetwork()
         {
             RunSelection();
