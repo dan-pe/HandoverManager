@@ -6,13 +6,15 @@ using RadioNetworks;
 
 #endregion
 
-
 namespace HandoverAlgorithmBase
 {
     public abstract class HandoverAlgorithmBase
     {
         #region Properties
 
+        /// <summary>
+        /// The radio networks list.
+        /// </summary>
         protected List<RadioNetworkModel> RadioNetworksList { get; set; }
 
         #endregion
@@ -20,9 +22,11 @@ namespace HandoverAlgorithmBase
         #region Constructors
 
         /// <summary>
-        /// The Handover Alogithm Base
+        /// The Handover Algorithm Base
         /// </summary>
-        /// <param name="radioNetworksList"></param>
+        /// <param name="radioNetworksList">
+        /// The radio networks list.
+        /// </param>
         protected HandoverAlgorithmBase(List<RadioNetworkModel> radioNetworksList)
         {
             RadioNetworksList = radioNetworksList;
@@ -37,6 +41,5 @@ namespace HandoverAlgorithmBase
         }
 
         #endregion
-
     }
 }

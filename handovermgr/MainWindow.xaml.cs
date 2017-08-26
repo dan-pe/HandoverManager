@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Controls;
-
+using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
 using Logger;
 using RadioNetworks;
 
@@ -66,9 +66,9 @@ namespace handovermgr
         private void PrepareNetworkObjects()
         {
             var networkList = new List<RadioNetworkModel>();
+            var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
 
-            var novelAlgo = new NovelHanoverAlgorithm(networkList);
-            ResultNetwork.Text = novelAlgo.SelectResultNetwork();
+            ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
         }
 
         /// <summary>
