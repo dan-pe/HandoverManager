@@ -20,14 +20,16 @@ namespace MathTools
 
         private int NumberOfCriterias { get; }
 
+        private const double Epsilion = 0.001d;
+
         #endregion
 
         #region Constructors
 
         public AhpModel(double[,] inputWeights)
         {
-            this.InputWeights = inputWeights;
-            this.NumberOfCriterias = (int)Math.Sqrt(inputWeights.Length);
+            InputWeights = inputWeights;
+            NumberOfCriterias = (int)Math.Sqrt(inputWeights.Length);
         }
 
         #endregion
@@ -64,6 +66,51 @@ namespace MathTools
             return weightCoefficients;
         }
 
+        /// <summary>
+        /// Computes normalized array vector (versor).
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public static double[] ComputeNormalizedVector(double[,] inputWeightsArray)
+        {
+            bool isSmallerThanEpsilion = false;
+
+            // Step 1: 
+            // Multiply matrix.
+            double[,] stepOneOriginal = ArrayOperations.MultiplyArrays(inputWeightsArray, inputWeightsArray);
+
+            // Step2:
+            // Sum rows in matrix.
+            double[] stepTwoOriginal = ArrayOperations.SumRows(stepOneOriginal);
+
+            // Step3:
+            // Multiply vector by inversion of sum.
+            double[] stepThreeOriginal = ArrayOperations.MultiplyByInversionofSum(stepTwoOriginal);
+
+            while (!isSmallerThanEpsilion)
+            {
+                // Step 1: 
+                // Multiply matrix.
+                double[,] stepOne = ArrayOperations.MultiplyArrays(stepOneOriginal, stepOneOriginal);
+
+                // Step2:
+                // Sum rows in matrix.
+                double[] stepTwo = ArrayOperations.SumRows(stepOne);
+
+                // Step3:
+                // Multiply vector by inversion of sum.
+                double[] stepThree = ArrayOperations.MultiplyByInversionofSum(stepTwo);
+
+                isSmallerThanEpsilion = IsDeltaSmallerThenEpsilion(stepThreeOriginal, stepThree, Epsilion);
+
+                stepThreeOriginal = stepThree;
+                stepOneOriginal = stepOne;
+
+            }
+
+            return stepThreeOriginal;
+        }
+
         #endregion
 
         #region Private Methods
@@ -86,6 +133,24 @@ namespace MathTools
             }
 
             return Math.Pow(quotient, 1 / inputVector.Length);
+        }
+
+        private static bool IsDeltaSmallerThenEpsilion(double[] inputVectorA, double[] inputVectorB, double epsilion)
+        {
+            int vectorLengthA = inputVectorA.GetLength(0);
+            bool isSmaller = true;
+
+            for (int i = 0; i < vectorLengthA; i++)
+            {
+                double delta = inputVectorA[i] - inputVectorB[i];
+
+                if (delta > epsilion)
+                {
+                    isSmaller = false;
+                }
+            }
+
+            return isSmaller;
         }
 
         #endregion

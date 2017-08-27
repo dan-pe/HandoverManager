@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AhpTools.cs" />
+    <Compile Include="ArrayOperations.cs" />
     <Compile Include="GraTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

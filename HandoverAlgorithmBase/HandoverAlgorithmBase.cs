@@ -22,7 +22,7 @@ namespace HandoverAlgorithmBase
         #region Constructors
 
         /// <summary>
-        /// The Handover Algorithm Base
+        /// The Handover algorithm base
         /// </summary>
         /// <param name="radioNetworksList">
         /// The radio networks list.

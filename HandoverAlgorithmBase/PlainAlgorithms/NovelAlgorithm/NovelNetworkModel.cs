@@ -6,7 +6,7 @@
 
     #endregion
 
-    #region Novel Network Class Model
+    #region Constructor
 
     /// <summary>
     /// Novel network model.
