@@ -62,12 +62,19 @@
     <Compile Include="Controls\PatametersListUI.xaml.cs">
       <DependentUpon>PatametersListUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserInputWeightsView.xaml.cs">
+      <DependentUpon>UserInputWeightsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserMenu.xaml.cs">
       <DependentUpon>UserMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIConfig\InputWeights.cs" />
     <Compile Include="UIConfig\UserConfig.cs" />
     <Page Include="Controls\PatametersListUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserInputWeightsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,7 +145,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MainView\" />
+    <Folder Include="Controls\UserInput\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

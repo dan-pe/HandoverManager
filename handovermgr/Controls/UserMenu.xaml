@@ -9,7 +9,7 @@
     
     <StackPanel Grid.Column="0" Orientation="Vertical">
         <Button Margin="4 60 4 10">User Profile</Button>
-        <Button Margin="4 0 4 10">Menu Item 1</Button>
+        <Button Margin="4 0 4 10">Load from file</Button>
         <Button Margin="4 0 4 10">Menu Item 2</Button>
     </StackPanel>
     

@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:handovermgr.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel x:Name="ParametersList" Orientation="Vertical" Grid.Column="0">
-
+    <StackPanel x:Name="ParametersList" Orientation="Vertical">
         <Label Content="Parameters"  Margin="0 0 0 5" FontWeight="SemiBold"/>
         <Label Content="Throughoutput:"/>
         <Label Content="BER:"/>

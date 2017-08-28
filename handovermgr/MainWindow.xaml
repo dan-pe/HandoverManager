@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:handovermgr="clr-namespace:handovermgr" 
         xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
         Title="Handover Manager" Height="504" Width="636.5">
@@ -81,19 +80,7 @@
         <!--#region Profile Pop-up-->
 
         <Popup x:Name="UserPopup" IsOpen="False" Grid.Column="1" Grid.ColumnSpan="5" Placement="Center">
-            <StackPanel Background="Aqua" Height="200" Width="200" Orientation="Vertical">
-                <Label>Throughput</Label>
-                <TextBox x:Name="ThrougoutputWeightInput"></TextBox>
-                <Label>Cost</Label>
-                <TextBox x:Name="CostWeightInput"></TextBox>
-                <Label>Security</Label>
-                <TextBox x:Name="SecurityWeightInput"></TextBox>
-                <Label>Throughput</Label>
-                <TextBox x:Name="ThrougoutputWageInput"></TextBox>
-                <Button x:Name="InputWeightsAccept" Click="InputWeightsAccept_Click">
-                    Accept
-                </Button>
-            </StackPanel>
+           <controls:UserInputWeightsView></controls:UserInputWeightsView>
         </Popup>
         <ListBox x:Name="LogList" Grid.ColumnSpan="6" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="0,324,0,0" VerticalAlignment="Top" Width="528"/>
         
@@ -101,6 +88,22 @@
         
     </Grid>
 </Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

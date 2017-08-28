@@ -106,6 +106,5 @@ namespace handovermgr
         }
 
         #endregion
-
     }
 }
