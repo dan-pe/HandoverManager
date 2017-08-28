@@ -28,7 +28,7 @@ namespace MathTools
         /// <see cref="float"/>
         /// Normalized value.
         /// </returns>
-        public static float NormalizateSmallerTheBetter(IEnumerable<float> passedValues, float value)
+        public static double NormalizateSmallerTheBetter(IEnumerable<double> passedValues, double value)
         {
             return (passedValues.Max() - value) / (passedValues.Max() - passedValues.Min());
         }
@@ -44,7 +44,7 @@ namespace MathTools
         /// <see cref="float"/>
         /// Normalized value.
         /// </returns>
-        public static float NormalizeLargerTheBetter(IEnumerable<float> passedValues, float value)
+        public static double NormalizeLargerTheBetter(IEnumerable<double> passedValues, double value)
         {
             return (value - passedValues.Min()) / (passedValues.Max() - passedValues.Min());
         }

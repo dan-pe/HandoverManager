@@ -14,7 +14,7 @@
     public class NovelNetworkModel
     {
         public RadioNetworkModel RadioNetworkModel { get; set; }
-        public float GrcFactor { get; set; }
+        public double GrcFactor { get; set; }
     }
 
     #endregion
