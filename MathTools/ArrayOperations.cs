@@ -32,18 +32,15 @@ namespace MathTools
         {
             int rowsA = arrayA.GetLength(0);
             int columnsA = arrayA.GetLength(1);
-
-            int rowsB = arrayB.GetLength(0);
             int columnsB = arrayB.GetLength(1);
 
-            double tempCellResult = 0.0d;
             double[,] resultArray = new double[rowsA, columnsB];
 
             for (int i = 0; i < rowsA; i++)
             {
                 for (int j = 0; j < columnsB; j++)
                 {
-                    tempCellResult = 0.0d;
+                    var tempCellResult = 0.0d;
                     for (int k = 0; k < columnsA; k++)
                     {
                         tempCellResult += arrayA[i, k] * arrayB[k, j];
@@ -58,7 +55,9 @@ namespace MathTools
         /// <summary>
         /// Sums rows in two dimensional array.
         /// </summary>
-        /// <param name="inputArray"></param>
+        /// <param name="inputArray">
+        /// Input array.
+        /// </param>
         /// <returns>
         /// Vector of summed rows.
         /// </returns>
@@ -69,7 +68,7 @@ namespace MathTools
             int rowsA = inputArray.GetLength(0);
             int columnsA = inputArray.GetLength(1);
 
-            for (int i = 0; i < rowsA; i++)
+            for (int i = 0; i < rowsA; i++) 
             {
                 double tempCellResult = 0;
                 for (int j = 0; j <columnsA; j++)
