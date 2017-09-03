@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Controls;
 using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
@@ -32,9 +33,20 @@ namespace handovermgr
                 "Debug",
                 FileName);
 
-        private Logger.Logger logger
+        private Logger.Logger Logger
         {
-            get { return Logger.Logger.GetLoggerInstance(LogList); }
+            get { return global::Logger.Logger.GetLoggerInstance(LogList); }
+        }
+
+        private static ObservableCollection<RadioNetworkModel> _networksList;
+
+        public static void AddNetwork()
+        {
+            _networksList.Add(new RadioNetworkModel
+            {
+                NetworkName = "mock",
+                NetworkType = "anothermock"
+            });
         }
 
         #endregion
@@ -43,8 +55,25 @@ namespace handovermgr
 
         public MainWindow()
         {
-
+            
             InitializeComponent();
+            BindNetworks();
+            
+        }
+
+        private void BindNetworks()
+        {
+            _networksList = new ObservableCollection<RadioNetworkModel>();
+
+            networkListView.ItemsSource = _networksList;
+
+            _networksList.Add(new RadioNetworkModel { NetworkName = "network1", NetworkType = NetworkType.GPRS.ToString() });
+            _networksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network2",
+                    NetworkType = NetworkType.LTE_Advanced.ToString()
+                });
         }
 
         #endregion
@@ -65,10 +94,10 @@ namespace handovermgr
         /// </summary>
         private void PrepareNetworkObjects()
         {
-            var networkList = new List<RadioNetworkModel>();
-            var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
+            //var networkList = new List<RadioNetworkModel>();
+            //var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
 
-            ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
+            //ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
         }
 
         /// <summary>
@@ -91,7 +120,7 @@ namespace handovermgr
             var isOpen = UserPopup.IsOpen;
             UserPopup.IsOpen = !isOpen;
 
-            Logger.Logger.GetLoggerInstance(LogList).AddMessage("costam");
+            global::Logger.Logger.GetLoggerInstance(LogList).AddMessage("costam");
 
             CsvReader.ReadCsvFile(_filePath);
 

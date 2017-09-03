@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
         Title="Handover Manager" Height="504" Width="636.5">
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -30,42 +30,21 @@
                 
                 <!--#region Network Parameters Region-->
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="56*"/>
-                        <ColumnDefinition Width="30*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="87*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <!--#region Parameters List-->
-
-                    <controls:PatametersListUI Grid.Column="0" Grid.ColumnSpan="2"></controls:PatametersListUI>
-                    <!--#endregion-->
-
-                    <!--#region Network Input Controls-->
-                    <controls:NetworkInputModel Grid.Column="2"></controls:NetworkInputModel>
-
-                    <controls:NetworkInputModel Grid.Column="3"></controls:NetworkInputModel>
-
-                    <controls:NetworkInputModel Grid.Column="4"></controls:NetworkInputModel>
-
-                    <controls:NetworkInputModel Grid.Column="5"></controls:NetworkInputModel>
-
-                    <!--#endregion-->
-
-                    <!--#region Decision Section-->
-
-                    <StackPanel x:Name="DecisionPanel" Orientation="Vertical" Grid.Column="6">
-                        <Label Content="Result"  Margin="0 0 0 5" FontWeight="SemiBold"/>
-                        <TextBox x:Name="ResultNetwork" Margin="4"></TextBox>
-                        <Button x:Name="DecisionButton" Click="DecisionButton_OnClick" Margin="4" Content="Compute"/>
-                    </StackPanel>
-
-                    <!--#endregion-->
-
+                    <ListView x:Name="networkListView"> 
+                        <ListView.View>
+                            
+                        <GridView>
+                           <GridView.Columns>
+                            <GridViewColumn Header="Name"
+                                            DisplayMemberBinding="{Binding Name}">
+                            </GridViewColumn>  
+                            <GridViewColumn Header="Type"
+                                            DisplayMemberBinding="{Binding NetworkType}">
+                            </GridViewColumn>
+                           </GridView.Columns>
+                        </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
                 
                 <!--#endregion-->
