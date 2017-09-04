@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Linq;
 using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
-using Logger;
-using RadioNetworks;
 
 namespace handovermgr
 {
     #region Usings
 
-    using System.Collections.Generic;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.IO;
     using System.Windows;
+    using System.Windows.Controls;
 
     using FileReaders;
 
-    using HandoverAlgorithmBase;
+    using RadioNetworks;
 
     #endregion
 
@@ -33,16 +32,11 @@ namespace handovermgr
                 "Debug",
                 FileName);
 
-        private Logger.Logger Logger
-        {
-            get { return global::Logger.Logger.GetLoggerInstance(LogList); }
-        }
-
-        private static ObservableCollection<RadioNetworkModel> _networksList;
+        public static ObservableCollection<RadioNetworkModel> NetworksList;
 
         public static void AddNetwork()
         {
-            _networksList.Add(new RadioNetworkModel
+            NetworksList.Add(new RadioNetworkModel
             {
                 NetworkName = "mock",
                 NetworkType = "anothermock"
@@ -61,21 +55,6 @@ namespace handovermgr
             
         }
 
-        private void BindNetworks()
-        {
-            _networksList = new ObservableCollection<RadioNetworkModel>();
-
-            networkListView.ItemsSource = _networksList;
-
-            _networksList.Add(new RadioNetworkModel { NetworkName = "network1", NetworkType = NetworkType.GPRS.ToString() });
-            _networksList.Add(
-                new RadioNetworkModel
-                {
-                    NetworkName = "network2",
-                    NetworkType = NetworkType.LTE_Advanced.ToString()
-                });
-        }
-
         #endregion
 
         #region Public Methods
@@ -89,13 +68,23 @@ namespace handovermgr
 
         #region Private Methods
 
+        private void BindNetworks()
+        {
+            NetworksList = new ObservableCollection<RadioNetworkModel>();
+
+            NetworkListView.ItemsSource = NetworksList;
+
+            NetworksList.Add(new RadioNetworkModel { NetworkName = "network1", NetworkType = NetworkType.GPRS.ToString() });
+            NetworksList.Add(new RadioNetworkModel{NetworkName = "network2",NetworkType = NetworkType.LTE_Advanced.ToString()});
+        }
+
         /// <summary>
         /// Prepares radio network objects
         /// </summary>
         private void PrepareNetworkObjects()
         {
-            //var networkList = new List<RadioNetworkModel>();
-            //var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
+           var networkList = NetworksList.ToList();
+           var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
 
             //ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
         }
@@ -109,31 +98,18 @@ namespace handovermgr
         {
             PrepareNetworkObjects();
         }
-
-        /// <summary>
-        /// Open/Close user weights windows.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void InputWeightsAccept_Click(object sender, RoutedEventArgs e)
+        
+        private Logger.Logger Logger
         {
-            var isOpen = UserPopup.IsOpen;
-            UserPopup.IsOpen = !isOpen;
-
-            global::Logger.Logger.GetLoggerInstance(LogList).AddMessage("costam");
-
-            CsvReader.ReadCsvFile(_filePath);
-
-        }
-
-        private void PrepareFuzzyRegulesSet()
-        {
-            //FuzzyReguleSet Mamdani = new FuzzyRegulesSet(
-            //{
-            //    FuzzyValue reg = new FuzzyValue();
-            //})
+            get { return global::Logger.Logger.GetLoggerInstance(LogList); }
         }
 
         #endregion
+
+        private void NetworkListView_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            NetworkPropertiesView networkPropertiesView = new NetworkPropertiesView(this);
+            networkPropertiesView.Show();
+        }
     }
 }
