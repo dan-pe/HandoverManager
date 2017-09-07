@@ -31,7 +31,7 @@
                         <GridView>
                            <GridView.Columns>
                                <GridViewColumn Header="Number"
-                                               DisplayMemberBinding="{Binding NetworkName}">
+                                            DisplayMemberBinding="{Binding NetworkName}">
                                </GridViewColumn>
                                     <GridViewColumn Header="Network Name"
                                             DisplayMemberBinding="{Binding NetworkName}">
@@ -39,7 +39,10 @@
                             <GridViewColumn Header="Network Type"
                                             DisplayMemberBinding="{Binding NetworkType}">
                             </GridViewColumn>
-                           </GridView.Columns>
+                               <GridViewColumn Header="Throughoutput"
+                                               DisplayMemberBinding="{Binding Parameters.ThroughputInMbps}">
+                               </GridViewColumn>
+                                </GridView.Columns>
                         </GridView>
                         </ListView.View>
                     </ListView>

@@ -72,10 +72,16 @@ namespace handovermgr
         {
             NetworksList = new ObservableCollection<RadioNetworkModel>();
 
-            NetworkListView.ItemsSource = NetworksList;
-
-            NetworksList.Add(new RadioNetworkModel { NetworkName = "network1", NetworkType = NetworkType.GPRS.ToString() });
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network1",
+                    NetworkType = NetworkType.GPRS.ToString(),
+                    Parameters = new NetworkParameters() {ThroughputInMbps = 2}
+                });
             NetworksList.Add(new RadioNetworkModel{NetworkName = "network2",NetworkType = NetworkType.LTE_Advanced.ToString()});
+
+            NetworkListView.ItemsSource = NetworksList;
         }
 
         /// <summary>

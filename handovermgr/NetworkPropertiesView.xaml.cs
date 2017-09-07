@@ -23,7 +23,7 @@ namespace handovermgr
 
             if (selectedNetwork is RadioNetworkModel)
             {
-                networkItemView.DataContext = selectedNetwork;
+                NetworkItemView.DataContext = selectedNetwork;
             }
         }
     }
