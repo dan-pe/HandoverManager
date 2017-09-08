@@ -1,4 +1,7 @@
-﻿namespace handovermgr.Controls
+﻿using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
+using RadioNetworks;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -24,6 +27,12 @@
     /// </summary>
     public partial class UserMenu : UserControl
     {
+        #region Private Fields
+
+        private readonly MainWindow _mainWindow;
+
+        #endregion
+
         #region Public Methods
 
         public UserMenu()
@@ -33,9 +42,20 @@
 
         #endregion
 
+        #region Private Methods
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.AddNetwork();
         }
+
+        private void Handover_Click(object sender, RoutedEventArgs e)
+        {
+            List<RadioNetworkModel> networkList = new List<RadioNetworkModel>(MainWindow.NetworksList);
+
+            NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
+        }
+
+        #endregion
     }
 }

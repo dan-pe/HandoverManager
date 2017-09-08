@@ -11,6 +11,7 @@
         <Button Margin="4 60 4 10">User Profile</Button>
         <Button Margin="4 0 4 10">Load from file</Button>
         <Button Margin="4 0 4 10" Click="Button_Click">Add Network</Button>
+        <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>
     </StackPanel>
     
 </UserControl>
