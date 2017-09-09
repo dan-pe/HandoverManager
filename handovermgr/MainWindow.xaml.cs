@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
-
-namespace handovermgr
+﻿namespace handovermgr
 {
     #region Usings
 
@@ -11,8 +7,9 @@ namespace handovermgr
     using System.IO;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Linq;
 
-    using FileReaders;
+    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
 
     using RadioNetworks;
 
@@ -49,10 +46,10 @@ namespace handovermgr
 
         public MainWindow()
         {
-            
+
             InitializeComponent();
             BindNetworks();
-            
+
         }
 
         #endregion
@@ -77,9 +74,23 @@ namespace handovermgr
                 {
                     NetworkName = "network1",
                     NetworkType = NetworkType.GPRS.ToString(),
-                    Parameters = new NetworkParameters() {ThroughputInMbps = 2}
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = 2, BitErrorRate = 1, BurstErrorRate = 3, CostInUnitsPerByte = 4, DelayInMsec = 1,
+                        JitterInMsec = 3, PacketLossPercentage = 4, ResponseTimeInMsec = 1, SecurityLevel = 4
+                    }
                 });
-            NetworksList.Add(new RadioNetworkModel{NetworkName = "network2",NetworkType = NetworkType.LTE_Advanced.ToString()});
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network2",
+                    NetworkType = NetworkType.LTE_Advanced.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = 1, BitErrorRate = 2, BurstErrorRate = 3, CostInUnitsPerByte = 7, DelayInMsec = 23,
+                        JitterInMsec = 5, PacketLossPercentage = 3, ResponseTimeInMsec = 2, SecurityLevel = 11
+                    }
+                });
 
             NetworkListView.ItemsSource = NetworksList;
         }
@@ -91,6 +102,10 @@ namespace handovermgr
         {
            var networkList = NetworksList.ToList();
            var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
+            var resultnoNetwork = novelHandoverAlgorithm.ResultNetwork;
+
+
+            Logger.AddMessage(resultnoNetwork.NetworkName);
 
             //ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
         }
@@ -104,7 +119,7 @@ namespace handovermgr
         {
             PrepareNetworkObjects();
         }
-        
+
         private Logger.Logger Logger
         {
             get { return global::Logger.Logger.GetLoggerInstance(LogList); }

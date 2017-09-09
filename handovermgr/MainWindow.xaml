@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
         Title="Handover Manager" Height="504" Width="636.5">
-    
+
     <Grid Margin="-2,0,2,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -16,51 +16,50 @@
         <!--#region User Menu -->
 
         <controls:UserMenu Grid.Column="0"></controls:UserMenu>
-        
+
         <!--#endregion-->
 
         <!--#region Algorithms Tabs -->
-        <TabControl x:Name="TabControl" Grid.Column="1" 
+        <TabControl x:Name="TabControl" Grid.Column="1"
                     HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="500">
             <TabItem Header="Novel">
-                
+
                 <!--#region Network Parameters Region-->
                 <Grid>
-                    <ListView x:Name="NetworkListView" MouseDoubleClick="NetworkListView_DoubleClick"> 
+                    <ListView x:Name="NetworkListView" MouseDoubleClick="NetworkListView_DoubleClick">
                         <ListView.View>
                         <GridView>
                            <GridView.Columns>
                                <GridViewColumn Header="Number"
                                             DisplayMemberBinding="{Binding NetworkName}">
                                </GridViewColumn>
-                                    <GridViewColumn Header="Network Name"
+                               <GridViewColumn Header="Network Name"
                                             DisplayMemberBinding="{Binding NetworkName}">
-                            </GridViewColumn>  
-                            <GridViewColumn Header="Network Type"
+                               </GridViewColumn>
+                               <GridViewColumn Header="Network Type"
                                             DisplayMemberBinding="{Binding NetworkType}">
-                            </GridViewColumn>
+                                </GridViewColumn>
                                <GridViewColumn Header="Throughoutput"
                                                DisplayMemberBinding="{Binding Parameters.ThroughputInMbps}">
                                </GridViewColumn>
-                                </GridView.Columns>
+                           </GridView.Columns>
                         </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
-                
+
                 <!--#endregion-->
-                
             </TabItem>
             <TabItem Header="Fuzzy">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
         <!--#endregion-->
-        
-        <ListBox x:Name="LogList" Grid.ColumnSpan="6" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="0,324,0,0" VerticalAlignment="Top" Width="528"/>
-        
+
+        <ListBox x:Name="LogList" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="0,324,0,0" VerticalAlignment="Top" Width="500"/>
+
         <!--#endregion-->
-        
+
     </Grid>
 </Window>
 

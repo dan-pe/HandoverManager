@@ -54,6 +54,10 @@ namespace handovermgr.Controls
             List<RadioNetworkModel> networkList = new List<RadioNetworkModel>(MainWindow.NetworksList);
 
             NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
+
+            var resultNetwork = novelAlgorithm.SelectResultNetwork();
+            Console.ReadKey();
+
         }
 
         #endregion
