@@ -75,19 +75,26 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
             var sec = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
             var cost = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
+            Random random = new Random();
+
             // Just a mock, replace with user input values.
-            double[,] coefficients = new double[8, througoutputs.Length];
-            for (int i = 0; i < througoutputs.Length; i++)
+            double[,] coefficients = new double[9, 9];
+            for (int i = 0; i < coefficients.GetLength(1); i++)
             {
-                coefficients[0, i] = througoutputs[i];
-                coefficients[0, i] = bers[i];
-                coefficients[0, i] = burs[i];
-                coefficients[0, i] = packtloses[i];
-                coefficients[0, i] = delays[i];
-                coefficients[0, i] = responses[i];
-                coefficients[0, i] = jitters[i];
-                coefficients[0, i] = sec[i];
-                coefficients[0, i] = cost[i];
+                for (int j = 0; j < coefficients.GetLength(1); j++)
+                {
+                    coefficients[i, j] = random.Next(1, 10);
+
+                }
+                //coefficients[i, j] = througoutputs[i];
+                //coefficients[i, j] = bers[i];
+                //coefficients[i, j] = burs[i];
+                //coefficients[i, j] = packtloses[i];
+                //coefficients[i, j] = delays[i];
+                //coefficients[i, j] = responses[i];
+                //coefficients[i, j] = jitters[i];
+                //coefficients[i, j] = sec[i];
+                //coefficients[i, j] = cost[i];
             }
 
             AhpModel ahpModel = new AhpModel(coefficients);

@@ -1,9 +1,8 @@
-﻿
-
-namespace handovermgr.Controls
+﻿namespace handovermgr.Controls
 {
     #region Usings
 
+    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
@@ -46,8 +45,6 @@ namespace handovermgr.Controls
             NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
 
             var resultNetwork = novelAlgorithm.SelectResultNetwork();
-            Console.ReadKey();
-
         }
 
         #endregion
