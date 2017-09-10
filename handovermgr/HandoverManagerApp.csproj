@@ -59,9 +59,6 @@
     <Compile Include="Controls\NetworkInputModel.xaml.cs">
       <DependentUpon>NetworkInputModel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PatametersListUI.xaml.cs">
-      <DependentUpon>PatametersListUI.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\UserInputWeightsView.xaml.cs">
       <DependentUpon>UserInputWeightsView.xaml</DependentUpon>
     </Compile>
@@ -73,10 +70,6 @@
     </Compile>
     <Compile Include="UIConfig\InputWeights.cs" />
     <Compile Include="UIConfig\UserConfig.cs" />
-    <Page Include="Controls\PatametersListUI.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\UserInputWeightsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

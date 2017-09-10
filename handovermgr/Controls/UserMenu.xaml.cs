@@ -2,7 +2,6 @@
 {
     #region Usings
 
-    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
@@ -24,8 +23,9 @@
 
         #region Public Methods
 
-        public UserMenu()
+        public UserMenu(MainWindow mainWindow)
         {
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
 
