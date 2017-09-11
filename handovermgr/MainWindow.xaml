@@ -10,7 +10,7 @@
     <Grid Margin="-2,0,2,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
 
         <!--#region User Menu -->
@@ -21,7 +21,7 @@
 
         <!--#region Algorithms Tabs -->
         <TabControl x:Name="TabControl" Grid.Column="1"
-                    HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="600">
+                    HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="900">
             <TabItem Header="Novel">
 
                 <!--#region Network Parameters Region-->
@@ -30,9 +30,6 @@
                         <ListView.View>
                         <GridView>
                            <GridView.Columns>
-                               <GridViewColumn Header="Number"
-                                            DisplayMemberBinding="{Binding NetworkName}">
-                               </GridViewColumn>
                                <GridViewColumn Header="Network Name"
                                             DisplayMemberBinding="{Binding NetworkName}">
                                </GridViewColumn>
@@ -73,6 +70,7 @@
                 </Grid>
 
                 <!--#endregion-->
+                
             </TabItem>
             <TabItem Header="Fuzzy">
                 <Grid Background="#FFE5E5E5"/>

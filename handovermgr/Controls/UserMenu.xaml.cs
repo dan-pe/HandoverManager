@@ -1,4 +1,6 @@
-﻿namespace handovermgr.Controls
+﻿using System;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -23,9 +25,8 @@
 
         #region Public Methods
 
-        public UserMenu(MainWindow mainWindow)
+        public UserMenu()
         {
-            _mainWindow = mainWindow;
             InitializeComponent();
         }
 
@@ -40,7 +41,28 @@
 
         private void Handover_Click(object sender, RoutedEventArgs e)
         {
+            Random random = new Random();
+
+            foreach (var network in MainWindow.NetworksList)
+            {
+
+
+                network.Parameters.ThroughputInMbps = random.NextDouble();
+                network.Parameters.BitErrorRate = random.NextDouble();
+                network.Parameters.BurstErrorRate = random.NextDouble();
+                network.Parameters.CostInUnitsPerByte = random.NextDouble();
+                network.Parameters.DelayInMsec = random.NextDouble();
+                network.Parameters.JitterInMsec = random.NextDouble();
+                network.Parameters.PacketLossPercentage = random.NextDouble();
+                network.Parameters.ResponseTimeInMsec = random.NextDouble();
+                network.Parameters.SecurityLevel = random.NextDouble();
+            }  
+            
+
             List<RadioNetworkModel> networkList = new List<RadioNetworkModel>(MainWindow.NetworksList);
+
+           
+
 
             NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
 

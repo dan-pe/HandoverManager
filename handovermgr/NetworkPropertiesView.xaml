@@ -20,21 +20,21 @@
 
         <StackPanel Orientation="Horizontal">
                 <Label Content="Throughoutput" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding NetworkParameters.ThroughputInMbps}"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.ThroughputInMbps}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
                 <Label Content="Bit Error Rate" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding NetworkParameters.BitErrorRate}"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.BitErrorRate}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
                 <Label Content="Jitter" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding NetworkParameters.JitterInMsec}"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.JitterInMsec}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Packet Loss" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding NetworkParameters.PacketLossPercentage}"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.PacketLossPercentage}"/>
         </StackPanel>
         
         <StackPanel Orientation="Vertical">

@@ -68,7 +68,7 @@
         private void BindNetworks()
         {
             NetworksList = new ObservableCollection<RadioNetworkModel>();
-
+            Random random = new Random(100);
             NetworksList.Add(
                 new RadioNetworkModel
                 {
@@ -76,8 +76,8 @@
                     NetworkType = NetworkType.GPRS.ToString(),
                     Parameters = new NetworkParameters()
                     {
-                        ThroughputInMbps = 2, BitErrorRate = 1, BurstErrorRate = 3, CostInUnitsPerByte = 4, DelayInMsec = 1,
-                        JitterInMsec = 3, PacketLossPercentage = 4, ResponseTimeInMsec = 1, SecurityLevel = 4
+                        ThroughputInMbps = random.NextDouble(), BitErrorRate = random.NextDouble(), BurstErrorRate = random.NextDouble(), CostInUnitsPerByte = random.NextDouble(), DelayInMsec = random.NextDouble(),
+                        JitterInMsec = random.NextDouble(), PacketLossPercentage = random.NextDouble(), ResponseTimeInMsec = random.NextDouble(), SecurityLevel = random.NextDouble()
                     }
                 });
             NetworksList.Add(
@@ -87,11 +87,46 @@
                     NetworkType = NetworkType.LTE_Advanced.ToString(),
                     Parameters = new NetworkParameters()
                     {
-                        ThroughputInMbps = 1, BitErrorRate = 2, BurstErrorRate = 3, CostInUnitsPerByte = 7, DelayInMsec = 23,
-                        JitterInMsec = 5, PacketLossPercentage = 3, ResponseTimeInMsec = 2, SecurityLevel = 11
+                        ThroughputInMbps = random.NextDouble(), BitErrorRate = random.NextDouble(), BurstErrorRate = random.NextDouble(), CostInUnitsPerByte = random.NextDouble(), DelayInMsec = random.NextDouble(),
+                        JitterInMsec = random.NextDouble(), PacketLossPercentage = random.NextDouble(), ResponseTimeInMsec = random.NextDouble(), SecurityLevel = random.NextDouble()
                     }
                 });
-
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network3",
+                    NetworkType = NetworkType.UMTS.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = random.NextDouble(),
+                        BitErrorRate = random.NextDouble(),
+                        BurstErrorRate = random.NextDouble(),
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble(),
+                        JitterInMsec = random.NextDouble(),
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble(),
+                        SecurityLevel = random.NextDouble()
+                    }
+                });
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network4",
+                    NetworkType = NetworkType.WiFi.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = random.NextDouble(),
+                        BitErrorRate = random.NextDouble(),
+                        BurstErrorRate = random.NextDouble(),
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble(),
+                        JitterInMsec = random.NextDouble(),
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble(),
+                        SecurityLevel = random.NextDouble()
+                    }
+                });
             NetworkListView.ItemsSource = NetworksList;
         }
 
