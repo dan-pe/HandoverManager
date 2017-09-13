@@ -1,9 +1,9 @@
-﻿using System;
-
+﻿
 namespace handovermgr.Controls
 {
     #region Usings
 
+    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
@@ -41,12 +41,12 @@ namespace handovermgr.Controls
 
         private void Handover_Click(object sender, RoutedEventArgs e)
         {
+            // Place holder, each subsequent execution of handover
+            // will result in parameters randomization
             Random random = new Random();
 
             foreach (var network in MainWindow.NetworksList)
             {
-
-
                 network.Parameters.ThroughputInMbps = random.NextDouble();
                 network.Parameters.BitErrorRate = random.NextDouble();
                 network.Parameters.BurstErrorRate = random.NextDouble();
@@ -57,16 +57,12 @@ namespace handovermgr.Controls
                 network.Parameters.ResponseTimeInMsec = random.NextDouble();
                 network.Parameters.SecurityLevel = random.NextDouble();
             }  
-            
 
             List<RadioNetworkModel> networkList = new List<RadioNetworkModel>(MainWindow.NetworksList);
-
-           
-
-
             NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
 
             var resultNetwork = novelAlgorithm.SelectResultNetwork();
+            ResultNetworkTextBox.Text = resultNetwork.NetworkName;
         }
 
         #endregion
