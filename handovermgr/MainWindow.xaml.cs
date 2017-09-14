@@ -54,15 +54,6 @@
 
         #endregion
 
-        #region Public Methods
-
-        public ListBox ServeLogBox()
-        {
-            return LogList;
-        }
-
-        #endregion
-
         #region Private Methods
 
         private void BindNetworks()
@@ -138,10 +129,6 @@
            var networkList = NetworksList.ToList();
            var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
             var resultnoNetwork = novelHandoverAlgorithm.ResultNetwork;
-
-
-            Logger.AddMessage(resultnoNetwork.NetworkName);
-
             //ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
         }
 
@@ -154,11 +141,7 @@
         {
             PrepareNetworkObjects();
         }
-
-        private Logger.Logger Logger
-        {
-            get { return global::Logger.Logger.GetLoggerInstance(LogList); }
-        }
+       
 
         #endregion
 

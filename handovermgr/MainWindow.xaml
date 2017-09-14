@@ -20,12 +20,7 @@
         <!--#endregion-->
 
         <!--#region Algorithms Tabs -->
-        <TabControl x:Name="TabControl" Grid.Column="1"
-                    HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="900">
-            <TabItem Header="Novel">
-
-                <!--#region Network Parameters Region-->
-                <Grid>
+        <DockPanel Grid.Column="1" Margin="5">
                     <ListView x:Name="NetworkListView" MouseDoubleClick="NetworkListView_DoubleClick">
                         <ListView.View>
                         <GridView>
@@ -67,19 +62,8 @@
                         </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
-
-                <!--#endregion-->
-                
-            </TabItem>
-            <TabItem Header="Fuzzy">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
-        <!--#endregion-->
-
-        <ListBox x:Name="LogList" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="0,324,0,0" VerticalAlignment="Top" Width="500"/>
-
+        </DockPanel>
+        
         <!--#endregion-->
 
     </Grid>
