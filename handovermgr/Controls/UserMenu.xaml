@@ -5,12 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:handovermgr.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="200">
     
-    <StackPanel Grid.Column="0" Orientation="Vertical">
-        <Button Margin="4 60 4 10">User Profile</Button>
-        <Button Margin="4 0 4 10">Load from file</Button>
-        <Button Margin="4 0 4 10">Menu Item 2</Button>
+    <StackPanel Orientation="Vertical">
+        <DockPanel>
+            <Button Margin="4 60 4 10">User Profile</Button>
+        </DockPanel>
+        <DockPanel>
+            <Button Margin="4 0 4 10">Load from file</Button>
+        </DockPanel>
+        <DockPanel>
+            <Button Margin="4 0 4 10" Click="Button_Click">Add Network</Button>
+        </DockPanel>        
+        <DockPanel>
+            <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>
+        </DockPanel>
+        <DockPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Result Network"/>
+                <TextBox x:Name="ResultNetworkTextBox" Margin="4 0 4 10"></TextBox>
+
+            </StackPanel>
+        </DockPanel>
     </StackPanel>
     
 </UserControl>

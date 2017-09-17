@@ -1,22 +1,15 @@
-﻿namespace handovermgr.Controls
+﻿
+namespace handovermgr.Controls
 {
     #region Usings
 
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
-    using System.Windows.Shapes;
 
+    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
+    using RadioNetworks;
     #endregion
 
     /// <summary>
@@ -24,6 +17,12 @@
     /// </summary>
     public partial class UserMenu : UserControl
     {
+        #region Private Fields
+
+        private readonly MainWindow _mainWindow;
+
+        #endregion
+
         #region Public Methods
 
         public UserMenu()
@@ -31,6 +30,41 @@
             InitializeComponent();
         }
 
-        #endregion  
+        #endregion
+
+        #region Private Methods
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.AddNetwork();
+        }
+
+        private void Handover_Click(object sender, RoutedEventArgs e)
+        {
+            // Place holder, each subsequent execution of handover
+            // will result in parameters randomization
+            Random random = new Random();
+
+            foreach (var network in MainWindow.NetworksList)
+            {
+                network.Parameters.ThroughputInMbps = random.NextDouble();
+                network.Parameters.BitErrorRate = random.NextDouble();
+                network.Parameters.BurstErrorRate = random.NextDouble();
+                network.Parameters.CostInUnitsPerByte = random.NextDouble();
+                network.Parameters.DelayInMsec = random.NextDouble();
+                network.Parameters.JitterInMsec = random.NextDouble();
+                network.Parameters.PacketLossPercentage = random.NextDouble();
+                network.Parameters.ResponseTimeInMsec = random.NextDouble();
+                network.Parameters.SecurityLevel = random.NextDouble();
+            }  
+
+            List<RadioNetworkModel> networkList = new List<RadioNetworkModel>(MainWindow.NetworksList);
+            NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
+
+            var resultNetwork = novelAlgorithm.SelectResultNetwork();
+            ResultNetworkTextBox.Text = resultNetwork.NetworkName;
+        }
+
+        #endregion
     }
 }
