@@ -10,19 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace handovermgr.Controls
 {
     /// <summary>
-    /// Interaction logic for UserInputWeightsView.xaml
+    /// Interaction logic for HandoverView.xaml
     /// </summary>
-    public partial class UserInputWeightsView : UserControl
+    public partial class HandoverView : Window
     {
-        public UserInputWeightsView()
+        public HandoverView()
         {
+            var int2DList = new int[4]
+            {
+                1,2,3,4
+            };
             InitializeComponent();
+            DataGrid2.DataContext = int2DList;
         }
+
+
     }
 }

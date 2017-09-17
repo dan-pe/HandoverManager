@@ -9,7 +9,7 @@
     
     <StackPanel Orientation="Vertical">
         <DockPanel>
-            <Button Margin="4 60 4 10">User Profile</Button>
+            <Button Margin="4 20 4 10">User Profile</Button>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 10">Load from file</Button>
@@ -22,7 +22,7 @@
         </DockPanel>
         <DockPanel>
             <StackPanel Orientation="Vertical">
-                <Label Content="Result Network"/>
+                <Label Content="Result Network" FontWeight="Bold"/>
                 <TextBox x:Name="ResultNetworkTextBox" Margin="4 0 4 10"></TextBox>
 
             </StackPanel>

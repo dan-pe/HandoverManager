@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="Handover Manager" Height="504" Width="800">
+        Title="Handover Manager" Background="CadetBlue" Height="300" Width="800">
 
     <Grid Margin="-2,0,2,0">
         <Grid.ColumnDefinitions>
@@ -20,15 +20,15 @@
         <!--#endregion-->
 
         <!--#region Algorithms Tabs -->
-        <DockPanel Grid.Column="1" Margin="5">
+        <DockPanel Grid.Column="1" Margin="5 0 0 0">
                     <ListView x:Name="NetworkListView" MouseDoubleClick="NetworkListView_DoubleClick">
                         <ListView.View>
                         <GridView>
                            <GridView.Columns>
-                               <GridViewColumn Header="Network Name"
+                               <GridViewColumn Header="SSID"
                                             DisplayMemberBinding="{Binding NetworkName}">
                                </GridViewColumn>
-                               <GridViewColumn Header="Network Type"
+                               <GridViewColumn Header="Type"
                                             DisplayMemberBinding="{Binding NetworkType}">
                                 </GridViewColumn>
                                <GridViewColumn Header="Throughoutput"
@@ -37,24 +37,24 @@
                                <GridViewColumn Header="BER"
                                                DisplayMemberBinding="{Binding Parameters.BitErrorRate}">
                                </GridViewColumn>
-                                    <GridViewColumn Header="BUR"
+                               <!--<GridViewColumn Header="BUR"
                                                DisplayMemberBinding="{Binding Parameters.BurstErrorRate}">
-                               </GridViewColumn>
+                               </GridViewColumn>-->
                                <GridViewColumn Header="PacketLoss"
                                                DisplayMemberBinding="{Binding Parameters.PacketLossPercentage}">
                                </GridViewColumn>
                                <GridViewColumn Header="Delay"
                                                DisplayMemberBinding="{Binding Parameters.DelayInMsec}">
                                </GridViewColumn>
-                               <GridViewColumn Header="Response"
+                               <!--<GridViewColumn Header="Response"
                                                DisplayMemberBinding="{Binding Parameters.ResponseTimeInMsec}">
-                               </GridViewColumn>
-                               <GridViewColumn Header="Jitter"
+                               </GridViewColumn>-->
+                               <!--<GridViewColumn Header="Jitter"
                                                DisplayMemberBinding="{Binding Parameters.JitterInMsc}">
                                </GridViewColumn>
                                <GridViewColumn Header="Security"
                                                DisplayMemberBinding="{Binding Parameters.SecurityLevel}">
-                               </GridViewColumn>
+                               </GridViewColumn>-->
                                <GridViewColumn Header="Cost"
                                                DisplayMemberBinding="{Binding Parameters.CostInUnitsPerByte}">
                                </GridViewColumn>
