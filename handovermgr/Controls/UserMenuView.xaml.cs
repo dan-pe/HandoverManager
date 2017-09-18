@@ -1,4 +1,6 @@
-﻿namespace handovermgr.Controls
+﻿using System.Linq;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -31,8 +33,8 @@
         /// </summary>
         public UserMenu()
         {
-
             InitializeComponent();
+            NovelProfileComboBox.ItemsSource = Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
         }
 
         #endregion
@@ -56,7 +58,7 @@
             HandoverView handoverView = new HandoverView();
             handoverView.Show();
 
-            // Place holder, each subsequent execution of handover
+            // TODO Place holder, each subsequent execution of handover
             // will result in parameters randomization
             //Random random = new Random();
 

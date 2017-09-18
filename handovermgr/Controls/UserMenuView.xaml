@@ -9,7 +9,15 @@
     
     <StackPanel Orientation="Vertical">
         <DockPanel>
-            <Button Margin="4 20 4 10">User Profile</Button>
+            <ComboBox x:Name="NovelProfileComboBox" Margin="4 20 4 10">
+                <!--<ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>-->
+            </ComboBox>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 10">Load from file</Button>
