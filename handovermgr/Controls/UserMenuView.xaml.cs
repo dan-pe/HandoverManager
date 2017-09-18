@@ -55,7 +55,7 @@ namespace handovermgr.Controls
         private void Handover_Click(object sender, RoutedEventArgs e)
         {
 
-            HandoverView handoverView = new HandoverView();
+            HandoverView handoverView = new HandoverView(MainWindow.NetworksList);
             handoverView.Show();
 
             // TODO Place holder, each subsequent execution of handover

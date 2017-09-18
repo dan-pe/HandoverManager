@@ -12,10 +12,14 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
 
         <!--#region User Menu -->
 
-        <controls:UserMenu Grid.Column="0"></controls:UserMenu>
+        <controls:UserMenu Grid.Column="0" Grid.Row="0"></controls:UserMenu>
 
         <!--#endregion-->
 
@@ -24,46 +28,51 @@
                     <ListView x:Name="NetworkListView" MouseDoubleClick="NetworkListView_DoubleClick">
                         <ListView.View>
                         <GridView>
-                           <GridView.Columns>
+                           <GridView.Columns >
                                <GridViewColumn Header="SSID"
-                                            DisplayMemberBinding="{Binding NetworkName}">
+                                            DisplayMemberBinding="{Binding NetworkName, StringFormat=N3}">
                                </GridViewColumn>
                                <GridViewColumn Header="Type"
-                                            DisplayMemberBinding="{Binding NetworkType}">
+                                            DisplayMemberBinding="{Binding NetworkType, StringFormat=N3}">
                                 </GridViewColumn>
-                               <GridViewColumn Header="Throughoutput"
-                                               DisplayMemberBinding="{Binding Parameters.ThroughputInMbps}">
-                               </GridViewColumn>
+                               <GridViewColumn Header="Throughoutput [MBps]"
+                                               DisplayMemberBinding="{Binding Parameters.ThroughputInMbps, StringFormat=N3}">
+                                </GridViewColumn>
                                <GridViewColumn Header="BER"
-                                               DisplayMemberBinding="{Binding Parameters.BitErrorRate}">
+                                               DisplayMemberBinding="{Binding Parameters.BitErrorRate, StringFormat=N3}">
                                </GridViewColumn>
                                <!--<GridViewColumn Header="BUR"
                                                DisplayMemberBinding="{Binding Parameters.BurstErrorRate}">
                                </GridViewColumn>-->
                                <GridViewColumn Header="PacketLoss"
-                                               DisplayMemberBinding="{Binding Parameters.PacketLossPercentage}">
+                                               DisplayMemberBinding="{Binding Parameters.PacketLossPercentage, StringFormat=N3}">
                                </GridViewColumn>
-                               <GridViewColumn Header="Delay"
-                                               DisplayMemberBinding="{Binding Parameters.DelayInMsec}">
+                               <GridViewColumn Header="Delay [msec]"
+                                               DisplayMemberBinding="{Binding Parameters.DelayInMsec, StringFormat=N3}">
                                </GridViewColumn>
                                <!--<GridViewColumn Header="Response"
-                                               DisplayMemberBinding="{Binding Parameters.ResponseTimeInMsec}">
+                                               DisplayMemberBinding="{Binding Parameters.ResponseTimeInMsec, StringFormat=N2}">
                                </GridViewColumn>-->
                                <!--<GridViewColumn Header="Jitter"
-                                               DisplayMemberBinding="{Binding Parameters.JitterInMsc}">
+                                               DisplayMemberBinding="{Binding Parameters.JitterInMsc, StringFormat=N2}">
                                </GridViewColumn>
                                <GridViewColumn Header="Security"
-                                               DisplayMemberBinding="{Binding Parameters.SecurityLevel}">
+                                               DisplayMemberBinding="{Binding Parameters.SecurityLevel, StringFormat=N2}">
                                </GridViewColumn>-->
                                <GridViewColumn Header="Cost"
-                                               DisplayMemberBinding="{Binding Parameters.CostInUnitsPerByte}">
+                                               DisplayMemberBinding="{Binding Parameters.CostInUnitsPerByte, StringFormat=N1}">
                                </GridViewColumn>
                            </GridView.Columns>
                         </GridView>
                         </ListView.View>
                     </ListView>
         </DockPanel>
-        
+
+        <DockPanel Grid.Column="1"  Grid.Row="1" Margin="5 0 0 0">
+            <ListBox x:Name="LogBox">
+                
+            </ListBox>
+        </DockPanel>
         <!--#endregion-->
 
     </Grid>

@@ -16,7 +16,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
 
         public List<float> NetworkGraFactors { get; set; }
 
-        protected List<NovelNetworkModel> NovelNetworkModels { get; set; }
+        public List<NovelNetworkModel> NovelNetworkModels { get; set; }
 
         public RadioNetworkModel ResultNetwork { get; set; }
 
@@ -131,7 +131,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// Select the result network
         /// </summary>
         /// <returns></returns>
-        public RadioNetworkModel SelectResultNetwork()
+        public NovelNetworkModel SelectResultNetwork()
         {
             RunSelection();
             NovelNetworkModel network;
@@ -148,7 +148,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                 throw;
             }
 
-            return network.RadioNetworkModel;
+            return network;
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿namespace Logger
+﻿using System;
+
+namespace Logger
 {
     #region Usings
 
@@ -10,9 +12,15 @@
     {
         #region Private Fields
 
+        /// <summary>
+        /// The logger instance.
+        /// </summary>
         private static Logger _logger;
 
-        private ListBox _logBox;
+        /// <summary>
+        /// The log box.
+        /// </summary>
+        private static ListBox _logBox;
 
         //private
 
@@ -20,6 +28,10 @@
 
         #region Constructors and Destructor
 
+        /// <summary>
+        /// The Logger.
+        /// </summary>
+        /// <param name="logBox"></param>
         private Logger(ListBox logBox)
         {
             _logBox = logBox;
@@ -30,14 +42,30 @@
 
         #region Publics Methods
 
-        public static Logger GetLoggerInstance(ListBox logBox)
+        /// <summary>
+        /// Initializes logger for passed log box.
+        /// </summary>
+        /// <param name="logBox">
+        /// Log box that logger attaches to.
+        /// </param>
+        /// <returns>
+        /// Logger Instance.
+        /// </returns>
+        public static Logger InitializeLogger(ListBox logBox)
         {
             return _logger ?? (_logger = new Logger(logBox));
         }
 
-        public void AddMessage(string message)
+
+        /// <summary>
+        /// Add message.
+        /// </summary>
+        /// <param name="message"></param>
+        public static void AddMessage(string message)
         {
-            var listBoxItem = new ListBoxItem {Content = message};
+            string messageToLog = $@"[{DateTime.Now:HH:mm:ss}] {message}";
+
+            var listBoxItem = new ListBoxItem {Content = messageToLog};
             _logBox.Items.Add(listBoxItem);
         }
 

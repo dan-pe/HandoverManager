@@ -46,10 +46,9 @@
 
         public MainWindow()
         {
-
             InitializeComponent();
+            Logger.Logger.InitializeLogger(LogBox);
             BindNetworks();
-
         }
 
         #endregion
