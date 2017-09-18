@@ -1,4 +1,6 @@
-﻿namespace handovermgr.Controls
+﻿using Logger;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -54,12 +56,14 @@
 
                 };
                 MainWindow.NetworksList.Add(network);
-                Logger.Logger.AddMessage($"Successfully added network {AddNameBox.Text}");
+                Logger.Logger.AddMessage($"Successfully added network {AddNameBox.Text}",
+                                         MessageThreshold.SUCCESS);
             }
             catch (Exception exception)
             {
                Logger.Logger.AddMessage("Error occurred while trying to add network: " +
-                                        $"{exception.Message}");
+                                        $"{exception.Message}",
+                                        MessageThreshold.FAIL);
             }
         }
 

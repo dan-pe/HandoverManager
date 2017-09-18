@@ -20,6 +20,9 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
 
         public RadioNetworkModel ResultNetwork { get; set; }
 
+        private NovelNetworkProfile networkProfile;
+
+
         #endregion
 
         #region Constructors
@@ -28,9 +31,10 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// Instantiate Novel Handover Algorithm.
         /// </summary>
         /// <param name="radioNetworksList"></param>
-        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList) : base(radioNetworksList)
+        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, NovelNetworkProfile novelNetworkProfile) : base(radioNetworksList)
         {
             NovelNetworkModels = new List<NovelNetworkModel>();
+            this.networkProfile = novelNetworkProfile;
 
             foreach (var radioNetworkModel in radioNetworksList)
             {
@@ -75,9 +79,10 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
             var sec = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
             var cost = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
+
+            // TODO Just a mock, replace with user input values.
             Random random = new Random();
 
-            // Just a mock, replace with user input values.
             double[,] coefficients = new double[9, 9];
             for (int i = 0; i < coefficients.GetLength(1); i++)
             {
@@ -86,16 +91,9 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                     coefficients[i, j] = random.Next(1, 10);
 
                 }
-                //coefficients[i, j] = througoutputs[i];
-                //coefficients[i, j] = bers[i];
-                //coefficients[i, j] = burs[i];
-                //coefficients[i, j] = packtloses[i];
-                //coefficients[i, j] = delays[i];
-                //coefficients[i, j] = responses[i];
-                //coefficients[i, j] = jitters[i];
-                //coefficients[i, j] = sec[i];
-                //coefficients[i, j] = cost[i];
             }
+
+            coefficients = LoadProfile();
 
             AhpModel ahpModel = new AhpModel(coefficients);
 
@@ -127,6 +125,8 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
             }
         }
 
+       
+
         /// <summary>
         /// Select the result network
         /// </summary>
@@ -152,6 +152,34 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         }
 
         #endregion
+
+        #region Private Fields
+
+        /// <summary>
+        /// Load user profiles from static class.
+        /// </summary>
+        /// <returns>
+        /// Loaded user profile.
+        /// </returns>
+        private double[,] LoadProfile()
+        {
+            switch (this.networkProfile)
+            {
+                case NovelNetworkProfile.SomeProfile:
+                    return NovelNetworkProfiles.GetSomeProfile();
+
+                case NovelNetworkProfile.OtherProfile:
+                    return NovelNetworkProfiles.GetOtherProfile();
+
+                case NovelNetworkProfile.OddProfile:
+                    return NovelNetworkProfiles.GetOddProfile();
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion  
 
     }
 

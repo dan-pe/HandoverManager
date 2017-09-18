@@ -20,20 +20,13 @@
             </ComboBox>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10">Load from file</Button>
+            <Button Margin="4 0 4 10" Click="Button_Click">Load from file</Button>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 10" Click="AddNetwork_Click">Add Network</Button>
         </DockPanel>        
         <DockPanel>
             <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>
-        </DockPanel>
-        <DockPanel>
-            <StackPanel Orientation="Vertical">
-                <Label Content="Result Network" FontWeight="Bold"/>
-                <TextBox x:Name="ResultNetworkTextBox" Margin="4 0 4 10"></TextBox>
-
-            </StackPanel>
         </DockPanel>
     </StackPanel>
     

@@ -1,4 +1,6 @@
-﻿namespace handovermgr
+﻿using System.Collections.Generic;
+
+namespace handovermgr
 {
     #region Usings
 
@@ -21,15 +23,8 @@
     public partial class MainWindow : Window
     {
         #region Fields
-
-        private const string FileName = ".../inputNetworks.txt";
-
-        private readonly string _filePath = Path.Combine(
-                Environment.CurrentDirectory,
-                "Debug",
-                FileName);
-
-        public static ObservableCollection<RadioNetworkModel> NetworksList;
+        
+        public static ObservableCollection<RadioNetworkModel> NetworksList { get; set; }
 
         #endregion
 
@@ -43,6 +38,16 @@
         }
 
         #endregion
+
+        #region Public Methods
+
+        public void SetNetworkList(List<RadioNetworkModel> radioNetworksList)
+        {
+            NetworksList = new ObservableCollection<RadioNetworkModel>(radioNetworksList);
+        }
+
+        #endregion
+
 
         #region Private Methods
 
@@ -117,7 +122,7 @@
         private void PrepareNetworkObjects()
         {
            var networkList = NetworksList.ToList();
-           var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
+           var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList, NovelNetworkProfile.SomeProfile);
             var resultnoNetwork = novelHandoverAlgorithm.ResultNetwork;
             //ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
         }

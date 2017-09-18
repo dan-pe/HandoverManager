@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using FileReaders;
 
 namespace handovermgr.Controls
 {
@@ -56,7 +58,7 @@ namespace handovermgr.Controls
         private void Handover_Click(object sender, RoutedEventArgs e)
         {
 
-            HandoverView handoverView = new HandoverView(MainWindow.NetworksList);
+            HandoverView handoverView = new HandoverView(MainWindow.NetworksList, NovelProfileComboBox);
             handoverView.Show();
 
             // TODO Place holder, each subsequent execution of handover
@@ -84,5 +86,40 @@ namespace handovermgr.Controls
         }
 
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+            // Set filter for file extension and default file extension 
+            //dlg.DefaultExt = ".txt";
+            //dlg.Filter = "TXT Files (*.txt)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+            }
+
+            var csvNetworksCollection = CsvReader.ReadCsvFile(dlg.FileName);
+
+            //_mainWindow.SetNetworkList(csvNetworksCollection);
+            MainWindow.NetworksList.Clear();
+            foreach (var csvNetwork in csvNetworksCollection)
+            {
+                 MainWindow.NetworksList.Add(csvNetwork);
+            }
+
+
+        }
     }
 }
