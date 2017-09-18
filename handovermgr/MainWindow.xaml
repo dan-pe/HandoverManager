@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="Handover Manager" Background="CadetBlue" Height="300" Width="800">
+        Title="Handover Manager" Background="CadetBlue" Height="400" Width="800">
 
     <Grid Margin="-2,0,2,0">
         <Grid.ColumnDefinitions>
@@ -69,9 +69,7 @@
         </DockPanel>
 
         <DockPanel Grid.Column="1"  Grid.Row="1" Margin="5 0 0 0">
-            <ListBox x:Name="LogBox">
-                
-            </ListBox>
+            <ListBox x:Name="LogBox"/>
         </DockPanel>
         <!--#endregion-->
 

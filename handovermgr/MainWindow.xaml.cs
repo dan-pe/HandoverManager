@@ -31,15 +31,6 @@
 
         public static ObservableCollection<RadioNetworkModel> NetworksList;
 
-        public static void AddNetwork()
-        {
-            NetworksList.Add(new RadioNetworkModel
-            {
-                NetworkName = "mock",
-                NetworkType = "anothermock"
-            });
-        }
-
         #endregion
 
         #region Constructors and Destructor

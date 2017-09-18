@@ -23,7 +23,7 @@
             <Button Margin="4 0 4 10">Load from file</Button>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10" Click="Button_Click">Add Network</Button>
+            <Button Margin="4 0 4 10" Click="AddNetwork_Click">Add Network</Button>
         </DockPanel>        
         <DockPanel>
             <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>

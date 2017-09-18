@@ -44,9 +44,10 @@ namespace handovermgr.Controls
         /// <summary>
         /// Interaction for add network button.
         /// </summary>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddNetwork_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.AddNetwork();
+            AddNetworkView addNetworkView = new AddNetworkView();
+            addNetworkView.Show();
         }
 
         /// <summary>

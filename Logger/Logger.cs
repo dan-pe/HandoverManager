@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace Logger
+﻿namespace Logger
 {
     #region Usings
 
+    using System;
     using System.Windows.Controls;
 
     #endregion
@@ -36,6 +35,7 @@ namespace Logger
         {
             _logBox = logBox;
             _logger = this;
+            AddMessage("Logger Initialized!");
         }
 
         #endregion

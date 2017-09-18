@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AddNetworkView.xaml.cs">
+      <DependentUpon>AddNetworkView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HandoverView.xaml.cs">
       <DependentUpon>HandoverView.xaml</DependentUpon>
     </Compile>
@@ -67,6 +70,10 @@
     </Compile>
     <Compile Include="UIConfig\InputWeights.cs" />
     <Compile Include="UIConfig\UserConfig.cs" />
+    <Page Include="Controls\AddNetworkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\HandoverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

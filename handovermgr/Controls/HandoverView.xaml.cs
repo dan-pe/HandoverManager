@@ -47,7 +47,6 @@
             _radioNetworksList = new List<RadioNetworkModel>(radioNetowrksList);
 
             PrepareHandoverNetworksView(_radioNetworksList);
-            Logger.Logger.AddMessage("something");
         }
 
         /// <summary>
@@ -59,6 +58,8 @@
         /// </param>
         private void PrepareHandoverNetworksView(List<RadioNetworkModel> radioNetworksList)
         {
+            Logger.Logger.AddMessage("Handover evaluation started.");
+
             NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList);
             novelHandover.RunSelection();
             var resultNetwork = novelHandover.SelectResultNetwork();
@@ -84,6 +85,7 @@
                 if (radioNetwork.RadioNetworkModel.NetworkName.Equals(resultNetwork.RadioNetworkModel.NetworkName))
                 {
                     textBox.Background = new SolidColorBrush(Color.FromRgb(0, 204, 102));
+                    Logger.Logger.AddMessage($"Result network: {radioNetwork.RadioNetworkModel.NetworkName} Handover factor: {resultNetwork.GrcFactor.ToString("N4")}");
                 }
 
 
