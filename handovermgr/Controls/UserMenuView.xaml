@@ -20,7 +20,7 @@
             </ComboBox>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10" Click="Button_Click">Load from file</Button>
+            <Button Margin="4 0 4 10" Click="LoadFile_Click">Load from file</Button>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 10" Click="AddNetwork_Click">Add Network</Button>

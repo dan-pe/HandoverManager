@@ -65,7 +65,7 @@ namespace handovermgr.Controls
         private void PrepareHandoverNetworksView(List<RadioNetworkModel> radioNetworksList, ComboBox novelProfileComboBox)
         {
             Logger.Logger.AddMessage("Handover evaluation started.");
-
+            
             var novelProfile = (NovelNetworkProfile) Enum.Parse(typeof(NovelNetworkProfile),
                 novelProfileComboBox.SelectedValue.ToString());
 
