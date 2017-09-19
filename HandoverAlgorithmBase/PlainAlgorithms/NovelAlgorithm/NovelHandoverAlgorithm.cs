@@ -79,21 +79,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
             var sec = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
             var cost = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
-
-            // TODO Just a mock, replace with user input values.
-            Random random = new Random();
-
-            double[,] coefficients = new double[9, 9];
-            for (int i = 0; i < coefficients.GetLength(1); i++)
-            {
-                for (int j = 0; j < coefficients.GetLength(1); j++)
-                {
-                    coefficients[i, j] = random.Next(1, 10);
-
-                }
-            }
-
-            coefficients = LoadProfile();
+            var coefficients = LoadProfile();
 
             AhpModel ahpModel = new AhpModel(coefficients);
 
@@ -124,7 +110,6 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                 networkModel.GrcFactor = grc;
             }
         }
-
        
 
         /// <summary>
@@ -165,13 +150,13 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         {
             switch (this.networkProfile)
             {
-                case NovelNetworkProfile.SomeProfile:
+                case NovelNetworkProfile.BalancedProfile:
                     return NovelNetworkProfiles.GetSomeProfile();
 
-                case NovelNetworkProfile.OtherProfile:
+                case NovelNetworkProfile.Connectivity:
                     return NovelNetworkProfiles.GetOtherProfile();
 
-                case NovelNetworkProfile.OddProfile:
+                case NovelNetworkProfile.MaxEfficency:
                     return NovelNetworkProfiles.GetOddProfile();
 
                 default:

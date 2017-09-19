@@ -62,8 +62,15 @@ namespace handovermgr
                     NetworkType = NetworkType.GPRS.ToString(),
                     Parameters = new NetworkParameters()
                     {
-                        ThroughputInMbps = random.NextDouble(), BitErrorRate = random.NextDouble(), BurstErrorRate = random.NextDouble(), CostInUnitsPerByte = random.NextDouble(), DelayInMsec = random.NextDouble(),
-                        JitterInMsec = random.NextDouble(), PacketLossPercentage = random.NextDouble(), ResponseTimeInMsec = random.NextDouble(), SecurityLevel = random.NextDouble()
+                        ThroughputInMbps = random.NextDouble() * 10,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 1
                     }
                 });
             NetworksList.Add(
@@ -73,8 +80,16 @@ namespace handovermgr
                     NetworkType = NetworkType.LTE_Advanced.ToString(),
                     Parameters = new NetworkParameters()
                     {
-                        ThroughputInMbps = random.NextDouble(), BitErrorRate = random.NextDouble(), BurstErrorRate = random.NextDouble(), CostInUnitsPerByte = random.NextDouble(), DelayInMsec = random.NextDouble(),
-                        JitterInMsec = random.NextDouble(), PacketLossPercentage = random.NextDouble(), ResponseTimeInMsec = random.NextDouble(), SecurityLevel = random.NextDouble()
+                        ThroughputInMbps = random.NextDouble() * 100,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 4
+
                     }
                 });
             NetworksList.Add(
@@ -84,15 +99,16 @@ namespace handovermgr
                     NetworkType = NetworkType.UMTS.ToString(),
                     Parameters = new NetworkParameters()
                     {
-                        ThroughputInMbps = random.NextDouble(),
-                        BitErrorRate = random.NextDouble(),
-                        BurstErrorRate = random.NextDouble(),
+                        ThroughputInMbps = random.NextDouble() * 10,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
                         CostInUnitsPerByte = random.NextDouble(),
-                        DelayInMsec = random.NextDouble(),
-                        JitterInMsec = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
-                        ResponseTimeInMsec = random.NextDouble(),
-                        SecurityLevel = random.NextDouble()
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 3
+
                     }
                 });
             NetworksList.Add(
@@ -102,48 +118,26 @@ namespace handovermgr
                     NetworkType = NetworkType.WiFi.ToString(),
                     Parameters = new NetworkParameters()
                     {
-                        ThroughputInMbps = random.NextDouble(),
-                        BitErrorRate = random.NextDouble(),
-                        BurstErrorRate = random.NextDouble(),
+                        ThroughputInMbps = random.NextDouble() * 10,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
                         CostInUnitsPerByte = random.NextDouble(),
-                        DelayInMsec = random.NextDouble(),
-                        JitterInMsec = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
-                        ResponseTimeInMsec = random.NextDouble(),
-                        SecurityLevel = random.NextDouble()
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 2
                     }
                 });
             NetworkListView.ItemsSource = NetworksList;
         }
-
-        /// <summary>
-        /// Prepares radio network objects
-        /// </summary>
-        private void PrepareNetworkObjects()
-        {
-           var networkList = NetworksList.ToList();
-           var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList, NovelNetworkProfile.SomeProfile);
-            var resultnoNetwork = novelHandoverAlgorithm.ResultNetwork;
-            //ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
-        }
-
-        /// <summary>
-        /// Performs decision action.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DecisionButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            PrepareNetworkObjects();
-        }
-       
-
-        #endregion
 
         private void NetworkListView_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             NetworkPropertiesView networkPropertiesView = new NetworkPropertiesView(this);
             networkPropertiesView.Show();
         }
+
+        #endregion
     }
 }

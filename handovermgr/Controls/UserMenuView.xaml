@@ -9,22 +9,17 @@
     
     <StackPanel Orientation="Vertical">
         <DockPanel>
-            <ComboBox x:Name="NovelProfileComboBox" Margin="4 20 4 10">
-                <!--<ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>-->
-            </ComboBox>
+            <Button Margin="4 20 4 10" Click="LoadFile_Click">Load from file</Button>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10" Click="LoadFile_Click">Load from file</Button>
+            <Button Margin="4 0 4 5" Click="AddNetwork_Click">Add Network</Button>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10" Click="AddNetwork_Click">Add Network</Button>
-        </DockPanel>        
+            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 80 4 0"/>
+        </DockPanel>
+        <DockPanel>
+            <ComboBox x:Name="NovelProfileComboBox" Margin="4 10 4 10"/>
+        </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>
         </DockPanel>

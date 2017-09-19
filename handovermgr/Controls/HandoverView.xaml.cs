@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Logger;
 
 namespace handovermgr.Controls
 {
@@ -107,7 +108,8 @@ namespace handovermgr.Controls
             {
                 textBox.Background = new SolidColorBrush(Color.FromRgb(0, 204, 102));
                 Logger.Logger.AddMessage(
-                    $"Result network: {radioNetwork.RadioNetworkModel.NetworkName} Handover factor: {resultNetwork.GrcFactor.ToString("N4")}");
+                    $"Result network: {radioNetwork.RadioNetworkModel.NetworkName} Handover factor: {resultNetwork.GrcFactor:N4}",
+                    MessageThreshold.SUCCESS);
             }
 
             stackpanel.Children.Add(label);

@@ -90,9 +90,9 @@
     /// </summary>
     public enum NovelNetworkProfile
     {
-        SomeProfile,
-        OtherProfile,
-        OddProfile
+        BalancedProfile,
+        MaxEfficency,
+        Connectivity
     }
 
     #endregion

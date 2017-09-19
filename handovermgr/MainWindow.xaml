@@ -19,7 +19,7 @@
 
         <!--#region User Menu -->
 
-        <controls:UserMenu Grid.Column="0" Grid.Row="0"></controls:UserMenu>
+        <controls:UserMenu Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></controls:UserMenu>
 
         <!--#endregion-->
 
@@ -41,24 +41,24 @@
                                <GridViewColumn Header="BER"
                                                DisplayMemberBinding="{Binding Parameters.BitErrorRate, StringFormat=N3}">
                                </GridViewColumn>
-                               <!--<GridViewColumn Header="BUR"
-                                               DisplayMemberBinding="{Binding Parameters.BurstErrorRate}">
-                               </GridViewColumn>-->
+                               <GridViewColumn Header="BUR"
+                                               DisplayMemberBinding="{Binding Parameters.BurstErrorRate, StringFormat=N3}">
+                               </GridViewColumn>
                                <GridViewColumn Header="PacketLoss"
                                                DisplayMemberBinding="{Binding Parameters.PacketLossPercentage, StringFormat=N3}">
                                </GridViewColumn>
                                <GridViewColumn Header="Delay [msec]"
                                                DisplayMemberBinding="{Binding Parameters.DelayInMsec, StringFormat=N3}">
                                </GridViewColumn>
-                               <!--<GridViewColumn Header="Response"
+                               <GridViewColumn Header="Response"
                                                DisplayMemberBinding="{Binding Parameters.ResponseTimeInMsec, StringFormat=N2}">
-                               </GridViewColumn>-->
+                               </GridViewColumn>
                                <!--<GridViewColumn Header="Jitter"
                                                DisplayMemberBinding="{Binding Parameters.JitterInMsc, StringFormat=N2}">
-                               </GridViewColumn>
+                               </GridViewColumn>-->
                                <GridViewColumn Header="Security"
                                                DisplayMemberBinding="{Binding Parameters.SecurityLevel, StringFormat=N2}">
-                               </GridViewColumn>-->
+                               </GridViewColumn>
                                <GridViewColumn Header="Cost"
                                                DisplayMemberBinding="{Binding Parameters.CostInUnitsPerByte, StringFormat=N1}">
                                </GridViewColumn>

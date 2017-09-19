@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="Handover Result" Height="300" Width="300">
-        <StackPanel x:Name="HandoverPanel" Orientation="Vertical">
+        Title="Handover Result" Height="250" Width="300">
+        <StackPanel x:Name="HandoverPanel" Orientation="Vertical" Margin="20 0 20 0">
             <StackPanel Orientation="Horizontal">
                 <Label Width="90" Margin="5" FontWeight="DemiBold">Network name</Label>
                 <Label Margin="5" FontWeight="DemiBold">GRC Factor</Label>
