@@ -1,4 +1,6 @@
-﻿using RadioNetworks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using RadioNetworks;
 
 namespace FileReaders
 {
@@ -24,20 +26,27 @@ namespace FileReaders
         /// <param name="pathToFile">
         /// Path to file.
         /// </param>
-        public static void ReadCsvFile(string pathToFile)
+        public static List<RadioNetworkModel> ReadCsvFile(string pathToFile)
         {
             using (var streamReader = new StreamReader(pathToFile))
             {
                 // Skips header line.
                 var line = streamReader.ReadLine();
 
+                List<RadioNetworkModel> radioNetworkModels = new List<RadioNetworkModel>();
+
                 while (!streamReader.EndOfStream)
                 {
                     line = streamReader.ReadLine();
 
                     //TODO: Actually do something with read line.
-                    Console.WriteLine(ParseCsvLineForNetworkModel(line).NetworkName);
+                    radioNetworkModels.Add(
+                    
+                        ParseCsvLineForNetworkModel(line));
+
                 }
+
+                return radioNetworkModels;
             }
         }
 
@@ -64,15 +73,15 @@ namespace FileReaders
                 NetworkType = networkElements[1],
                 Parameters = new NetworkParameters()
                 {
-                    ThroughputInMbps = float.Parse(networkElements[2], CultureInfo.InvariantCulture),
-                    BitErrorRate = float.Parse(networkElements[3], CultureInfo.InvariantCulture),
-                    BurstErrorRate = float.Parse(networkElements[4], CultureInfo.InvariantCulture),
-                    PacketLossPercentage = float.Parse(networkElements[5], CultureInfo.InvariantCulture),
-                    DelayInMsec = float.Parse(networkElements[6], CultureInfo.InvariantCulture),
-                    ResponseTimeInMsec = float.Parse(networkElements[7], CultureInfo.InvariantCulture),
-                    JitterInMsec = float.Parse(networkElements[8], CultureInfo.InvariantCulture),
-                    CostInUnitsPerByte = float.Parse(networkElements[8], CultureInfo.InvariantCulture),
-                    SecurityLevel = float.Parse(networkElements[10], CultureInfo.InvariantCulture),
+                    ThroughputInMbps = double.Parse(networkElements[2], CultureInfo.InvariantCulture),
+                    BitErrorRate = double.Parse(networkElements[3], CultureInfo.InvariantCulture),
+                    BurstErrorRate = double.Parse(networkElements[4], CultureInfo.InvariantCulture),
+                    PacketLossPercentage = double.Parse(networkElements[5], CultureInfo.InvariantCulture),
+                    DelayInMsec = double.Parse(networkElements[6], CultureInfo.InvariantCulture),
+                    ResponseTimeInMsec = double.Parse(networkElements[7], CultureInfo.InvariantCulture),
+                    JitterInMsec = double.Parse(networkElements[8], CultureInfo.InvariantCulture),
+                    CostInUnitsPerByte = double.Parse(networkElements[8], CultureInfo.InvariantCulture),
+                    SecurityLevel = double.Parse(networkElements[10], CultureInfo.InvariantCulture),
                 }
 
             };

@@ -24,7 +24,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-                <Label Content="Bit Error Rate" Width="100" Margin="5"/>
+            <Label Content="Bit Error Rate" Width="100" Margin="5"/>
             <TextBox Height="25" Width="80" Text="{Binding Parameters.BitErrorRate}"/>
         </StackPanel>
 

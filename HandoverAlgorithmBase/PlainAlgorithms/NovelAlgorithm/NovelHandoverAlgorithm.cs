@@ -14,11 +14,20 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
     {
         #region Properties
 
+        /// <summary>
+        /// List of GRC Factors
+        /// </summary>
         public List<float> NetworkGraFactors { get; set; }
 
-        protected List<NovelNetworkModel> NovelNetworkModels { get; set; }
+        /// <summary>
+        /// List of Novel network models.
+        /// </summary>
+        public List<NovelNetworkModel> NovelNetworkModels { get; set; }
 
         public RadioNetworkModel ResultNetwork { get; set; }
+
+        private NovelNetworkProfile networkProfile;
+
 
         #endregion
 
@@ -28,9 +37,10 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// Instantiate Novel Handover Algorithm.
         /// </summary>
         /// <param name="radioNetworksList"></param>
-        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList) : base(radioNetworksList)
+        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, NovelNetworkProfile novelNetworkProfile) : base(radioNetworksList)
         {
             NovelNetworkModels = new List<NovelNetworkModel>();
+            this.networkProfile = novelNetworkProfile;
 
             foreach (var radioNetworkModel in radioNetworksList)
             {
@@ -75,27 +85,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
             var sec = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
             var cost = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
-            Random random = new Random();
-
-            // Just a mock, replace with user input values.
-            double[,] coefficients = new double[9, 9];
-            for (int i = 0; i < coefficients.GetLength(1); i++)
-            {
-                for (int j = 0; j < coefficients.GetLength(1); j++)
-                {
-                    coefficients[i, j] = random.Next(1, 10);
-
-                }
-                //coefficients[i, j] = througoutputs[i];
-                //coefficients[i, j] = bers[i];
-                //coefficients[i, j] = burs[i];
-                //coefficients[i, j] = packtloses[i];
-                //coefficients[i, j] = delays[i];
-                //coefficients[i, j] = responses[i];
-                //coefficients[i, j] = jitters[i];
-                //coefficients[i, j] = sec[i];
-                //coefficients[i, j] = cost[i];
-            }
+            var coefficients = LoadProfile();
 
             AhpModel ahpModel = new AhpModel(coefficients);
 
@@ -126,12 +116,13 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                 networkModel.GrcFactor = grc;
             }
         }
+       
 
         /// <summary>
         /// Select the result network
         /// </summary>
         /// <returns></returns>
-        public RadioNetworkModel SelectResultNetwork()
+        public NovelNetworkModel SelectResultNetwork()
         {
             RunSelection();
             NovelNetworkModel network;
@@ -148,10 +139,38 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                 throw;
             }
 
-            return network.RadioNetworkModel;
+            return network;
         }
 
         #endregion
+
+        #region Private Fields
+
+        /// <summary>
+        /// Load user profiles from static class.
+        /// </summary>
+        /// <returns>
+        /// Loaded user profile.
+        /// </returns>
+        private double[,] LoadProfile()
+        {
+            switch (this.networkProfile)
+            {
+                case NovelNetworkProfile.BalancedProfile:
+                    return NovelNetworkProfiles.GetSomeProfile();
+
+                case NovelNetworkProfile.Connectivity:
+                    return NovelNetworkProfiles.GetOtherProfile();
+
+                case NovelNetworkProfile.MaxEfficency:
+                    return NovelNetworkProfiles.GetOddProfile();
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion  
 
     }
 
