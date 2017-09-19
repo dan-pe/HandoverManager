@@ -56,29 +56,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\NetworkInputModel.xaml.cs">
-      <DependentUpon>NetworkInputModel.xaml</DependentUpon>
+    <Compile Include="Controls\AddNetworkView.xaml.cs">
+      <DependentUpon>AddNetworkView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PatametersListUI.xaml.cs">
-      <DependentUpon>PatametersListUI.xaml</DependentUpon>
+    <Compile Include="Controls\HandoverView.xaml.cs">
+      <DependentUpon>HandoverView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserInputWeightsView.xaml.cs">
-      <DependentUpon>UserInputWeightsView.xaml</DependentUpon>
+    <Compile Include="Controls\UserMenuView.xaml.cs">
+      <DependentUpon>UserMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserMenu.xaml.cs">
-      <DependentUpon>UserMenu.xaml</DependentUpon>
+    <Compile Include="NetworkPropertiesView.xaml.cs">
+      <DependentUpon>NetworkPropertiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIConfig\InputWeights.cs" />
     <Compile Include="UIConfig\UserConfig.cs" />
-    <Page Include="Controls\PatametersListUI.xaml">
+    <Page Include="Controls\AddNetworkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserInputWeightsView.xaml">
+    <Page Include="Controls\HandoverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserMenu.xaml">
+    <Page Include="Controls\UserMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,7 +94,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\NetworkInputModel.xaml">
+    <Page Include="NetworkPropertiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

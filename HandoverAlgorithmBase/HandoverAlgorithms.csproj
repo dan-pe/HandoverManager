@@ -43,6 +43,7 @@
     <Compile Include="HandoverAlgorithmBase.cs" />
     <Compile Include="PlainAlgorithms\NovelAlgorithm\NovelHandoverAlgorithm.cs" />
     <Compile Include="PlainAlgorithms\NovelAlgorithm\NovelNetworkModel.cs" />
+    <Compile Include="PlainAlgorithms\NovelAlgorithm\NovelNetworkProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

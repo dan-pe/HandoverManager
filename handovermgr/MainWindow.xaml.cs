@@ -1,20 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Windows.Controls;
-using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
-using Logger;
-using RadioNetworks;
+﻿using System.Collections.Generic;
 
 namespace handovermgr
 {
     #region Usings
 
-    using System.Collections.Generic;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.IO;
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Linq;
 
-    using FileReaders;
+    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
 
-    using HandoverAlgorithmBase;
+    using RadioNetworks;
 
     #endregion
 
@@ -24,18 +23,8 @@ namespace handovermgr
     public partial class MainWindow : Window
     {
         #region Fields
-
-        private const string FileName = ".../inputNetworks.txt";
-
-        private readonly string _filePath = Path.Combine(
-                Environment.CurrentDirectory,
-                "Debug",
-                FileName);
-
-        private Logger.Logger logger
-        {
-            get { return Logger.Logger.GetLoggerInstance(LogList); }
-        }
+        
+        public static ObservableCollection<RadioNetworkModel> NetworksList { get; set; }
 
         #endregion
 
@@ -43,66 +32,110 @@ namespace handovermgr
 
         public MainWindow()
         {
-
             InitializeComponent();
+            Logger.Logger.InitializeLogger(LogBox);
+            BindNetworks();
         }
 
         #endregion
 
         #region Public Methods
 
-        public ListBox ServeLogBox()
+        public void SetNetworkList(List<RadioNetworkModel> radioNetworksList)
         {
-            return LogList;
+            NetworksList = new ObservableCollection<RadioNetworkModel>(radioNetworksList);
         }
 
         #endregion
 
+
         #region Private Methods
 
-        /// <summary>
-        /// Prepares radio network objects
-        /// </summary>
-        private void PrepareNetworkObjects()
+        private void BindNetworks()
         {
-            var networkList = new List<RadioNetworkModel>();
-            var novelHandoverAlgorithm = new NovelHandoverAlgorithm(networkList);
+            NetworksList = new ObservableCollection<RadioNetworkModel>();
+            Random random = new Random(100);
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network1",
+                    NetworkType = NetworkType.GPRS.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = random.NextDouble() * 10,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 1
+                    }
+                });
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network2",
+                    NetworkType = NetworkType.LTE_Advanced.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = random.NextDouble() * 100,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 4
 
-            ResultNetwork.Text = novelHandoverAlgorithm.SelectResultNetwork().NetworkName;
+                    }
+                });
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network3",
+                    NetworkType = NetworkType.UMTS.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = random.NextDouble() * 10,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 3
+
+                    }
+                });
+            NetworksList.Add(
+                new RadioNetworkModel
+                {
+                    NetworkName = "network4",
+                    NetworkType = NetworkType.WiFi.ToString(),
+                    Parameters = new NetworkParameters()
+                    {
+                        ThroughputInMbps = random.NextDouble() * 10,
+                        BitErrorRate = random.NextDouble() * 0.01d,
+                        BurstErrorRate = random.NextDouble() * 0.01d,
+                        CostInUnitsPerByte = random.NextDouble(),
+                        DelayInMsec = random.NextDouble() * 0.1d,
+                        JitterInMsec = random.NextDouble() * 0.1d,
+                        PacketLossPercentage = random.NextDouble(),
+                        ResponseTimeInMsec = random.NextDouble() * 0.1d,
+                        SecurityLevel = 2
+                    }
+                });
+            NetworkListView.ItemsSource = NetworksList;
         }
 
-        /// <summary>
-        /// Performs decision action.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DecisionButton_OnClick(object sender, RoutedEventArgs e)
+        private void NetworkListView_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            PrepareNetworkObjects();
-        }
-
-        /// <summary>
-        /// Open/Close user weights windows.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void InputWeightsAccept_Click(object sender, RoutedEventArgs e)
-        {
-            var isOpen = UserPopup.IsOpen;
-            UserPopup.IsOpen = !isOpen;
-
-            Logger.Logger.GetLoggerInstance(LogList).AddMessage("costam");
-
-            CsvReader.ReadCsvFile(_filePath);
-
-        }
-
-        private void PrepareFuzzyRegulesSet()
-        {
-            //FuzzyReguleSet Mamdani = new FuzzyRegulesSet(
-            //{
-            //    FuzzyValue reg = new FuzzyValue();
-            //})
+            NetworkPropertiesView networkPropertiesView = new NetworkPropertiesView(this);
+            networkPropertiesView.Show();
         }
 
         #endregion

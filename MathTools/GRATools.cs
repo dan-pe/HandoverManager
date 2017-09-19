@@ -30,7 +30,17 @@ namespace MathTools
         /// </returns>
         public static double NormalizateSmallerTheBetter(IEnumerable<double> passedValues, double value)
         {
-            return (passedValues.Max() - value) / (passedValues.Max() - passedValues.Min());
+            var enumerable = passedValues as double[] ?? passedValues.ToArray();
+            var meter = (enumerable.Max() - value);
+
+            var result = (enumerable.Max() - value) / (enumerable.Max() - enumerable.Min());
+
+            if (Double.IsNaN(result))
+            {
+                return 1;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -46,7 +56,15 @@ namespace MathTools
         /// </returns>
         public static double NormalizeLargerTheBetter(IEnumerable<double> passedValues, double value)
         {
-            return (value - passedValues.Min()) / (passedValues.Max() - passedValues.Min());
+            var enumerable = passedValues as double[] ?? passedValues.ToArray();
+            var result = (value - enumerable.Min()) / (enumerable.Max() - enumerable.Min());
+
+            if (Double.IsNaN(result))
+            {
+                return 1;
+            }
+
+            return result;
         }
 
         #endregion

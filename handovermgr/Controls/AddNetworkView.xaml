@@ -1,0 +1,52 @@
+﻿<Window x:Class="handovermgr.Controls.AddNetworkView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:handovermgr.Controls"
+        mc:Ignorable="d"
+        Title="Add Network" Height="400" Width="250">
+    <StackPanel x:Name="NetworkItemView" Orientation="Vertical" >
+        <StackPanel  Orientation="Horizontal">
+            <Label Content="Network Name"  Width="100"  Margin="5"/>
+            <TextBox  x:Name="AddNameBox"  Height="25" Width="80"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Network Type" Width="100" Margin="5"/>
+            <ComboBox x:Name="AddTypeComboBox"  Height="25" Width="80"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Throughoutput" Width="100" Margin="5"/>
+            <TextBox x:Name="AddThroughoutputBox" Height="25" Width="80"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Bit Error Rate" Width="100" Margin="5"/>
+            <TextBox x:Name="AddBERBox" Height="25" Width="80"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Jitter" Width="100" Margin="5"/>
+            <TextBox x:Name="AddJitterBox" Height="25" Width="80"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Packet Loss" Width="100" Margin="5"/>
+            <TextBox x:Name="AddPacketLossBox"  Height="25" Width="80"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Delay" Width="100" Margin="5"/>
+            <TextBox x:Name="AddDelayBox"  Height="25" Width="80"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Response" Width="100" Margin="5"/>
+            <TextBox x:Name="AddResponseBox"  Height="25" Width="80"/>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Vertical">
+            <Button Content="Add Network" Margin="50 8" Click="AddNetworkButton_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

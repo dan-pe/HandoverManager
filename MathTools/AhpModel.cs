@@ -1,5 +1,4 @@
-﻿
-namespace MathTools
+﻿namespace MathTools
 {
     #region Usings
 
@@ -16,10 +15,19 @@ namespace MathTools
 
         #region Private Fields
 
+        /// <summary>
+        /// Input weights.
+        /// </summary>
         private double[,] InputWeights { get; }
 
-        private int NumberOfCriterias { get; }
+        /// <summary>
+        /// Number of criteria.
+        /// </summary>
+        private int NumberOfCriteria { get; }
 
+        /// <summary>
+        /// The value of "zbieznosc".
+        /// </summary>
         private const double Epsilion = 0.001d;
 
         #endregion
@@ -29,7 +37,7 @@ namespace MathTools
         public AhpModel(double[,] inputWeights)
         {
             InputWeights = inputWeights;
-            NumberOfCriterias = (int)Math.Sqrt(inputWeights.Length);
+            NumberOfCriteria = (int)Math.Sqrt(inputWeights.Length);
         }
 
         #endregion
@@ -45,20 +53,20 @@ namespace MathTools
         /// </returns>
         public double[] GetOutputWeights()
         {
-            var meansVector = new double[NumberOfCriterias];
-            var criteriaVector = new double[NumberOfCriterias];
-            var weightCoefficients = new double[NumberOfCriterias];
+            var meansVector = new double[NumberOfCriteria];
+            var criteriaVector = new double[NumberOfCriteria];
+            var weightCoefficients = new double[NumberOfCriteria];
 
-            for (int i = 0; i < NumberOfCriterias; i++)
+            for (var i = 0; i < NumberOfCriteria; i++)
             {
-                for (int j = 0; j < NumberOfCriterias; j++)
+                for (var j = 0; j < NumberOfCriteria; j++)
                 {
                     criteriaVector[j] = InputWeights[i, j];
                 }
                 meansVector[i] = GeometricMean(criteriaVector);
             }
 
-            for (int i = 0; i < NumberOfCriterias; i++)
+            for (var i = 0; i < NumberOfCriteria; i++)
             {
                 weightCoefficients[i] = meansVector[i] / meansVector.Sum();
             }
@@ -75,7 +83,7 @@ namespace MathTools
         {
             bool isSmallerThanEpsilion = false;
 
-            // Step 1: 
+            // Step 1:
             // Multiply matrix.
             double[,] stepOneOriginal = ArrayOperations.MultiplyArrays(inputWeightsArray, inputWeightsArray);
 
@@ -89,7 +97,7 @@ namespace MathTools
 
             while (!isSmallerThanEpsilion)
             {
-                // Step 1: 
+                // Step 1:
                 // Multiply matrix.
                 double[,] stepOne = ArrayOperations.MultiplyArrays(stepOneOriginal, stepOneOriginal);
 

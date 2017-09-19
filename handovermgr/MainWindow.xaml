@@ -5,87 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="Handover Manager" Height="504" Width="636.5">
+        Title="Handover Manager" Background="CadetBlue" Height="300" Width="800">
 
-    <Grid>
+    <Grid Margin="-2,0,2,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
 
         <!--#region User Menu -->
 
-        <controls:UserMenu Grid.Column="0"></controls:UserMenu>
-        
+        <controls:UserMenu Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></controls:UserMenu>
+
         <!--#endregion-->
 
         <!--#region Algorithms Tabs -->
-        <TabControl x:Name="TabControl" Grid.Column="1" HorizontalAlignment="Left" Height="310" Margin="0,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="6" Width="523">
-            <TabItem Header="Novel">
-                
-                <!--#region Network Parameters Region-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="56*"/>
-                        <ColumnDefinition Width="30*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="86*"/>
-                        <ColumnDefinition Width="87*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <!--#region Parameters List-->
+        <DockPanel Grid.Column="1" Margin="5 0 0 0">
+                    <ListView x:Name="NetworkListView" MouseDoubleClick="NetworkListView_DoubleClick">
+                        <ListView.View>
+                        <GridView>
+                           <GridView.Columns >
+                               <GridViewColumn Header="SSID"
+                                            DisplayMemberBinding="{Binding NetworkName, StringFormat=N3}">
+                               </GridViewColumn>
+                               <GridViewColumn Header="Type"
+                                            DisplayMemberBinding="{Binding NetworkType, StringFormat=N3}">
+                                </GridViewColumn>
+                               <GridViewColumn Header="Throughoutput [MBps]"
+                                               DisplayMemberBinding="{Binding Parameters.ThroughputInMbps, StringFormat=N3}">
+                                </GridViewColumn>
+                               <GridViewColumn Header="BER"
+                                               DisplayMemberBinding="{Binding Parameters.BitErrorRate, StringFormat=N3}">
+                               </GridViewColumn>
+                               <GridViewColumn Header="BUR"
+                                               DisplayMemberBinding="{Binding Parameters.BurstErrorRate, StringFormat=N3}">
+                               </GridViewColumn>
+                               <GridViewColumn Header="PacketLoss"
+                                               DisplayMemberBinding="{Binding Parameters.PacketLossPercentage, StringFormat=N3}">
+                               </GridViewColumn>
+                               <GridViewColumn Header="Delay [msec]"
+                                               DisplayMemberBinding="{Binding Parameters.DelayInMsec, StringFormat=N3}">
+                               </GridViewColumn>
+                               <GridViewColumn Header="Response"
+                                               DisplayMemberBinding="{Binding Parameters.ResponseTimeInMsec, StringFormat=N2}">
+                               </GridViewColumn>
+                               <!--<GridViewColumn Header="Jitter"
+                                               DisplayMemberBinding="{Binding Parameters.JitterInMsc, StringFormat=N2}">
+                               </GridViewColumn>-->
+                               <GridViewColumn Header="Security"
+                                               DisplayMemberBinding="{Binding Parameters.SecurityLevel, StringFormat=N2}">
+                               </GridViewColumn>
+                               <GridViewColumn Header="Cost"
+                                               DisplayMemberBinding="{Binding Parameters.CostInUnitsPerByte, StringFormat=N1}">
+                               </GridViewColumn>
+                           </GridView.Columns>
+                        </GridView>
+                        </ListView.View>
+                    </ListView>
+        </DockPanel>
 
-                    <controls:PatametersListUI Grid.Column="0" Grid.ColumnSpan="2"></controls:PatametersListUI>
-                    <!--#endregion-->
-
-                    <!--#region Network Input Controls-->
-                    <controls:NetworkInputModel Grid.Column="2"></controls:NetworkInputModel>
-
-                    <controls:NetworkInputModel Grid.Column="3"></controls:NetworkInputModel>
-
-                    <controls:NetworkInputModel Grid.Column="4"></controls:NetworkInputModel>
-
-                    <controls:NetworkInputModel Grid.Column="5"></controls:NetworkInputModel>
-
-                    <!--#endregion-->
-
-                    <!--#region Decision Section-->
-
-                    <StackPanel x:Name="DecisionPanel" Orientation="Vertical" Grid.Column="6">
-                        <Label Content="Result"  Margin="0 0 0 5" FontWeight="SemiBold"/>
-                        <TextBox x:Name="ResultNetwork" Margin="4"></TextBox>
-                        <Button x:Name="DecisionButton" Click="DecisionButton_OnClick" Margin="4" Content="Compute"/>
-                    </StackPanel>
-
-                    <!--#endregion-->
-
-                </Grid>
-                
-                <!--#endregion-->
-                
-            </TabItem>
-            <TabItem Header="Fuzzy">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
+        <DockPanel Grid.Column="1"  Grid.Row="1" Margin="5 0 0 0">
+            <ListBox x:Name="LogBox"/>
+        </DockPanel>
         <!--#endregion-->
-        
-        <!--#region Profile Pop-up-->
 
-        <Popup x:Name="UserPopup" IsOpen="False" Grid.Column="1" Grid.ColumnSpan="5" Placement="Center">
-           <controls:UserInputWeightsView></controls:UserInputWeightsView>
-        </Popup>
-        <ListBox x:Name="LogList" Grid.ColumnSpan="6" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="0,324,0,0" VerticalAlignment="Top" Width="528"/>
-        
-        <!--#endregion-->
-        
     </Grid>
 </Window>
 
