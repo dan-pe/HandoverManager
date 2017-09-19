@@ -14,8 +14,14 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
     {
         #region Properties
 
+        /// <summary>
+        /// List of GRC Factors
+        /// </summary>
         public List<float> NetworkGraFactors { get; set; }
 
+        /// <summary>
+        /// List of Novel network models.
+        /// </summary>
         public List<NovelNetworkModel> NovelNetworkModels { get; set; }
 
         public RadioNetworkModel ResultNetwork { get; set; }
