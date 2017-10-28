@@ -24,9 +24,15 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </summary>
         public List<NovelNetworkModel> NovelNetworkModels { get; set; }
 
+        /// <summary>
+        /// The result network.
+        /// </summary>
         public RadioNetworkModel ResultNetwork { get; set; }
 
-        private NovelNetworkProfile networkProfile;
+        /// <summary>
+        /// Selected network profile.
+        /// </summary>
+        private readonly NovelNetworkProfile _networkProfile;
 
 
         #endregion
@@ -36,11 +42,13 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// <summary>
         /// Instantiate Novel Handover Algorithm.
         /// </summary>
-        /// <param name="radioNetworksList"></param>
+        /// <param name="radioNetworksList">
+        /// 
+        /// </param>
         public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, NovelNetworkProfile novelNetworkProfile) : base(radioNetworksList)
         {
             NovelNetworkModels = new List<NovelNetworkModel>();
-            this.networkProfile = novelNetworkProfile;
+            this._networkProfile = novelNetworkProfile;
 
             foreach (var radioNetworkModel in radioNetworksList)
             {
@@ -64,6 +72,30 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         public override void RunSelection()
         {
             CalculateDecisiveFactors();
+        }
+
+        /// <summary>
+        /// Select the result network
+        /// </summary>
+        /// <returns></returns>
+        public NovelNetworkModel SelectResultNetwork()
+        {
+            RunSelection();
+            NovelNetworkModel network;
+
+            try
+            {
+                network = NovelNetworkModels.
+                    OrderByDescending(grc => grc.GrcFactor)
+                    .First();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+
+            return network;
         }
 
         #endregion
@@ -116,35 +148,6 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                 networkModel.GrcFactor = grc;
             }
         }
-       
-
-        /// <summary>
-        /// Select the result network
-        /// </summary>
-        /// <returns></returns>
-        public NovelNetworkModel SelectResultNetwork()
-        {
-            RunSelection();
-            NovelNetworkModel network;
-
-            try
-            {
-                network = NovelNetworkModels.
-                    OrderByDescending(grc => grc.GrcFactor)
-                    .First();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                throw;
-            }
-
-            return network;
-        }
-
-        #endregion
-
-        #region Private Fields
 
         /// <summary>
         /// Load user profiles from static class.
@@ -154,7 +157,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </returns>
         private double[,] LoadProfile()
         {
-            switch (this.networkProfile)
+            switch (this._networkProfile)
             {
                 case NovelNetworkProfile.BalancedProfile:
                     return NovelNetworkProfiles.GetSomeProfile();
@@ -171,7 +174,6 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         }
 
         #endregion  
-
     }
 
 }

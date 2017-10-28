@@ -1,6 +1,4 @@
-﻿
-
-namespace MathTools
+﻿namespace MathTools
 {
     #region Usings
 
