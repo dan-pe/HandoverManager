@@ -48,7 +48,6 @@ namespace handovermgr
 
         #endregion
 
-
         #region Private Methods
 
         private void BindNetworks()

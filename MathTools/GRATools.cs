@@ -28,7 +28,7 @@ namespace MathTools
         /// <see cref="float"/>
         /// Normalized value.
         /// </returns>
-        public static double NormalizateSmallerTheBetter(IEnumerable<double> passedValues, double value)
+        public static double NormalizeSmallerTheBetter(IEnumerable<double> passedValues, double value)
         {
             var enumerable = passedValues as double[] ?? passedValues.ToArray();
             var meter = (enumerable.Max() - value);
@@ -69,6 +69,5 @@ namespace MathTools
 
         #endregion
     }
-
 }
 
