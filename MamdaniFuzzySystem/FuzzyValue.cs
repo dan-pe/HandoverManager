@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MamdaniFuzzySystem
+﻿namespace MamdaniFuzzySystem
 {
     public class FuzzyValue
     {
@@ -29,6 +23,4 @@ namespace MamdaniFuzzySystem
 
         #endregion
     }
-
-
 }

@@ -1,17 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace handovermgr
+﻿namespace handovermgr
 {
     #region Usings
 
     using System;
     using System.Collections.ObjectModel;
-    using System.IO;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Linq;
-
-    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
+    using System.Collections.Generic;
 
     using RadioNetworks;
 

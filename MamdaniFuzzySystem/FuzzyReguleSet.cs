@@ -1,15 +1,12 @@
-﻿#region Usings
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-#endregion    
-
-namespace MamdaniFuzzySystem
+﻿namespace MamdaniFuzzySystem
 {
+    #region Usings
+
+    using System.Collections.Generic;
+    using System.Linq;
+
+    #endregion
+
     public class FuzzyReguleSet
     {
         #region Properties
@@ -38,6 +35,5 @@ namespace MamdaniFuzzySystem
         }
 
         #endregion
-
     }
 }
