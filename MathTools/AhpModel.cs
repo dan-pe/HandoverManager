@@ -12,7 +12,6 @@
     /// </summary>
     public class AhpModel
     {
-
         #region Private Fields
 
         /// <summary>

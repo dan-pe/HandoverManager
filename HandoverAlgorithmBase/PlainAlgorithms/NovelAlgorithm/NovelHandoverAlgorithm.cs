@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Logger;
 using MathTools;
 using RadioNetworks;
 
@@ -128,21 +129,21 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                 double grc =
                     GraTools.NormalizeLargerTheBetter(througoutputs,
                         networkModel.RadioNetworkModel.Parameters.ThroughputInMbps) * ahpWeights[0] +
-                    GraTools.NormalizateSmallerTheBetter(bers,
+                    GraTools.NormalizeSmallerTheBetter(bers,
                         networkModel.RadioNetworkModel.Parameters.BitErrorRate) * ahpWeights[1] +
-                    GraTools.NormalizateSmallerTheBetter(burs,
+                    GraTools.NormalizeSmallerTheBetter(burs,
                         networkModel.RadioNetworkModel.Parameters.BurstErrorRate) * ahpWeights[2] +
-                    GraTools.NormalizateSmallerTheBetter(packtloses,
+                    GraTools.NormalizeSmallerTheBetter(packtloses,
                         networkModel.RadioNetworkModel.Parameters.PacketLossPercentage) * ahpWeights[3] +
-                    GraTools.NormalizateSmallerTheBetter(delays,
+                    GraTools.NormalizeSmallerTheBetter(delays,
                         networkModel.RadioNetworkModel.Parameters.DelayInMsec) * ahpWeights[4] +
-                    GraTools.NormalizateSmallerTheBetter(responses,
+                    GraTools.NormalizeSmallerTheBetter(responses,
                         networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) * ahpWeights[5] +
-                    GraTools.NormalizateSmallerTheBetter(jitters,
+                    GraTools.NormalizeSmallerTheBetter(jitters,
                         networkModel.RadioNetworkModel.Parameters.JitterInMsec) * ahpWeights[6] +
                     GraTools.NormalizeLargerTheBetter(sec,
                         networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[7] +
-                    GraTools.NormalizateSmallerTheBetter(cost,
+                    GraTools.NormalizeSmallerTheBetter(cost,
                         networkModel.RadioNetworkModel.Parameters.CostInUnitsPerByte) * ahpWeights[8];
 
                 networkModel.GrcFactor = grc;
@@ -169,12 +170,12 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                     return NovelNetworkProfiles.GetOddProfile();
 
                 default:
+                    Logger.Logger.AddMessage("Incorrect profile type", MessageThreshold.WARNING);
                     throw new ArgumentOutOfRangeException();
             }
         }
 
         #endregion  
     }
-
 }
 

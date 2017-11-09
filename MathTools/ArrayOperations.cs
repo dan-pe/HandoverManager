@@ -3,16 +3,13 @@
     #region Usings
 
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.CodeDom.Compiler;
 
     #endregion
 
     public static class ArrayOperations
     {
+        #region Public Methods
+
         /// <summary>
         /// Multiplies two arrays.
         /// </summary>
@@ -47,7 +44,7 @@
                 }
             }
 
-         return resultArray;
+            return resultArray;
         }
 
         /// <summary>
@@ -66,10 +63,10 @@
             int rowsA = inputArray.GetLength(0);
             int columnsA = inputArray.GetLength(1);
 
-            for (int i = 0; i < rowsA; i++) 
+            for (int i = 0; i < rowsA; i++)
             {
                 double tempCellResult = 0;
-                for (int j = 0; j <columnsA; j++)
+                for (int j = 0; j < columnsA; j++)
                 {
                     tempCellResult += inputArray[i, j];
                 }
@@ -98,5 +95,7 @@
 
             return resultVector;
         }
+
+        #endregion
     }
 }

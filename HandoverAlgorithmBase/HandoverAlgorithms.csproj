@@ -50,6 +50,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{E80D676E-58FB-4063-8B80-90C6E52911D4}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MathTools\MathTools.csproj">
       <Project>{112835d9-0ff0-4126-9490-0130759d85e7}</Project>
       <Name>MathTools</Name>
