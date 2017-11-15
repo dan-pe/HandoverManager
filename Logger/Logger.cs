@@ -71,8 +71,12 @@
         {
             string messageToLog = $@"[{DateTime.Now:HH:mm:ss}] {message}";
 
-            var listBoxItem = new ListBoxItem {Content = messageToLog};
-            listBoxItem.Background = HandleMessageThreshold(threshold);
+            var listBoxItem = new ListBoxItem
+            {
+                Content = messageToLog,
+                Background = HandleMessageThreshold(threshold)
+            };
+
             _logBox.Items.Add(listBoxItem);
         }
 
