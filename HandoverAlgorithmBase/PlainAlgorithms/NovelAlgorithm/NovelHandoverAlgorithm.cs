@@ -118,7 +118,11 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
             var sec = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
             var cost = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
+
+
             var coefficients = LoadProfile();
+
+
 
             AhpModel ahpModel = new AhpModel(coefficients);
 

@@ -68,30 +68,6 @@ namespace handovermgr.Controls
                     $"Error occurred during handover {exception.Message}.",
                     MessageThreshold.FAIL);
             }
-         
-
-            // TODO Place holder, each subsequent execution of handover
-            // will result in parameters randomization
-            //Random random = new Random();
-
-            //foreach (var network in MainWindow.NetworksList)
-            //{
-            //    network.Parameters.ThroughputInMbps = random.NextDouble();
-            //    network.Parameters.BitErrorRate = random.NextDouble();
-            //    network.Parameters.BurstErrorRate = random.NextDouble();
-            //    network.Parameters.CostInUnitsPerByte = random.NextDouble();
-            //    network.Parameters.DelayInMsec = random.NextDouble();
-            //    network.Parameters.JitterInMsec = random.NextDouble();
-            //    network.Parameters.PacketLossPercentage = random.NextDouble();
-            //    network.Parameters.ResponseTimeInMsec = random.NextDouble();
-            //    network.Parameters.SecurityLevel = random.NextDouble();
-            //}  
-
-            //List<RadioNetworkModel> networkList = new List<RadioNetworkModel>(MainWindow.NetworksList);
-            //NovelHandoverAlgorithm novelAlgorithm = new NovelHandoverAlgorithm(networkList);
-
-            //var resultNetwork = novelAlgorithm.SelectResultNetwork();
-            //ResultNetworkTextBox.Text = resultNetwork.NetworkName;
         }
 
         #endregion
@@ -105,7 +81,7 @@ namespace handovermgr.Controls
             //dlg.Filter = "TXT Files (*.txt)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
 
             // Display OpenFileDialog by calling ShowDialog method 
-            Nullable<bool> result = dlg.ShowDialog();
+            bool? result = dlg.ShowDialog();
 
             try
             {
