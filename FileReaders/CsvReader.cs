@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using RadioNetworks;
-
-namespace FileReaders
+﻿namespace FileReaders
 {
     #region Usings
 
-    using System;
     using System.IO;
     using System.Globalization;
+    using System.Collections.Generic;
+
+    using RadioNetworks;
 
     #endregion
 
@@ -39,7 +37,6 @@ namespace FileReaders
                 {
                     line = streamReader.ReadLine();
 
-                    //TODO: Actually do something with read line.
                     radioNetworkModels.Add(
                     
                         ParseCsvLineForNetworkModel(line));
