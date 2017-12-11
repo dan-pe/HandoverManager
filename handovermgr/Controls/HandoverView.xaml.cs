@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HandoverAlgorithmBase.NovelAlgorithm;
 using Logger;
 
 namespace handovermgr.Controls
@@ -10,10 +11,6 @@ namespace handovermgr.Controls
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
-
-
-    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
-
     using RadioNetworks;
     using System;
 

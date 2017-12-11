@@ -1,5 +1,6 @@
 ﻿
 using System.IO;
+using HandoverAlgorithmBase.NovelAlgorithm;
 using Logger;
 
 namespace handovermgr.Controls
@@ -12,8 +13,6 @@ namespace handovermgr.Controls
     using System.Windows.Controls;
 
     using FileReaders;
-
-    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
 
     #endregion
 

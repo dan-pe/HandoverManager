@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HandoverAlgorithmBase.cs" />
-    <Compile Include="PlainAlgorithms\NovelAlgorithm\NovelHandoverAlgorithm.cs" />
-    <Compile Include="PlainAlgorithms\NovelAlgorithm\NovelNetworkModel.cs" />
-    <Compile Include="PlainAlgorithms\NovelAlgorithm\NovelNetworkProfile.cs" />
+    <Compile Include="NovelAlgorithm\NovelHandoverAlgorithm.cs" />
+    <Compile Include="NovelAlgorithm\NovelNetworkModel.cs" />
+    <Compile Include="NovelAlgorithm\NovelNetworkProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
