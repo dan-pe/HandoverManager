@@ -186,7 +186,7 @@
                 }
             }
 
-            //Pair-wise comparison
+            // Pair-wise comparison
             // Is a[i,j] == 1/a[j,i]
             for (int i = 0; i < InputWeights.GetLength(0) - 1; i++)
             {

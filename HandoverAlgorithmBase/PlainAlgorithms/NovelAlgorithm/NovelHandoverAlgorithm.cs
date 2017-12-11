@@ -162,6 +162,8 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </returns>
         private double[,] LoadProfile()
         {
+            // TODO: Add logic for real profile loading.
+
             switch (this._networkProfile)
             {
                 case NovelNetworkProfile.BalancedProfile:
