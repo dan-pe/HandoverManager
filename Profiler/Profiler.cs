@@ -8,16 +8,28 @@
     {
         #region Private Static Fields
 
+        /// <summary>
+        /// The profiler.
+        /// </summary>
         private static volatile Profiler _profiler;
 
+        /// <summary>
+        /// The locker.
+        /// </summary>
         private static readonly object Locker = new object();
 
+        /// <summary>
+        /// The stored user profile.
+        /// </summary>
         private UserProfile _userProfile;
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// 
+        /// </summary>
         private Profiler()
         {
         }
@@ -48,23 +60,28 @@
 
         #region Public Methods
 
+        /// <summary>
+        /// Sets the user profile.
+        /// </summary>
+        /// <param name="userProfile">
+        /// The user profile to set.
+        /// </param>
         public void SetProfile(UserProfile userProfile)
         {
             this._userProfile = userProfile;
         }
 
+        /// <summary>
+        /// Loads the stored user profile.
+        /// </summary>
+        /// <returns>
+        /// The stored user profile.
+        /// </returns>
         public UserProfile GetCurrentProfile()
         {
             return this._userProfile;
         }
 
         #endregion
-    }
-
-    public class UserProfile
-    {
-        private string profileName;
-
-        private int[,] userProfileWeights;
     }
 }

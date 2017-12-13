@@ -1,41 +1,34 @@
-﻿
-using System.IO;
-using HandoverAlgorithmBase.NovelAlgorithm;
-using Logger;
-
-namespace handovermgr.Controls
+﻿namespace handovermgr.Controls
 {
     #region Usings
 
     using System;
+    using System.IO;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using FileReaders;
+    using HandoverAlgorithmBase.NovelAlgorithm;
+    using Logger;
+    using Microsoft.Win32;
 
     #endregion
 
     /// <summary>
-    /// Interaction logic for UserMenu.xaml
+    ///     Interaction logic for UserMenu.xaml
     /// </summary>
     public partial class UserMenu : UserControl
     {
-        #region Private Fields
-
-        private readonly MainWindow _mainWindow;
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
-        /// Initialize user menu.
+        ///     Initialize user menu.
         /// </summary>
         public UserMenu()
         {
-            InitializeComponent();
-            NovelProfileComboBox.ItemsSource = Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
+            this.InitializeComponent();
+            this.NovelProfileComboBox.ItemsSource =
+                Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
         }
 
         #endregion
@@ -43,67 +36,64 @@ namespace handovermgr.Controls
         #region Private Methods
 
         /// <summary>
-        /// Interaction for add network button.
+        ///     Interaction for add network button.
         /// </summary>
         private void AddNetwork_Click(object sender, RoutedEventArgs e)
         {
-            AddNetworkView addNetworkView = new AddNetworkView();
+            var addNetworkView = new AddNetworkView();
             addNetworkView.Show();
         }
 
         /// <summary>
-        /// Interaction for handover button click.
+        ///     Interaction for handover button click.
         /// </summary>
         private void Handover_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                HandoverView handoverView = new HandoverView(MainWindow.NetworksList, NovelProfileComboBox);
+                var handoverView = new HandoverView(MainWindow.NetworksList, this.NovelProfileComboBox);
                 handoverView.Show();
             }
             catch (Exception exception)
             {
-                Logger.Logger.AddMessage(
+                Logger.AddMessage(
                     $"Error occurred during handover {exception.Message}.",
                     MessageThreshold.FAIL);
             }
         }
 
-        #endregion
-
         private void LoadFile_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();
 
             // Set filter for file extension and default file extension 
             //dlg.DefaultExt = ".txt";
             //dlg.Filter = "TXT Files (*.txt)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
 
             // Display OpenFileDialog by calling ShowDialog method 
-            bool? result = dlg.ShowDialog();
+
+            openFileDialog.ShowDialog();
 
             try
             {
-                var csvNetworksCollection = CsvReader.ReadCsvFile(dlg.FileName);
+                var csvNetworksCollection = CsvReader.ReadCsvFile(openFileDialog.FileName);
 
                 MainWindow.NetworksList.Clear();
                 foreach (var csvNetwork in csvNetworksCollection)
-                {
                     MainWindow.NetworksList.Add(csvNetwork);
-                }
 
-                Logger.Logger.AddMessage(
-                    string.Format("Succesfully loaded {0}.",
-                    Path.GetFileName(dlg.FileName)),
+                Logger.AddMessage(
+                    $"Succesfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
                     MessageThreshold.SUCCESS);
             }
             catch (Exception exception)
             {
-               Logger.Logger.AddMessage(
-                   string.Format("Error occurred while reading from {0}",
-                   Path.GetFileName(dlg.FileName)),
-                   MessageThreshold.WARNING);
+                Logger.AddMessage(
+                    $"Error occurred while reading from {Path.GetFileName(openFileDialog.FileName)}: {exception.Message}",
+                    MessageThreshold.WARNING);
             }
         }
+
+        #endregion
     }
 }
