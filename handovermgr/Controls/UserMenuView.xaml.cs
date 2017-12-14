@@ -94,6 +94,12 @@
             }
         }
 
+        private void ManageUserProfile_OnCLick(object sender, RoutedEventArgs e)
+        {
+            var manageUserProfileWindows = new UserProfileView();
+            manageUserProfileWindows.Show();
+        }
+
         #endregion
     }
 }
