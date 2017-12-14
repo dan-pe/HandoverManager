@@ -14,7 +14,7 @@ namespace Profiler
         /// <summary>
         /// The user profile weights array.
         /// </summary>
-        private int[,] _userProfileWeights;
+        public int[,] UserProfileWeights { get; }
 
         #endregion
 
@@ -25,13 +25,13 @@ namespace Profiler
         /// </summary>
         public UserProfile(string profileName, int[,] userProfileWeights)
         {
-            if (!IsValidProfile(userProfileWeights))
-            {
-                throw new Exception("User profile is not valid.");
-            }
+            //if (!IsValidProfile(userProfileWeights))
+            //{
+            //    throw new Exception("User profile is not valid.");
+            //}
 
             this._profileName = profileName;
-            this._userProfileWeights = userProfileWeights;
+            this.UserProfileWeights = userProfileWeights;
         }
 
         #endregion

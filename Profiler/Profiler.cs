@@ -1,4 +1,10 @@
-﻿namespace Profiler
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace Profiler
 {
     #region Usings
 
@@ -80,6 +86,25 @@
         public UserProfile GetCurrentProfile()
         {
             return this._userProfile;
+        }
+
+        public IEnumerable<string> LoadFromFile(string pathTofile)
+        {
+            var loadedUserProfiles = new List<UserProfile>();
+            var fileConent = File.ReadAllText(pathTofile);
+
+            var sections =
+                Regex.Matches(fileConent, @"[\w{*}]").Cast<Match>().Select(m => m.Value);
+
+            foreach (var section in sections)
+            {
+                var subsection = section.Split(
+                    new[] { "[", ";"},
+                    StringSplitOptions.None
+                );
+            }
+
+            return sections;
         }
 
         #endregion
