@@ -65,6 +65,9 @@
     <Compile Include="Controls\UserMenuView.xaml.cs">
       <DependentUpon>UserMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserProfileView.xaml.cs">
+      <DependentUpon>UserProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NetworkPropertiesView.xaml.cs">
       <DependentUpon>NetworkPropertiesView.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UserMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,6 +145,10 @@
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Profiler\Profiler.csproj">
+      <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
+      <Name>Profiler</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
       <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>

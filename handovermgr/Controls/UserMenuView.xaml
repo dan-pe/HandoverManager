@@ -15,13 +15,16 @@
             <Button Margin="4 0 4 5" Click="AddNetwork_Click">Add Network</Button>
         </DockPanel>
         <DockPanel>
-            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 80 4 0"/>
+            <Button Margin="4 0 4 5" Click="ManageUserProfile_OnCLick">Manage User Profile</Button>
+        </DockPanel>
+        <DockPanel>
+            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 70 4 0"/>
         </DockPanel>
         <DockPanel>
             <ComboBox x:Name="NovelProfileComboBox" Margin="4 10 4 10"/>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>
+            <Button Margin="4 0 4 0" Click="Handover_Click">HandOver !</Button>
         </DockPanel>
     </StackPanel>
     

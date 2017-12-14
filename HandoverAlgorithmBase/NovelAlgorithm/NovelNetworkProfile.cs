@@ -33,7 +33,7 @@
             };
         }
 
-        // <summary>
+        /// <summary>
         /// Returns other profile wages array.
         /// </summary>
         /// <returns></returns>
@@ -55,7 +55,7 @@
             };
         }
 
-        // <summary>
+        /// <summary>
         /// Returns odd profile wages array.
         /// </summary>
         /// <returns></returns>
