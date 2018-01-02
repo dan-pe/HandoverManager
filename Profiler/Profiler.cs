@@ -94,14 +94,24 @@ namespace Profiler
             var fileConent = File.ReadAllText(pathTofile);
 
             var sections =
-                Regex.Matches(fileConent, @"[\w{*}]").Cast<Match>().Select(m => m.Value);
+                Regex.Matches(fileConent, @"[\w{*}]")
+                        .Cast<Match>()
+                        .Select(m => m.Value)
+                        .ToList();
 
             foreach (var section in sections)
             {
-                var subsection = section.Split(
-                    new[] { "[", ";"},
-                    StringSplitOptions.None
-                );
+                //var subsection = section.Split(
+                //    new[] { "[", ";"},
+                //    StringSplitOptions.None);
+                var numberRegex = "";
+
+                var profileValues = Regex.Matches(section, numberRegex)
+                    .Cast<Match>()
+                    .Select(m => m.Value)
+                    .ToArray();
+
+
             }
 
             return sections;
