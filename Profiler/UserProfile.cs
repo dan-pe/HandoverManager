@@ -1,7 +1,15 @@
-﻿using System;
-
-namespace Profiler
+﻿namespace Profiler
 {
+    #region Usings
+
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+
+    using RadioNetworks;
+
+    #endregion
+
     public class UserProfile
     {
         #region Private Fields
@@ -10,41 +18,25 @@ namespace Profiler
         /// The profile name.
         /// </summary>
         private string _profileName;
-        private string sectionHeader;
-        private double[] profileDoubleValues;
 
         /// <summary>
-        /// The user profile weights array.
+        /// The user profile weights.
         /// </summary>
-        public int[,] UserProfileWeights { get; }
+        public Dictionary<Dictionary<string, string>, double> ProfileWeights; 
 
         #endregion
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance 
-        /// </summary>
-        public UserProfile(string profileName, int[,] userProfileWeights)
+        public UserProfile(string sectionHeader, double[,] profileDoubleValues)
         {
-            //if (!IsValidProfile(userProfileWeights))
-            //{
-            //    throw new Exception("User profile is not valid.");
-            //}
-
-            this._profileName = profileName;
-            this.UserProfileWeights = userProfileWeights;
-        }
-
-        public UserProfile(string sectionHeader, double[] profileDoubleValues)
-        {
-            if (!IsValidProfile(profileDoubleValues))
+            if (!this.IsValidProfile(profileDoubleValues))
             {
                 throw new Exception("User profile is not valid.");
             }
 
-            this.sectionHeader = sectionHeader;
-            this.profileDoubleValues = profileDoubleValues;
+            this._profileName = sectionHeader;
+            this.ProfileWeights = RegisterDictionariesValues(profileDoubleValues);
         }
 
         #endregion
@@ -52,20 +44,20 @@ namespace Profiler
 
         #region Private Methods
 
-        private bool IsValidProfile(int[,] InputWeights)
+        private bool IsValidProfile(double[,] inputWeights)
         {
             // NxN 2dimensional matrix
 
-            if (!InputWeights.Rank.Equals(2) ||
-                !InputWeights.GetLength(0).Equals(InputWeights.GetLength(1)))
+            if (!inputWeights.Rank.Equals(2) ||
+                !inputWeights.GetLength(0).Equals(inputWeights.GetLength(1)))
             {
                 return false;
             }
 
             // Diagonal values are equal to 1.
-            for (int i = 0; i < InputWeights.GetLength(0) - 1; i++)
+            for (int i = 0; i < inputWeights.GetLength(0) - 1; i++)
             {
-                if (!((int)InputWeights[i, i]).Equals(1))
+                if (!((int)inputWeights[i, i]).Equals(1))
                 {
                     return false;
                 }
@@ -73,11 +65,11 @@ namespace Profiler
 
             // Pair-wise comparison
             // Is a[i,j] == 1/a[j,i]
-            for (int i = 0; i < InputWeights.GetLength(0) - 1; i++)
+            for (int i = 0; i < inputWeights.GetLength(0) - 1; i++)
             {
-                for (int j = 1; j < (InputWeights.GetLength(0) - 1 - i); j++)
+                for (int j = 1; j < (inputWeights.GetLength(0) - 1 - i); j++)
                 {
-                    if (!InputWeights[i, j].Equals(1 / InputWeights[j, i]))
+                    if (!inputWeights[i, j].Equals(1 / inputWeights[j, i]))
                     {
                         return false;
                     }
@@ -85,6 +77,49 @@ namespace Profiler
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Registers weights to parameter dictionary. 
+        /// </summary>
+        /// <param name="weightsArray">
+        /// The weights array.
+        /// </param>
+        /// <returns>
+        /// Dictionary with profile values.
+        /// </returns>
+        private static Dictionary<Dictionary<string, string>, double> RegisterDictionariesValues(double[,] weightsArray)
+        {
+            throw new NotImplementedException();
+
+            Type t = typeof(NetworkParameters);
+
+            PropertyInfo[] properties = t.GetProperties();
+
+            var propertiesNames = new List<string>();
+
+            foreach (var propertyInfo in properties)
+            {
+                propertiesNames.Add(propertyInfo.Name);
+            }
+
+            var helperDictionary = new Dictionary<string,string>();
+            var registeredDictionary = new Dictionary<Dictionary<string, string>, double>();
+
+            //TODO: sort out this dictionary issue ..
+
+            foreach (var keyA in propertiesNames)
+            {
+                foreach (var keyB in propertiesNames)
+                {
+                    helperDictionary.Add(keyA, keyB);
+
+                    registeredDictionary.Add(
+                        helperDictionary(keyA,keyB), 
+                        weightsArray.Rank);
+                }
+            }
+
         }
 
         #endregion

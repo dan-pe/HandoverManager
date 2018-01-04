@@ -50,6 +50,14 @@
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MathTools\MathTools.csproj">
+      <Project>{112835d9-0ff0-4126-9490-0130759d85e7}</Project>
+      <Name>MathTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
+      <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
+      <Name>RadioNetworks</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

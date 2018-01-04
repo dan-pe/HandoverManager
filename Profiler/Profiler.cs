@@ -88,7 +88,16 @@
             return this._userProfile;
         }
 
-        public IEnumerable<string> LoadFromFile(string pathTofile)
+        /// <summary>
+        /// Loads user profiles from file.
+        /// </summary>
+        /// <param name="pathTofile">
+        /// Path to file.
+        /// </param>
+        /// <returns>
+        /// List of loaded user profiles.
+        /// </returns>
+        public List<UserProfile> LoadFromFile(string pathTofile)
         {
             var loadedUserProfiles = new List<UserProfile>();
             var fileConent = File.ReadAllText(pathTofile);
@@ -114,10 +123,10 @@
                 loadedUserProfiles.Add(
                     new UserProfile(
                         sectionHeader,
-                        profileDoubleValues));
+                        MathTools.ArrayOperations.ConvertToTwoDimensionalArray(profileDoubleValues)));
             }
 
-            return sections;
+            return loadedUserProfiles;
         }
 
         #endregion

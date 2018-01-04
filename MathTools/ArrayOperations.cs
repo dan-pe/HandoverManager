@@ -11,7 +11,7 @@
         #region Public Methods
 
         /// <summary>
-        /// Converts single dimenstion array of doubles to two dimensional array.
+        /// Converts single dimension array of doubles to two dimensional array.
         /// </summary>
         /// <param name="inputArray">
         /// The input array.
@@ -106,6 +106,15 @@
             return resultArray;
         }
 
+        /// <summary>
+        /// Multiplies vector by inversion of sum.
+        /// </summary>
+        /// <param name="inputVector">
+        /// The input vector
+        /// </param>
+        /// <returns>
+        /// The result of multiplying.
+        /// </returns>
         public static double[] MultiplyByInversionofSum(double[] inputVector)
         {
             int vectorRowsNumber = inputVector.GetLength(0);
