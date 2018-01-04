@@ -11,6 +11,35 @@
         #region Public Methods
 
         /// <summary>
+        /// Converts single dimenstion array of doubles to two dimensional array.
+        /// </summary>
+        /// <param name="inputArray">
+        /// The input array.
+        /// </param>
+        /// <returns>
+        /// Two dimensional representation of input array.
+        /// </returns>
+        public static double[,] ConvertToTwoDimensionalArray(double[] inputArray)
+        {
+            var rowsNumber = (int)Math.Sqrt(inputArray.Length);
+
+            var resultArray = new double[rowsNumber, rowsNumber];
+
+            int indexer = 0;
+
+            for (int i = 0; i < rowsNumber; i++)
+            {
+                for (int j = 0; j < rowsNumber; j++)
+                {
+                    resultArray[i, j] = inputArray[indexer];
+                    indexer++;
+                }
+            }
+
+            return resultArray;
+        }
+
+        /// <summary>
         /// Multiplies two arrays.
         /// </summary>
         /// <param name="arrayA">
