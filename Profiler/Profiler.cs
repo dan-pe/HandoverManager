@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-
-namespace Profiler
+﻿namespace Profiler
 {
     #region Usings
+
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text.RegularExpressions;
 
     #endregion
 
@@ -92,26 +92,29 @@ namespace Profiler
         {
             var loadedUserProfiles = new List<UserProfile>();
             var fileConent = File.ReadAllText(pathTofile);
-
-            var sections =
-                Regex.Matches(fileConent, @"[\w{*}]")
-                        .Cast<Match>()
-                        .Select(m => m.Value)
-                        .ToList();
+            var sections = fileConent.Split(new[] { "\r\n\r\n" },
+                StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var section in sections)
             {
-                //var subsection = section.Split(
-                //    new[] { "[", ";"},
-                //    StringSplitOptions.None);
-                var numberRegex = "";
+                var sectionHeader =
+                    Regex.Matches(fileConent, @"\w{1,}\r")
+                        .Cast<Match>()
+                        .Select(m => m.Value)
+                        .ToList()
+                        .First();
 
-                var profileValues = Regex.Matches(section, numberRegex)
+                var profileStringValues = Regex.Matches(section, @"[0-9]+(\.[0-9][0-9]?)?")
                     .Cast<Match>()
                     .Select(m => m.Value)
                     .ToArray();
 
+                var profileDoubleValues = Array.ConvertAll(profileStringValues, Double.Parse);
 
+                loadedUserProfiles.Add(
+                    new UserProfile(
+                        sectionHeader,
+                        profileDoubleValues));
             }
 
             return sections;

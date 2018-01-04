@@ -10,6 +10,8 @@ namespace Profiler
         /// The profile name.
         /// </summary>
         private string _profileName;
+        private string sectionHeader;
+        private double[] profileDoubleValues;
 
         /// <summary>
         /// The user profile weights array.
@@ -32,6 +34,17 @@ namespace Profiler
 
             this._profileName = profileName;
             this.UserProfileWeights = userProfileWeights;
+        }
+
+        public UserProfile(string sectionHeader, double[] profileDoubleValues)
+        {
+            if (!IsValidProfile(profileDoubleValues))
+            {
+                throw new Exception("User profile is not valid.");
+            }
+
+            this.sectionHeader = sectionHeader;
+            this.profileDoubleValues = profileDoubleValues;
         }
 
         #endregion
