@@ -27,7 +27,7 @@
         /// <summary>
         /// The stored user profile.
         /// </summary>
-        private UserProfile _userProfile;
+        public List<UserProfile> StoredUserProfiles { get; set; }
 
         #endregion
 
@@ -66,16 +66,16 @@
 
         #region Public Methods
 
-        /// <summary>
-        /// Sets the user profile.
-        /// </summary>
-        /// <param name="userProfile">
-        /// The user profile to set.
-        /// </param>
-        public void SetProfile(UserProfile userProfile)
-        {
-            this._userProfile = userProfile;
-        }
+        ///// <summary>
+        ///// Sets the user profile.
+        ///// </summary>
+        ///// <param name="userProfile">
+        ///// The user profile to set.
+        ///// </param>
+        //public void SetProfile(UserProfile userProfile)
+        //{
+        //    this._userProfile = userProfile;
+        //}
 
         /// <summary>
         /// Loads the stored user profile.
@@ -83,7 +83,7 @@
         /// <returns>
         /// The stored user profile.
         /// </returns>
-        public UserProfile GetCurrentProfile()
+        public List<UserProfile> GetCurrentProfile()
         {
             return this._userProfile;
         }

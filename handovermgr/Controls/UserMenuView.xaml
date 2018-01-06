@@ -21,7 +21,9 @@
             <Label  Content="Select profile: " FontWeight="Bold" Margin="4 70 4 0"/>
         </DockPanel>
         <DockPanel>
-            <ComboBox x:Name="NovelProfileComboBox" Margin="4 10 4 10"/>
+            <ComboBox x:Name="NovelProfileComboBox" 
+                      ItemsSource="{Binding Profiler.Instance.}" 
+                      Margin="4 10 4 10"/>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 0" Click="Handover_Click">HandOver !</Button>

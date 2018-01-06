@@ -22,33 +22,11 @@ namespace handovermgr.Controls
     /// </summary>
     public partial class UserProfileView : Window
     {
+
+        public List<UserProfile> StoredUserProfiles { get; set; }
+
         public UserProfileView()
         {
-
-            //int[,] mockArray = {{1,1,1,1,1}, {1,1,1,1,1}};
-            //int[] mockRow = {1, 1, 1, 1, 1};
-            //var costam = new NetworkParameters();
-
-            //var registeredAttributes = GetTypesWithHelpAttribute(AppDomain.CurrentDomain.GetAssemblies());
-
-
-            //UserProfile userProfile = new UserProfile("Mock Profile", mockArray);
-            //Profiler.Instance.SetProfile(userProfile);
-
-
-            //DataTable dataTable = new DataTable();
-            //dataTable.Columns.Add();
-            //dataTable.Columns.Add();
-            //dataTable.Columns.Add();
-            //dataTable.Columns.Add();
-            //dataTable.Columns.Add();
-
-            //foreach (var arrayElement in mockArray)
-            //{
-            //    dataTable.Rows.Add(arrayElement);
-            //}
-
-
             var openFileDialog = new OpenFileDialog();
 
             openFileDialog.ShowDialog();

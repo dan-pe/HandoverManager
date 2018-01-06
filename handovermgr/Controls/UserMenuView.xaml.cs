@@ -4,31 +4,31 @@
 
     using System;
     using System.IO;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using FileReaders;
-    using HandoverAlgorithmBase.NovelAlgorithm;
     using Logger;
     using Microsoft.Win32;
 
     #endregion
 
     /// <summary>
-    ///     Interaction logic for UserMenu.xaml
+    /// Interaction logic for UserMenu.xaml
     /// </summary>
     public partial class UserMenu : UserControl
     {
         #region Public Methods
 
         /// <summary>
-        ///     Initialize user menu.
+        ///  Initialize user menu.
         /// </summary>
         public UserMenu()
         {
             this.InitializeComponent();
             this.NovelProfileComboBox.ItemsSource =
-                Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
+                Profiler.Profiler.Instance.LoadFromFile("C:\\Repositories\\handovermanager\\userProfiles.txt");
+            //this.NovelProfileComboBox.ItemsSource =
+            //    Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
         }
 
         #endregion
@@ -65,13 +65,6 @@
         private void LoadFile_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
-
-            // Set filter for file extension and default file extension 
-            //dlg.DefaultExt = ".txt";
-            //dlg.Filter = "TXT Files (*.txt)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-
-            // Display OpenFileDialog by calling ShowDialog method 
-
             openFileDialog.ShowDialog();
 
             try

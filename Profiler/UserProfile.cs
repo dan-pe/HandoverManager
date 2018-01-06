@@ -22,7 +22,7 @@
         /// <summary>
         /// The user profile weights.
         /// </summary>
-        public Dictionary<Dictionary<string, string>, double> ProfileWeights; 
+        public double[,] ProfileWeights; 
 
         #endregion
 
@@ -36,11 +36,10 @@
             }
 
             this._profileName = sectionHeader;
-            this.ProfileWeights = RegisterDictionariesValues(profileDoubleValues);
+            this.ProfileWeights = profileDoubleValues;
         }
 
         #endregion
-
 
         #region Private Methods
 
@@ -114,9 +113,6 @@
                 {
                     helperDictionary.Add(keyA, keyB);
 
-                    registeredDictionary.Add(
-                        helperDictionary(keyA,keyB), 
-                        weightsArray.Rank);
                 }
             }
 
