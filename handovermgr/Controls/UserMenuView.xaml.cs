@@ -5,7 +5,6 @@
     using System;
     using System.IO;
     using System.Windows;
-    using System.Windows.Controls;
     using FileReaders;
     using Logger;
     using Microsoft.Win32;
@@ -13,20 +12,27 @@
     #endregion
 
     /// <summary>
-    /// Interaction logic for UserMenu.xaml
+    ///     Interaction logic for UserMenu.xaml
     /// </summary>
-    public partial class UserMenu : UserControl
+    public partial class UserMenu
     {
+        #region Properties
+
+        
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
-        ///  Initialize user menu.
+        ///     Initialize user menu.
         /// </summary>
         public UserMenu()
         {
             this.InitializeComponent();
             this.NovelProfileComboBox.ItemsSource =
                 Profiler.Profiler.Instance.LoadFromFile("C:\\Repositories\\handovermanager\\userProfiles.txt");
+
             //this.NovelProfileComboBox.ItemsSource =
             //    Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
         }
@@ -89,8 +95,18 @@
 
         private void ManageUserProfile_OnCLick(object sender, RoutedEventArgs e)
         {
-            var manageUserProfileWindows = new UserProfileView();
-            manageUserProfileWindows.Show();
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+
+
+            try
+            {
+                
+            }
+            catch (Exception exe)
+            {
+                Logger.AddMessage($"Error occurred during user profile loading from: {openFileDialog.FileName}.");
+            }
         }
 
         #endregion

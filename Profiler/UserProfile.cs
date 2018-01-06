@@ -17,12 +17,12 @@
         /// <summary>
         /// The profile name.
         /// </summary>
-        private string _profileName;
+        public string Name { get;}
 
         /// <summary>
         /// The user profile weights.
         /// </summary>
-        public double[,] ProfileWeights; 
+        public double[,] ProfileWeights { get; set; }
 
         #endregion
 
@@ -35,7 +35,7 @@
                 throw new Exception("User profile is not valid.");
             }
 
-            this._profileName = sectionHeader;
+            this.Name = sectionHeader;
             this.ProfileWeights = profileDoubleValues;
         }
 

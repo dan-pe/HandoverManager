@@ -83,9 +83,10 @@
         /// <returns>
         /// The stored user profile.
         /// </returns>
-        public List<UserProfile> GetCurrentProfile()
+        public UserProfile GetProfileByName(string profileName)
         {
-            return this._userProfile;
+            return this.StoredUserProfiles.
+                FirstOrDefault( profile => profile.Name == profileName);
         }
 
         /// <summary>
