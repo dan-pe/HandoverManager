@@ -146,9 +146,9 @@
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Profiler\Profiler.csproj">
+    <ProjectReference Include="..\Profiler\ProfileManager.csproj">
       <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
-      <Name>Profiler</Name>
+      <Name>ProfileManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
       <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>

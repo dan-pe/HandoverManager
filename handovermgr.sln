@@ -33,12 +33,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{F1E91A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RadioNetworks", "RadioNetworks", "{BCEA2C0C-E8DE-470F-BEDD-804CD43E919B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiler", "Profiler\Profiler.csproj", "{59553FBF-92A7-4CBF-A60B-84846AC08A8C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileManager", "Profiler\ProfileManager.csproj", "{59553FBF-92A7-4CBF-A60B-84846AC08A8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{91884E09-60B9-4F66-8CB6-243AF3C20627}"
 	ProjectSection(SolutionItems) = preProject
 		FileReaders\inputNetworks.txt = FileReaders\inputNetworks.txt
 		userProfiles.txt = userProfiles.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModels", "ViewModels", "{C84FAA1D-4D8E-47AF-8D5B-0BAF226ED4A7}"
+	ProjectSection(SolutionItems) = preProject
+		UserMenuViewModel.cs = UserMenuViewModel.cs
 	EndProjectSection
 EndProject
 Global

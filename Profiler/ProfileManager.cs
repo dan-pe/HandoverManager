@@ -10,14 +10,14 @@
 
     #endregion
 
-    public sealed class Profiler
+    public sealed class ProfileManager
     {
         #region Private Static Fields
 
         /// <summary>
         /// The profiler.
         /// </summary>
-        private static volatile Profiler _profiler;
+        private static volatile ProfileManager _profileManager;
 
         /// <summary>
         /// The locker.
@@ -36,7 +36,7 @@
         /// <summary>
         /// 
         /// </summary>
-        private Profiler()
+        private ProfileManager()
         {
         }
 
@@ -47,18 +47,18 @@
         /// <summary>
         /// The profiler instance.
         /// </summary>
-        public static Profiler Instance
+        public static ProfileManager Instance
         {
             get
             {
-                if (_profiler == null)
+                if (_profileManager == null)
                     lock (Locker)
                     {
-                        if (_profiler == null)
-                            _profiler = new Profiler();
+                        if (_profileManager == null)
+                            _profileManager = new ProfileManager();
                     }
 
-                return _profiler;
+                return _profileManager;
             }
         }
 
@@ -108,7 +108,7 @@
             foreach (var section in sections)
             {
                 var sectionHeader =
-                    Regex.Matches(fileConent, @"\w{1,}\r")
+                    Regex.Matches(section, @"\w{1,}\r")
                         .Cast<Match>()
                         .Select(m => m.Value)
                         .ToList()

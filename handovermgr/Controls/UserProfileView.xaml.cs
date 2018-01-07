@@ -29,7 +29,7 @@
 
             try
             {
-                Profiler.Instance.LoadFromFile(openFileDialog.FileName);
+                ProfileManager.Instance.LoadFromFile(openFileDialog.FileName);
                 Logger.AddMessage(
                     $"Succesfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
                     MessageThreshold.SUCCESS);

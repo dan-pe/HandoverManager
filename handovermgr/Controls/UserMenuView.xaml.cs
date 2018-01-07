@@ -1,4 +1,9 @@
-﻿namespace handovermgr.Controls
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Data;
+using Profiler;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -18,7 +23,11 @@
     {
         #region Properties
 
-        
+        public ObservableCollection<UserProfile> UserProfiles
+        {
+            //TODO: Extract to view model and implement INotify members
+            set { this.NovelProfileComboBox.ItemsSource = value; }
+        }
 
         #endregion
 
@@ -30,11 +39,7 @@
         public UserMenu()
         {
             this.InitializeComponent();
-            this.NovelProfileComboBox.ItemsSource =
-                Profiler.Profiler.Instance.LoadFromFile("C:\\Repositories\\handovermanager\\userProfiles.txt");
-
-            //this.NovelProfileComboBox.ItemsSource =
-            //    Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
+            this.DataContext = this;
         }
 
         #endregion
@@ -68,6 +73,9 @@
             }
         }
 
+        /// <summary>
+        ///     Interaction for load network parameters button click.
+        /// </summary>
         private void LoadFile_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
@@ -93,19 +101,28 @@
             }
         }
 
+
+        /// <summary>
+        ///     Interaction for manage user profiles button click.
+        /// </summary>
         private void ManageUserProfile_OnCLick(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
 
+            var fileName = openFileDialog.FileName;
+
 
             try
             {
-                
+
+                this.UserProfiles = new ObservableCollection<UserProfile>(
+                    ProfileManager.Instance.LoadFromFile(openFileDialog.FileName));  
+                Logger.AddMessage($"Successfully loaded user profiles from: {fileName}");
             }
-            catch (Exception exe)
+            catch (Exception exception)
             {
-                Logger.AddMessage($"Error occurred during user profile loading from: {openFileDialog.FileName}.");
+                Logger.AddMessage($"Error occurred during user profile loading from: {fileName}.");
             }
         }
 
