@@ -30,10 +30,10 @@
 
         public UserProfile(string sectionHeader, double[,] profileDoubleValues)
         {
-            if (!this.IsValidProfile(profileDoubleValues))
-            {
-                throw new Exception("User profile is not valid.");
-            }
+            //if (!this.IsValidProfile(profileDoubleValues))
+            //{
+            //    throw new Exception("User profile is not valid.");
+            //}
 
             this.Name = sectionHeader;
             this.ProfileWeights = profileDoubleValues;

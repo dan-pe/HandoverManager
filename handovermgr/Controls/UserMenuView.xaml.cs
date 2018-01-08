@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Data;
-using Profiler;
-
-namespace handovermgr.Controls
+﻿namespace handovermgr.Controls
 {
     #region Usings
 
     using System;
     using System.IO;
     using System.Windows;
+    using System.Collections.ObjectModel;
+
+    using Microsoft.Win32;
+
     using FileReaders;
     using Logger;
-    using Microsoft.Win32;
+    using Profiler;
 
     #endregion
 
@@ -26,7 +25,11 @@ namespace handovermgr.Controls
         public ObservableCollection<UserProfile> UserProfiles
         {
             //TODO: Extract to view model and implement INotify members
-            set { this.NovelProfileComboBox.ItemsSource = value; }
+            set
+            {
+                this.NovelProfileComboBox.ItemsSource = value;
+                this.NovelProfileComboBox.DisplayMemberPath = "Name";
+            }
         }
 
         #endregion

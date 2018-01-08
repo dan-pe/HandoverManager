@@ -1,4 +1,6 @@
-﻿namespace Profiler
+﻿using System.ComponentModel;
+
+namespace Profiler
 {
     #region Usings
 
@@ -114,12 +116,12 @@
                         .ToList()
                         .First();
 
-                var profileStringValues = Regex.Matches(section, @"[0-9]+(\.[0-9][0-9]?)?")
+                var profileStringValues = Regex.Matches(section, @"[0-9]+(\/[0-9]?)?")
                     .Cast<Match>()
                     .Select(m => m.Value)
                     .ToArray();
 
-                var profileDoubleValues = Array.ConvertAll(profileStringValues, Double.Parse);
+                var profileDoubleValues = Array.ConvertAll(profileStringValues, UserProfileConverter);
 
                 loadedUserProfiles.Add(
                     new UserProfile(
@@ -130,6 +132,25 @@
             return loadedUserProfiles;
         }
 
+        private static double UserProfileConverter(string input)
+        {
+            if (input.Length == 1)
+            {
+                return double.Parse(input);
+            }
+            else
+            {
+                var one = double.Parse(input[0].ToString());
+                var twp = double.Parse(input[2].ToString());
+
+                return  one / twp;
+            }
+        }
+
+
+
         #endregion
     }
+
+  
 }
