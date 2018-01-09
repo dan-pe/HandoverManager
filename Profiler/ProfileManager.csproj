@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EDD47BC7-04ED-4504-94CC-8884762EFE13}</ProjectGuid>
+    <ProjectGuid>{59553FBF-92A7-4CBF-A60B-84846AC08A8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HandoverAlgorithmBase</RootNamespace>
-    <AssemblyName>HandoverAlgorithmBase</AssemblyName>
+    <RootNamespace>Profiler</RootNamespace>
+    <AssemblyName>Profiler</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,18 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HandoverAlgorithmBase.cs" />
-    <Compile Include="NovelAlgorithm\NovelHandoverAlgorithm.cs" />
-    <Compile Include="NovelAlgorithm\NovelNetworkModel.cs" />
-    <Compile Include="NovelAlgorithm\NovelNetworkProfile.cs" />
+    <Compile Include="ProfileManager.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logger\Logger.csproj">
-      <Project>{E80D676E-58FB-4063-8B80-90C6E52911D4}</Project>
+      <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\MathTools\MathTools.csproj">
@@ -59,19 +56,9 @@
       <Name>MathTools</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
-      <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
+      <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
       <Name>RadioNetworks</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FuzzyAlgoriths\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

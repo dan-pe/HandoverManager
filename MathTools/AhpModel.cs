@@ -35,8 +35,8 @@
 
         public AhpModel(double[,] inputWeights)
         {
-            InputWeights = inputWeights;
-            NumberOfCriteria = (int)Math.Sqrt(inputWeights.Length);
+            this.InputWeights = inputWeights;
+            this.NumberOfCriteria = (int)Math.Sqrt(inputWeights.Length);
         }
 
         #endregion
@@ -52,11 +52,6 @@
         /// </returns>
         public double[] GetOutputWeights()
         {
-            if (!this.IsValidProfile())
-            {
-                throw new Exception("Selected profile is not a valid one.");
-            }
-
             var meansVector = new double[NumberOfCriteria];
             var criteriaVector = new double[NumberOfCriteria];
             var weightCoefficients = new double[NumberOfCriteria];
@@ -77,8 +72,6 @@
 
             return weightCoefficients;
         }
-
-       
 
         /// <summary>
         /// Computes normalized array vector (versor).
@@ -165,41 +158,6 @@
             }
 
             return isSmaller;
-        }
-
-        private bool IsValidProfile()
-        {
-            // NxN 2dimensional matrix
-            
-            if (!InputWeights.Rank.Equals(2) ||
-                !InputWeights.GetLength(0).Equals(InputWeights.GetLength(1)))
-            {
-                return false;
-            }
-
-            // Diagonal values are equal to 1.
-            for (int i = 0; i < InputWeights.GetLength(0) - 1; i++)
-            {
-                if (!((int)InputWeights[i, i]).Equals(1))
-                {
-                    return false;
-                }
-            }
-
-            //Pair-wise comparison
-            // Is a[i,j] == 1/a[j,i]
-            for (int i = 0; i < InputWeights.GetLength(0) - 1; i++)
-            {
-                for (int j = 1; j < (InputWeights.GetLength(0) -1 - i); j++)
-                {
-                    if (!InputWeights[i,j].Equals(1/InputWeights[j,i]))
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
         }
 
         #endregion

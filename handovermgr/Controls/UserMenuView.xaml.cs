@@ -1,42 +1,48 @@
-﻿
-using System.IO;
-using Logger;
-
-namespace handovermgr.Controls
+﻿namespace handovermgr.Controls
 {
     #region Usings
 
     using System;
-    using System.Linq;
+    using System.IO;
     using System.Windows;
-    using System.Windows.Controls;
+    using System.Collections.ObjectModel;
+
+    using Microsoft.Win32;
 
     using FileReaders;
-
-    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
+    using Logger;
+    using Profiler;
 
     #endregion
 
     /// <summary>
-    /// Interaction logic for UserMenu.xaml
+    ///     Interaction logic for UserMenu.xaml
     /// </summary>
-    public partial class UserMenu : UserControl
+    public partial class UserMenu
     {
-        #region Private Fields
+        #region Properties
 
-        private readonly MainWindow _mainWindow;
+        public ObservableCollection<UserProfile> UserProfiles
+        {
+            //TODO: Extract to view model and implement INotify members
+            set
+            {
+                this.NovelProfileComboBox.ItemsSource = value;
+                this.NovelProfileComboBox.DisplayMemberPath = "Name";
+            }
+        }
 
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Initialize user menu.
+        ///     Initialize user menu.
         /// </summary>
         public UserMenu()
         {
-            InitializeComponent();
-            NovelProfileComboBox.ItemsSource = Enum.GetValues(typeof(NovelNetworkProfile)).Cast<NovelNetworkProfile>();
+            this.InitializeComponent();
+            this.DataContext = this;
         }
 
         #endregion
@@ -44,67 +50,85 @@ namespace handovermgr.Controls
         #region Private Methods
 
         /// <summary>
-        /// Interaction for add network button.
+        ///     Interaction for add network button.
         /// </summary>
         private void AddNetwork_Click(object sender, RoutedEventArgs e)
         {
-            AddNetworkView addNetworkView = new AddNetworkView();
+            var addNetworkView = new AddNetworkView();
             addNetworkView.Show();
         }
 
         /// <summary>
-        /// Interaction for handover button click.
+        ///     Interaction for handover button click.
         /// </summary>
         private void Handover_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                HandoverView handoverView = new HandoverView(MainWindow.NetworksList, NovelProfileComboBox);
+                var handoverView = new HandoverView(MainWindow.NetworksList, this.NovelProfileComboBox);
                 handoverView.Show();
             }
             catch (Exception exception)
             {
-                Logger.Logger.AddMessage(
+                Logger.AddMessage(
                     $"Error occurred during handover {exception.Message}.",
                     MessageThreshold.FAIL);
             }
         }
 
-        #endregion
-
+        /// <summary>
+        ///     Interaction for load network parameters button click.
+        /// </summary>
         private void LoadFile_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Set filter for file extension and default file extension 
-            //dlg.DefaultExt = ".txt";
-            //dlg.Filter = "TXT Files (*.txt)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-
-            // Display OpenFileDialog by calling ShowDialog method 
-            bool? result = dlg.ShowDialog();
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
 
             try
             {
-                var csvNetworksCollection = CsvReader.ReadCsvFile(dlg.FileName);
+                var csvNetworksCollection = CsvReader.ReadCsvFile(openFileDialog.FileName);
 
                 MainWindow.NetworksList.Clear();
                 foreach (var csvNetwork in csvNetworksCollection)
-                {
                     MainWindow.NetworksList.Add(csvNetwork);
-                }
 
-                Logger.Logger.AddMessage(
-                    string.Format("Succesfully loaded {0}.",
-                    Path.GetFileName(dlg.FileName)),
+                Logger.AddMessage(
+                    $"Succesfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
                     MessageThreshold.SUCCESS);
             }
             catch (Exception exception)
             {
-               Logger.Logger.AddMessage(
-                   string.Format("Error occurred while reading from {0}",
-                   Path.GetFileName(dlg.FileName)),
-                   MessageThreshold.WARNING);
+                Logger.AddMessage(
+                    $"Error occurred while reading from {Path.GetFileName(openFileDialog.FileName)}: {exception.Message}",
+                    MessageThreshold.WARNING);
             }
         }
+
+
+        /// <summary>
+        ///     Interaction for manage user profiles button click.
+        /// </summary>
+        private void ManageUserProfile_OnCLick(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+
+            var fileName = openFileDialog.FileName;
+
+
+            try
+            {
+
+                this.UserProfiles = new ObservableCollection<UserProfile>(
+                    ProfileManager.Instance.LoadFromFile(openFileDialog.FileName));  
+                Logger.AddMessage($"Successfully loaded user profiles from: {fileName}");
+            }
+            catch (Exception exception)
+            {
+                Logger.AddMessage($"Error occurred during user profile loading from: {fileName}.");
+            }
+        }
+
+        #endregion
     }
 }

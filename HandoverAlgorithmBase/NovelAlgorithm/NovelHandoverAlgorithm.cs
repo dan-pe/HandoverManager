@@ -9,7 +9,7 @@ using RadioNetworks;
 
 #endregion
 
-namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
+namespace HandoverAlgorithmBase.NovelAlgorithm
 {
     public class NovelHandoverAlgorithm : HandoverAlgorithmBase
     {
@@ -48,7 +48,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </param>
         public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, NovelNetworkProfile novelNetworkProfile) : base(radioNetworksList)
         {
-            NovelNetworkModels = new List<NovelNetworkModel>();
+            this.NovelNetworkModels = new List<NovelNetworkModel>();
             this._networkProfile = novelNetworkProfile;
 
             foreach (var radioNetworkModel in radioNetworksList)
@@ -59,7 +59,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
                     RadioNetworkModel = radioNetworkModel
                 };
 
-                NovelNetworkModels.Add(novelNetworkModel);
+                this.NovelNetworkModels.Add(novelNetworkModel);
             }
         }
 
@@ -72,7 +72,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </summary>
         public override void RunSelection()
         {
-            CalculateDecisiveFactors();
+            this.CalculateDecisiveFactors();
         }
 
         /// <summary>
@@ -81,12 +81,12 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// <returns></returns>
         public NovelNetworkModel SelectResultNetwork()
         {
-            RunSelection();
+            this.RunSelection();
             NovelNetworkModel network;
 
             try
             {
-                network = NovelNetworkModels.
+                network = this.NovelNetworkModels.
                     OrderByDescending(grc => grc.GrcFactor)
                     .First();
             }
@@ -108,19 +108,19 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </summary>
         private void CalculateDecisiveFactors()
         {
-            var througoutputs = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps).ToArray();
-            var bers = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BitErrorRate).ToArray();
-            var burs = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BurstErrorRate).ToArray();
-            var packtloses = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.PacketLossPercentage).ToArray();
-            var delays = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.DelayInMsec).ToArray();
-            var responses = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ResponseTimeInMsec).ToArray();
-            var jitters = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.JitterInMsec).ToArray();
-            var sec = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
-            var cost = NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
+            var througoutputs = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps).ToArray();
+            var bers = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BitErrorRate).ToArray();
+            var burs = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BurstErrorRate).ToArray();
+            var packtloses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.PacketLossPercentage).ToArray();
+            var delays = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.DelayInMsec).ToArray();
+            var responses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ResponseTimeInMsec).ToArray();
+            var jitters = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.JitterInMsec).ToArray();
+            var sec = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
+            var cost = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
 
 
-            var coefficients = LoadProfile();
+            var coefficients = this.LoadProfile();
 
 
 
@@ -128,7 +128,7 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
 
             var ahpWeights = ahpModel.GetOutputWeights();
 
-            foreach (var networkModel in NovelNetworkModels)
+            foreach (var networkModel in this.NovelNetworkModels)
             {
                 double grc =
                     GraTools.NormalizeLargerTheBetter(througoutputs,
@@ -162,6 +162,8 @@ namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
         /// </returns>
         private double[,] LoadProfile()
         {
+            // TODO: Add logic for real profile loading.
+
             switch (this._networkProfile)
             {
                 case NovelNetworkProfile.BalancedProfile:

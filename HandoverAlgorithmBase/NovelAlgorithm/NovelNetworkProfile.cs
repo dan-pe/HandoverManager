@@ -1,12 +1,6 @@
-﻿namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
+﻿namespace HandoverAlgorithmBase.NovelAlgorithm
 {
     #region Usings
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     #endregion
 
@@ -39,7 +33,7 @@
             };
         }
 
-        // <summary>
+        /// <summary>
         /// Returns other profile wages array.
         /// </summary>
         /// <returns></returns>
@@ -61,7 +55,7 @@
             };
         }
 
-        // <summary>
+        /// <summary>
         /// Returns odd profile wages array.
         /// </summary>
         /// <returns></returns>
@@ -82,8 +76,6 @@
 
             };
         }
-
-
 
         #endregion
     }

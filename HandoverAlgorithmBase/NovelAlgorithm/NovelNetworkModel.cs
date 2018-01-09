@@ -1,8 +1,8 @@
-﻿namespace HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm
+﻿using RadioNetworks;
+
+namespace HandoverAlgorithmBase.NovelAlgorithm
 {
     #region Usings
-
-    using RadioNetworks;
 
     #endregion
 
