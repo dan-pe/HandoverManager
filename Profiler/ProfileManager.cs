@@ -114,7 +114,9 @@ namespace Profiler
                         .Cast<Match>()
                         .Select(m => m.Value)
                         .ToList()
-                        .First();
+                        .First()
+                        .Replace("\r", string.Empty)
+                        .Replace("\n", string.Empty);
 
                 var profileStringValues = Regex.Matches(section, @"[0-9]+(\/[0-9]?)?")
                     .Cast<Match>()
@@ -138,13 +140,11 @@ namespace Profiler
             {
                 return double.Parse(input);
             }
-            else
-            {
-                var one = double.Parse(input[0].ToString());
-                var twp = double.Parse(input[2].ToString());
 
-                return  one / twp;
-            }
+            var one = double.Parse(input[0].ToString());
+            var twp = double.Parse(input[2].ToString());
+
+            return  one / twp;
         }
 
 
