@@ -45,12 +45,15 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
         /// Instantiate Novel Handover Algorithm.
         /// </summary>
         /// <param name="radioNetworksList">
-        /// 
+        /// Radio networks list.
         /// </param>
-        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, UserProfile novelNetworkProfile) : base(radioNetworksList)
+        /// <param name="userProfile">
+        /// The user profile.
+        /// </param>
+        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, UserProfile userProfile) : base(radioNetworksList)
         {
             this.NovelNetworkModels = new List<NovelNetworkModel>();
-            this._networkProfile = novelNetworkProfile;
+            this._networkProfile = userProfile;
 
             foreach (var radioNetworkModel in radioNetworksList)
             {
