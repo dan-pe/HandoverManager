@@ -109,14 +109,10 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
         private void CalculateDecisiveFactors()
         {
             var througoutputs = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps).ToArray();
-            var bers = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BitErrorRate).ToArray();
-            var burs = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.BurstErrorRate).ToArray();
             var packtloses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.PacketLossPercentage).ToArray();
             var delays = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.DelayInMsec).ToArray();
             var responses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ResponseTimeInMsec).ToArray();
-            var jitters = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.JitterInMsec).ToArray();
             var sec = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
-            var cost = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.CostInUnitsPerByte).ToArray();
 
 
 
@@ -133,22 +129,14 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
                 double grc =
                     GraTools.NormalizeLargerTheBetter(througoutputs,
                         networkModel.RadioNetworkModel.Parameters.ThroughputInMbps) * ahpWeights[0] +
-                    GraTools.NormalizeSmallerTheBetter(bers,
-                        networkModel.RadioNetworkModel.Parameters.BitErrorRate) * ahpWeights[1] +
-                    GraTools.NormalizeSmallerTheBetter(burs,
-                        networkModel.RadioNetworkModel.Parameters.BurstErrorRate) * ahpWeights[2] +
                     GraTools.NormalizeSmallerTheBetter(packtloses,
-                        networkModel.RadioNetworkModel.Parameters.PacketLossPercentage) * ahpWeights[3] +
+                        networkModel.RadioNetworkModel.Parameters.PacketLossPercentage) * ahpWeights[1] +
                     GraTools.NormalizeSmallerTheBetter(delays,
-                        networkModel.RadioNetworkModel.Parameters.DelayInMsec) * ahpWeights[4] +
+                        networkModel.RadioNetworkModel.Parameters.DelayInMsec) * ahpWeights[2] +
                     GraTools.NormalizeSmallerTheBetter(responses,
-                        networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) * ahpWeights[5] +
-                    GraTools.NormalizeSmallerTheBetter(jitters,
-                        networkModel.RadioNetworkModel.Parameters.JitterInMsec) * ahpWeights[6] +
+                        networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) * ahpWeights[3] +
                     GraTools.NormalizeLargerTheBetter(sec,
-                        networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[7] +
-                    GraTools.NormalizeSmallerTheBetter(cost,
-                        networkModel.RadioNetworkModel.Parameters.CostInUnitsPerByte) * ahpWeights[8];
+                        networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[4]; 
 
                 networkModel.GrcFactor = grc;
             }
