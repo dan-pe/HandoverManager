@@ -73,7 +73,7 @@
     /// <summary>
     /// Novel Network Profiles
     /// </summary>
-    public enum NovelNetworkProfile
+    public enum _userProfile
     {
         BalancedProfile,
         MaxEfficency,

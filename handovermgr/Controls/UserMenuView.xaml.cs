@@ -1,4 +1,6 @@
-﻿namespace handovermgr.Controls
+﻿using System.Windows.Controls;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -123,12 +125,21 @@
                     ProfileManager.Instance.LoadFromFile(openFileDialog.FileName));  
                 Logger.AddMessage($"Successfully loaded user profiles from: {fileName}");
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 Logger.AddMessage($"Error occurred during user profile loading from: {fileName}.");
             }
         }
 
         #endregion
+
+        /// <summary>
+        ///     On selected profile change event.
+        /// </summary>
+        private void OnSelectedProfileChange(object sender, SelectionChangedEventArgs e)
+        {
+            ProfileManager.Instance
+                .SetProfile((sender as ComboBox)?.SelectedItem as string);
+        }
     }
 }

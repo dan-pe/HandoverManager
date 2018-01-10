@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Logger;
+using Profiler;
 using MathTools;
 using RadioNetworks;
 
@@ -33,7 +34,7 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
         /// <summary>
         /// Selected network profile.
         /// </summary>
-        private readonly NovelNetworkProfile _networkProfile;
+        private readonly UserProfile _networkProfile;
 
 
         #endregion
@@ -46,7 +47,7 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
         /// <param name="radioNetworksList">
         /// 
         /// </param>
-        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, NovelNetworkProfile novelNetworkProfile) : base(radioNetworksList)
+        public NovelHandoverAlgorithm(List<RadioNetworkModel> radioNetworksList, UserProfile novelNetworkProfile) : base(radioNetworksList)
         {
             this.NovelNetworkModels = new List<NovelNetworkModel>();
             this._networkProfile = novelNetworkProfile;
@@ -115,12 +116,7 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
             var sec = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
 
 
-
-            var coefficients = this.LoadProfile();
-
-
-
-            AhpModel ahpModel = new AhpModel(coefficients);
+            AhpModel ahpModel = new AhpModel(this._networkProfile.ProfileWeights);
 
             var ahpWeights = ahpModel.GetOutputWeights();
 
@@ -139,33 +135,6 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
                         networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[4]; 
 
                 networkModel.GrcFactor = grc;
-            }
-        }
-
-        /// <summary>
-        /// Load user profiles from static class.
-        /// </summary>
-        /// <returns>
-        /// Loaded user profile.
-        /// </returns>
-        private double[,] LoadProfile()
-        {
-            // TODO: Add logic for real profile loading.
-
-            switch (this._networkProfile)
-            {
-                case NovelNetworkProfile.BalancedProfile:
-                    return NovelNetworkProfiles.GetSomeProfile();
-
-                case NovelNetworkProfile.Connectivity:
-                    return NovelNetworkProfiles.GetOtherProfile();
-
-                case NovelNetworkProfile.MaxEfficency:
-                    return NovelNetworkProfiles.GetOddProfile();
-
-                default:
-                    Logger.Logger.AddMessage("Incorrect profile type", MessageThreshold.WARNING);
-                    throw new ArgumentOutOfRangeException();
             }
         }
 

@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,7 +44,7 @@
     <Compile Include="HandoverAlgorithmBase.cs" />
     <Compile Include="NovelAlgorithm\NovelHandoverAlgorithm.cs" />
     <Compile Include="NovelAlgorithm\NovelNetworkModel.cs" />
-    <Compile Include="NovelAlgorithm\NovelNetworkProfile.cs" />
+    <Compile Include="NovelAlgorithm\_userProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +58,10 @@
     <ProjectReference Include="..\MathTools\MathTools.csproj">
       <Project>{112835d9-0ff0-4126-9490-0130759d85e7}</Project>
       <Name>MathTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Profiler\ProfileManager.csproj">
+      <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
+      <Name>ProfileManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
       <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
