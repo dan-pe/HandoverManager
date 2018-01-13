@@ -1,12 +1,11 @@
-﻿using System.Windows.Controls;
-
-namespace handovermgr.Controls
+﻿namespace handovermgr.Controls
 {
     #region Usings
 
     using System;
     using System.IO;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Collections.ObjectModel;
 
     using Microsoft.Win32;
@@ -14,6 +13,7 @@ namespace handovermgr.Controls
     using FileReaders;
     using Logger;
     using Profiler;
+    using ViewModels;
 
     #endregion
 
@@ -22,6 +22,12 @@ namespace handovermgr.Controls
     /// </summary>
     public partial class UserMenu
     {
+        #region Fields
+
+        private UserMenuViewModel _userMenuViewModel;
+
+        #endregion
+
         #region Properties
 
         public ObservableCollection<UserProfile> UserProfiles
@@ -43,6 +49,7 @@ namespace handovermgr.Controls
         /// </summary>
         public UserMenu()
         {
+            this._userMenuViewModel = new UserMenuViewModel();
             this.InitializeComponent();
             this.DataContext = this;
         }
@@ -116,7 +123,6 @@ namespace handovermgr.Controls
             openFileDialog.ShowDialog();
 
             var fileName = openFileDialog.FileName;
-
 
             try
             {
