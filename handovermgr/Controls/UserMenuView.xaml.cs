@@ -5,10 +5,11 @@
     using System;
     using System.IO;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Collections.ObjectModel;
 
     using Microsoft.Win32;
-
+    using ViewModels;
     using FileReaders;
     using Logger;
     using Profiler;
@@ -20,6 +21,12 @@
     /// </summary>
     public partial class UserMenu
     {
+        #region Fields
+
+        private UserMenuViewModel _userMenuViewModel;
+
+        #endregion
+
         #region Properties
 
         public ObservableCollection<UserProfile> UserProfiles
@@ -41,6 +48,7 @@
         /// </summary>
         public UserMenu()
         {
+            this._userMenuViewModel = new UserMenuViewModel();
             this.InitializeComponent();
             this.DataContext = this;
         }
@@ -115,7 +123,6 @@
 
             var fileName = openFileDialog.FileName;
 
-
             try
             {
 
@@ -123,12 +130,21 @@
                     ProfileManager.Instance.LoadFromFile(openFileDialog.FileName));  
                 Logger.AddMessage($"Successfully loaded user profiles from: {fileName}");
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 Logger.AddMessage($"Error occurred during user profile loading from: {fileName}.");
             }
         }
 
         #endregion
+
+        /// <summary>
+        ///     On selected profile change event.
+        /// </summary>
+        private void OnSelectedProfileChange(object sender, SelectionChangedEventArgs e)
+        {
+            ProfileManager.Instance
+                .SetProfile((sender as ComboBox)?.SelectedItem as string);
+        }
     }
 }

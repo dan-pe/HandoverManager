@@ -31,6 +31,8 @@ namespace Profiler
         /// </summary>
         public List<UserProfile> StoredUserProfiles { get; set; }
 
+        public string SelectedUserProfileName { get; set; }
+
         #endregion
 
         #region Constructors
@@ -68,16 +70,22 @@ namespace Profiler
 
         #region Public Methods
 
-        ///// <summary>
-        ///// Sets the user profile.
-        ///// </summary>
-        ///// <param name="userProfile">
-        ///// The user profile to set.
-        ///// </param>
-        //public void SetProfile(UserProfile userProfile)
-        //{
-        //    this._userProfile = userProfile;
-        //}
+        /// <summary>
+        /// Sets the user profile.
+        /// </summary>
+        /// <param name="userProfile">
+        /// The user profile to set.
+        /// </param>
+        public void SetProfile(string userProfileName)
+        {
+            this.SelectedUserProfileName = userProfileName;
+        }
+
+        public UserProfile GetSelectedProfile()
+
+        {
+            return Instance.GetProfileByName(this.SelectedUserProfileName);
+        }
 
         /// <summary>
         /// Loads the stored user profile.
@@ -130,7 +138,7 @@ namespace Profiler
                         sectionHeader,
                         MathTools.ArrayOperations.ConvertToTwoDimensionalArray(profileDoubleValues)));
             }
-
+            this.StoredUserProfiles = loadedUserProfiles;
             return loadedUserProfiles;
         }
 

@@ -41,10 +41,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{91884E
 		userProfiles.txt = userProfiles.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModels", "ViewModels", "{C84FAA1D-4D8E-47AF-8D5B-0BAF226ED4A7}"
-	ProjectSection(SolutionItems) = preProject
-		UserMenuViewModel.cs = UserMenuViewModel.cs
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModels", "ViewModels", "{10CD80AC-F75A-4825-AB58-7C8D2CBE4FCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{9925D854-F8F5-484D-B61C-9E0A9703A4F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +83,10 @@ Global
 		{59553FBF-92A7-4CBF-A60B-84846AC08A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59553FBF-92A7-4CBF-A60B-84846AC08A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59553FBF-92A7-4CBF-A60B-84846AC08A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9925D854-F8F5-484D-B61C-9E0A9703A4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9925D854-F8F5-484D-B61C-9E0A9703A4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9925D854-F8F5-484D-B61C-9E0A9703A4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9925D854-F8F5-484D-B61C-9E0A9703A4F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +105,7 @@ Global
 		{BCEA2C0C-E8DE-470F-BEDD-804CD43E919B} = {F1E91A74-8279-4695-A037-FA9D41025768}
 		{59553FBF-92A7-4CBF-A60B-84846AC08A8C} = {DD19DEDE-DBB5-4ABD-AD1B-EF47312424D0}
 		{91884E09-60B9-4F66-8CB6-243AF3C20627} = {DD19DEDE-DBB5-4ABD-AD1B-EF47312424D0}
+		{9925D854-F8F5-484D-B61C-9E0A9703A4F4} = {10CD80AC-F75A-4825-AB58-7C8D2CBE4FCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11D1D1FA-8554-4FF9-A9AD-5DB8196F2CA6}

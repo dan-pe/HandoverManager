@@ -15,12 +15,6 @@ namespace RadioNetworks
         public double ThroughputInMbps { get; set; }
 
         [NetworkMetric]
-        public double BitErrorRate { get; set; }
-
-        [NetworkMetric]
-        public double BurstErrorRate { get; set; }
-
-        [NetworkMetric]
         public double PacketLossPercentage { get; set; }
 
         [NetworkMetric]
@@ -30,14 +24,8 @@ namespace RadioNetworks
         public double ResponseTimeInMsec { get; set; }
 
         [NetworkMetric]
-        public double JitterInMsec { get; set; }
-
-        [NetworkMetric]
         public double SecurityLevel { get; set; }
-
-        [NetworkMetric]
-        public double CostInUnitsPerByte { get; set; }
-
+        
         #endregion
     }
 

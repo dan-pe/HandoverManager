@@ -47,11 +47,10 @@ namespace handovermgr.Controls
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = double.Parse(AddThroughoutputBox.Text),
-                        BitErrorRate = double.Parse(AddBERBox.Text),
                         PacketLossPercentage = double.Parse(AddPacketLossBox.Text),
                         DelayInMsec = double.Parse(AddDelayBox.Text),
-                        JitterInMsec = double.Parse(AddJitterBox.Text),
                         ResponseTimeInMsec = double.Parse(AddResponseBox.Text)
+                        // TODO: Add security level based on network type
                     }
 
                 };

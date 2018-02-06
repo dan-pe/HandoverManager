@@ -24,7 +24,7 @@
                       ItemsSource="{Binding Path=UserProfiles}"
                       DisplayMemberPath ="Name"
                       SelectedValuePath="Name"
-                      Margin="4 10 4 10"/>
+                      Margin="4 10 4 10" SelectionChanged="OnSelectedProfileChange"/>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 0" Click="Handover_Click">HandOver !</Button>

@@ -154,6 +154,10 @@
       <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
       <Name>RadioNetworks</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{9925d854-f8f5-484d-b61c-9e0a9703a4f4}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\UserInput\" />

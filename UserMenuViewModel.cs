@@ -1,10 +1,15 @@
-﻿using System;
-
-public class UserMenuViewModel
+﻿namespace UserMenuViewModel
 {
-	public UserMenuViewModel()
-	{
+    #region MyRegion
 
 
-	}
+
+    #endregion
+
+    public class UserMenuViewModel : InotifyPropertyChanged
+    {
+        public List<UserProfile> UserProfiles { get; set; }
+    }
 }
+
+

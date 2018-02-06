@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="Add Network" Height="400" Width="250">
+        Title="Add Network" Height="300" Width="250">
     <StackPanel x:Name="NetworkItemView" Orientation="Vertical" >
         <StackPanel  Orientation="Horizontal">
             <Label Content="Network Name"  Width="100"  Margin="5"/>
@@ -20,16 +19,6 @@
         <StackPanel Orientation="Horizontal">
             <Label Content="Throughoutput" Width="100" Margin="5"/>
             <TextBox x:Name="AddThroughoutputBox" Height="25" Width="80"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Bit Error Rate" Width="100" Margin="5"/>
-            <TextBox x:Name="AddBERBox" Height="25" Width="80"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Jitter" Width="100" Margin="5"/>
-            <TextBox x:Name="AddJitterBox" Height="25" Width="80"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Packet Loss" Width="100" Margin="5"/>

@@ -58,11 +58,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 10,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 1
@@ -76,11 +72,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 100,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 4
@@ -95,11 +87,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 10,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 3
@@ -114,11 +102,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 10,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 2
