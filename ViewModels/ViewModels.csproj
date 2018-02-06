@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{03B6D5E7-66A3-48D9-91CC-86D1F22044E0}</ProjectGuid>
+    <ProjectGuid>{9925D854-F8F5-484D-B61C-9E0A9703A4F4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ViewModels</RootNamespace>
@@ -41,13 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UserMenuViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Profiler\ProfileManager.csproj">
-      <Project>{59553FBF-92A7-4CBF-A60B-84846AC08A8C}</Project>
+      <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
       <Name>ProfileManager</Name>
     </ProjectReference>
   </ItemGroup>

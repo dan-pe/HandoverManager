@@ -9,11 +9,10 @@
     using System.Collections.ObjectModel;
 
     using Microsoft.Win32;
-
+    using ViewModels;
     using FileReaders;
     using Logger;
     using Profiler;
-    using ViewModels;
 
     #endregion
 

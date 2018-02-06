@@ -1,10 +1,11 @@
-﻿namespace ViewModels
+﻿using Profiler.Annotations;
+
+namespace ViewModels
 {
     #region Usings
 
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using Annotations;
     using System.Collections.Generic;
     using Profiler;
 
@@ -14,7 +15,7 @@
     {
         #region Properties
 
-        public List<UserProfile> UserProfiles{ get; set; }
+        public List<UserProfile> UserProfiles { get; set; }
 
         #endregion
 
