@@ -62,6 +62,9 @@
     <Compile Include="Controls\HandoverView.xaml.cs">
       <DependentUpon>HandoverView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NetworkView.xaml.cs">
+      <DependentUpon>NetworkView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserMenuView.xaml.cs">
       <DependentUpon>UserMenuView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\HandoverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NetworkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +152,10 @@
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkMonitor\NetworkMonitors.csproj">
+      <Project>{a67786e7-7e88-4548-bcc3-6e895b120fc7}</Project>
+      <Name>NetworkMonitors</Name>
     </ProjectReference>
     <ProjectReference Include="..\Profiler\ProfileManager.csproj">
       <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>

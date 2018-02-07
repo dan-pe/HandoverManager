@@ -146,5 +146,11 @@
             ProfileManager.Instance
                 .SetProfile((sender as ComboBox)?.SelectedItem as string);
         }
+
+        private void Network_OnClick(object sender, RoutedEventArgs e)
+        {
+            var networkView = new NetworkView();
+            networkView.Show();
+        }
     }
 }

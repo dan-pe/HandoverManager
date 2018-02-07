@@ -20,6 +20,11 @@ namespace NetworkMonitors
             this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
         }
 
+        public NetworkInterface GetSelectedInterface()
+        {
+            return NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(i => i.OperationalStatus == OperationalStatus.Up);
+        }
+
         private void RegisterSupportedInterfaces()
         {
             // For testing purposes

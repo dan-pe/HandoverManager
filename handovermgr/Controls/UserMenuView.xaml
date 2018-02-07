@@ -14,6 +14,9 @@
             <Button Margin="4 0 4 5" Click="AddNetwork_Click">Add Network</Button>
         </DockPanel>
         <DockPanel>
+            <Button Margin="4 0 4 5" Click="Network_OnClick">Networks</Button>
+        </DockPanel>
+        <DockPanel>
             <Button Margin="4 0 4 5" Click="ManageUserProfile_OnCLick">Manage User Profile</Button>
         </DockPanel>
         <DockPanel>
