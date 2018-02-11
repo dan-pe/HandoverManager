@@ -9,13 +9,13 @@ namespace ViewModels
     public class NetworkManagerViewModel : INotifyPropertyChanged
     {
 
-        private readonly NetworkManager NetworkManager;
+        private readonly NetworkManager _networkManager;
 
         public ObservableCollection<string> ActiveNetworks
         {
             get
             {
-                var networks = new ObservableCollection<string>(this.NetworkManager.AvailableNetworkSSID);
+                var networks = new ObservableCollection<string>(this._networkManager.AvailableNetworkSSID);
                 return networks;
             }
         }
@@ -24,7 +24,7 @@ namespace ViewModels
 
         public NetworkManagerViewModel()
         {
-            this.NetworkManager = new NetworkManager();
+            this._networkManager = new NetworkManager();
         }
 
         [NotifyPropertyChangedInvocator]

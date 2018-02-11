@@ -24,8 +24,23 @@ namespace NetworkMonitors
             get
             {
                 var networkSSIDs = new List<string>();
+                this.ActiveInterface.Scan();
+                var debugNetworks = this.ActiveInterface.GetNetworkBssList();
+                var jeden = this.ActiveInterface.GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllAdhocProfiles);
+                var dwa = this.ActiveInterface.GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllManualHiddenProfiles
+                    );
+
                 foreach (var availableNetwork in this.ActiveInterface
-                    .GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllAdhocProfiles))
+                    .GetNetworkBssList())
+                {
+                    var costam = availableNetwork.dot11Ssid.SSID.ToString();
+                    networkSSIDs.Add(SsidParser.ParseFromBytes(availableNetwork.dot11Ssid.SSID));
+                }
+
+
+
+                foreach (var availableNetwork in this.ActiveInterface
+                    .GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllManualHiddenProfiles))
                 {
                     networkSSIDs.Add(SsidParser.ParseFromBytes(availableNetwork.dot11Ssid.SSID));
                 }
@@ -35,7 +50,7 @@ namespace NetworkMonitors
 
         public void ConnectToNewtwork()
         {
-            
+            //this.WlanClient.Interfaces.FirstOrDefault().CurrentConnection
         }
     }
 }
