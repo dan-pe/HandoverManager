@@ -5,24 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="NetworkView" Height="300" Width="300">
+        Title="NetworkView" Height="300" Width="300"
+        Background="SteelBlue">
     <Grid>
-        <StackPanel>
+        <!--#region Grid Definitions -->
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Row="0">
             <DockPanel>
                 <Label HorizontalAlignment="Center" FontWeight="Bold">Active Interface</Label>
             </DockPanel>
             <DockPanel>
-                <Label Width="150">Interface Name:</Label>
+                <Label Width="150">Name:</Label>
                 <TextBox x:Name="InterfaceNameTextBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="150">Interface Type:</Label>
+                <Label Width="150">Type:</Label>
                 <TextBox x:Name="InterfaceTypeTextBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="150">Interface Speed:</Label>
+                <Label Width="150">Speed:</Label>
                 <TextBox x:Name="InterfaceSpeedTextBox"></TextBox>
             </DockPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
+                <Label HorizontalAlignment="Center" FontWeight="Bold">
+                    Network List for active interface
+                </Label>
+            <ListBox x:Name="NetworksViewList" 
+                      ItemsSource="{Binding Path=ActiveNetworks}"/>
+                <!--DisplayMemberPath="profileName">-->
+                
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="Name: "/>
+                            <TextBlock Text="{Binding profileName}"></TextBlock>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>-->
+             
         </StackPanel>
     </Grid>
 </Window>

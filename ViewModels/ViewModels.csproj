@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedWifi">
+      <HintPath>..\ManagedWifi\ManagedWifi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NetworkManagerViewModel.cs" />
     <Compile Include="UserMenuViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NetworkMonitor\NetworkMonitors.csproj">
+      <Project>{A67786E7-7E88-4548-BCC3-6E895B120FC7}</Project>
+      <Name>NetworkMonitors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Profiler\ProfileManager.csproj">
       <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
       <Name>ProfileManager</Name>

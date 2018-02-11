@@ -7,7 +7,7 @@ namespace NetworkMonitors
 {
     public class BandwidthMonitor : NetworkMonitorBase
     {
-        private readonly NetworkInterface _selectedInterface;
+        private readonly System.Net.NetworkInformation.NetworkInterface _selectedInterface;
 
         public long GetThroughoutputInBytes()
         {

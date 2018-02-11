@@ -9,7 +9,7 @@ namespace NetworkMonitors
     {
         protected readonly IPAddress IpAddress;
 
-        protected IEnumerable<NetworkInterface> NetworkInterfaces;
+        protected IEnumerable<System.Net.NetworkInformation.NetworkInterface> NetworkInterfaces;
 
         protected readonly List<NetworkInterfaceType> SupportedInterfaces = new List<NetworkInterfaceType>();
 
@@ -17,12 +17,12 @@ namespace NetworkMonitors
         {
             this.RegisterSupportedInterfaces();
             this.IpAddress = ipAddress;
-            this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            this.NetworkInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
         }
 
-        public NetworkInterface GetSelectedInterface()
+        public System.Net.NetworkInformation.NetworkInterface GetSelectedInterface()
         {
-            return NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(i => i.OperationalStatus == OperationalStatus.Up);
+            return System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(i => i.OperationalStatus == OperationalStatus.Up);
         }
 
         private void RegisterSupportedInterfaces()
