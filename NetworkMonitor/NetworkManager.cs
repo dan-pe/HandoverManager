@@ -1,12 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NativeWifi;
-using NetworkMonitors.Parsers;
-
-namespace NetworkMonitors
+﻿namespace NetworkMonitors
 {
+    #region Usings
+
+    using System.Collections.Generic;
+    using System.Linq;
+    using NativeWifi;
+    using Parsers;
+
+    #endregion
+
     public class NetworkManager
     {
+        #region Properties
+
         public WlanClient WlanClient { get;}
 
         public WlanClient.WlanInterface ActiveInterface
@@ -14,43 +20,46 @@ namespace NetworkMonitors
             get { return this.WlanClient.Interfaces.FirstOrDefault(); }
         }
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of NetworkManager.
+        /// </summary>
         public NetworkManager()
         {
             this.WlanClient = new WlanClient();
         }
 
-        public List<string> AvailableNetworkSSID
+        #endregion
+
+        #region Public Methods
+
+        public List<string> GetAvailableNetworkSSID()
         {
-            get
+            var networkSSIDs = new List<string>();
+            this.ActiveInterface.Scan();
+
+            foreach (var availableNetwork in this.ActiveInterface
+                .GetNetworkBssList())
             {
-                var networkSSIDs = new List<string>();
-                this.ActiveInterface.Scan();
-                var debugNetworks = this.ActiveInterface.GetNetworkBssList();
-                var jeden = this.ActiveInterface.GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllAdhocProfiles);
-                var dwa = this.ActiveInterface.GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllManualHiddenProfiles
-                    );
-
-                foreach (var availableNetwork in this.ActiveInterface
-                    .GetNetworkBssList())
-                {
-                    var costam = availableNetwork.dot11Ssid.SSID.ToString();
-                    networkSSIDs.Add(SsidParser.ParseFromBytes(availableNetwork.dot11Ssid.SSID));
-                }
-
-
-
-                foreach (var availableNetwork in this.ActiveInterface
-                    .GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllManualHiddenProfiles))
-                {
-                    networkSSIDs.Add(SsidParser.ParseFromBytes(availableNetwork.dot11Ssid.SSID));
-                }
-                return networkSSIDs;
+                networkSSIDs.Add(SsidParser.ParseFromBytes(availableNetwork.dot11Ssid.SSID));
             }
+
+            return networkSSIDs;
         }
 
-        public void ConnectToNewtwork()
+        public void ConnectToNetwork(string profileName)
         {
-            //this.WlanClient.Interfaces.FirstOrDefault().CurrentConnection
+            this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
         }
+
+        public Wlan.WlanProfileInfo[] GetNetworkProfiles()
+        {
+            return this.ActiveInterface.GetProfiles();
+        }
+
+        #endregion
     }
 }

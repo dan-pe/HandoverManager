@@ -15,7 +15,7 @@ namespace ViewModels
         {
             get
             {
-                var networks = new ObservableCollection<string>(this._networkManager.AvailableNetworkSSID);
+                var networks = new ObservableCollection<string>(this._networkManager.GetAvailableNetworkSSID());
                 return networks;
             }
         }
