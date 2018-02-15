@@ -8,7 +8,7 @@
         Title="NetworkView" Height="500" Width="300"
         Background="Aquamarine">
     <Grid>
-        <!--#region Grid Definitions -->
+        <!--#region Grid Definitions-->
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -19,7 +19,9 @@
         </Grid.RowDefinitions>
 
         <!--#endregion-->
-
+        
+        <!--#region Active Interface-->
+            
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Grid.Row="0">
             <DockPanel>
                 <Label HorizontalAlignment="Center" FontWeight="Bold">Active Interface</Label>
@@ -37,6 +39,11 @@
                 <TextBlock x:Name="InterfaceSpeedTextBox"/>
             </DockPanel>
         </StackPanel>
+
+        <!--#endregion-->
+
+        <!--#region Active Networks-->
+
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
                 <Label HorizontalAlignment="Center" FontWeight="Bold">
                     Network List for active interface
@@ -44,17 +51,8 @@
             <ListBox x:Name="NetworksViewList" 
                       ItemsSource="{Binding Path=ActiveNetworks}"
                       MouseDoubleClick="NetworksViewList_OnMouseDoubleClick"/>
-                <!--DisplayMemberPath="profileName">-->
-                
-                <!--<ListView.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock Text="Name: "/>
-                            <TextBlock Text="{Binding profileName}"></TextBlock>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
-             
         </StackPanel>
+
+        <!--#endregion-->
     </Grid>
 </Window>

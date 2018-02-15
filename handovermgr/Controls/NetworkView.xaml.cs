@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using Logger;
+using RadioNetworks;
 using ViewModels;
 
 namespace handovermgr.Controls
@@ -49,6 +50,23 @@ namespace handovermgr.Controls
                 Logger.Logger.AddMessage($"Error occurred during connection attempt: {exception.Message}",
                     MessageThreshold.FAIL);
             }
+
+            // Mock of adding evaluated netwok to Main View.
+
+            var network = new RadioNetworkModel()
+            {
+                NetworkName = AddNameBox.Text,
+                NetworkType = AddTypeComboBox.Text,
+                Parameters = new NetworkParameters()
+                {
+                    ThroughputInMbps = double.Parse(AddThroughoutputBox.Text),
+                    PacketLossPercentage = double.Parse(AddPacketLossBox.Text),
+                    DelayInMsec = double.Parse(AddDelayBox.Text),
+                    ResponseTimeInMsec = double.Parse(AddResponseBox.Text)
+                    // TODO: Add security level based on network type
+                }
+            };
+            MainWindow.NetworksList.Add(network);
         }
     }
 }

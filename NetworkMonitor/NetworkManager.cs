@@ -1,4 +1,6 @@
-﻿namespace NetworkMonitors
+﻿using System;
+
+namespace NetworkMonitors
 {
     #region Usings
 
@@ -50,9 +52,17 @@
             return networkSSIDs;
         }
 
-        public void ConnectToNetwork(string profileName)
+        public bool ConnectToNetwork(string profileName)
         {
-            this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
+            try
+            {
+                this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public Wlan.WlanProfileInfo[] GetNetworkProfiles()

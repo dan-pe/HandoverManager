@@ -67,7 +67,5 @@ namespace handovermgr.Controls
         }
 
         #endregion
-
-
     }
 }
