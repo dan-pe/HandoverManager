@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="NetworkView" Height="300" Width="300"
-        Background="SteelBlue">
+        Title="NetworkView" Height="500" Width="300"
+        Background="Aquamarine">
     <Grid>
         <!--#region Grid Definitions -->
         
@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
         <!--#endregion-->
@@ -25,16 +25,16 @@
                 <Label HorizontalAlignment="Center" FontWeight="Bold">Active Interface</Label>
             </DockPanel>
             <DockPanel>
-                <Label Width="150">Name:</Label>
-                <TextBox x:Name="InterfaceNameTextBox"></TextBox>
+                <Label Width="100">Name:</Label>
+                <TextBlock x:Name="InterfaceNameTextBox"/>
             </DockPanel>
             <DockPanel>
-                <Label Width="150">Type:</Label>
-                <TextBox x:Name="InterfaceTypeTextBox"></TextBox>
+                <Label Width="100">Type:</Label>
+                <TextBlock x:Name="InterfaceTypeTextBox"/>
             </DockPanel>
             <DockPanel>
-                <Label Width="150">Speed:</Label>
-                <TextBox x:Name="InterfaceSpeedTextBox"></TextBox>
+                <Label Width="100">Speed:</Label>
+                <TextBlock x:Name="InterfaceSpeedTextBox"/>
             </DockPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
@@ -42,7 +42,8 @@
                     Network List for active interface
                 </Label>
             <ListBox x:Name="NetworksViewList" 
-                      ItemsSource="{Binding Path=ActiveNetworks}"/>
+                      ItemsSource="{Binding Path=ActiveNetworks}"
+                      MouseDoubleClick="NetworksViewList_OnMouseDoubleClick"/>
                 <!--DisplayMemberPath="profileName">-->
                 
                 <!--<ListView.ItemTemplate>

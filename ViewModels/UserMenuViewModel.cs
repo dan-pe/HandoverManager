@@ -1,6 +1,4 @@
-﻿using Profiler.Annotations;
-
-namespace ViewModels
+﻿namespace ViewModels
 {
     #region Usings
 
@@ -8,6 +6,7 @@ namespace ViewModels
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
     using Profiler;
+    using Profiler.Annotations;
 
     #endregion
 
