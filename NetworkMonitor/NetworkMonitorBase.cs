@@ -1,71 +1,103 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-
-namespace NetworkMonitors
+﻿namespace NetworkMonitors
 {
+    #region Usings
+
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.NetworkInformation;
+    using System.Threading;
+    using RadioNetworks;
+
+    #endregion
+
     public class NetworkMonitorBase
     {
-        protected readonly IPAddress IpAddress;
+        protected IPAddress IpAddress
+        {
+            get
+            {
+                var byteArray = new Byte[]{212,77,98,9};
+                return new IPAddress(byteArray);
+            }
+        }
 
-        protected IEnumerable<System.Net.NetworkInformation.NetworkInterface> NetworkInterfaces;
+        protected IEnumerable<NetworkInterface> NetworkInterfaces;
 
         protected readonly List<NetworkInterfaceType> SupportedInterfaces = new List<NetworkInterfaceType>();
 
         public NetworkMonitorBase(IPAddress ipAddress)
         {
-            this.RegisterSupportedInterfaces();
-            this.IpAddress = ipAddress;
-            this.NetworkInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+            //this.IpAddress = ipAddress;
+            this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
         }
 
-        public System.Net.NetworkInformation.NetworkInterface GetSelectedInterface()
+        public NetworkMonitorBase()
         {
-            return System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(i => i.OperationalStatus == OperationalStatus.Up);
+            this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
         }
 
-        private void RegisterSupportedInterfaces()
+
+        public NetworkInterface GetSelectedInterface()
         {
-            // For testing purposes
-            this.SupportedInterfaces.Add(NetworkInterfaceType.Ethernet);
-
-            this.SupportedInterfaces.AddRange(
-                new List<NetworkInterfaceType>()
-                {
-                    NetworkInterfaceType.Wireless80211,
-                    NetworkInterfaceType.Wwanpp,
-                    NetworkInterfaceType.Wwanpp2,
-                    NetworkInterfaceType.Wman
-                });
-
+            return NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(i => i.OperationalStatus == OperationalStatus.Up);
         }
 
-        public void GetStressTestMock()
+        public NetworkParameters EvaluateNetwork()
         {
-            //Console.WriteLine("Specify IpAddress: ");
-            ////var inputAddress = Console.ReadLine();
-            //var inputAddress = "192.168.1.1";
 
-            //IPAddress address = IPAddress.Parse(inputAddress ?? throw new InvalidOperationException());
-            //var latencyMonitor = new LatencyMonitor(address);
+            var networkParameters = new NetworkParameters
+            {
+                ResponseTimeInMsec = this.ResponseTest(),
+                ThroughputInMbps = this.ThroughoutputTest(),
+                PacketLossPercentage = this.PacketLossTest(),
+                SecurityLevel = 5
+            };
 
-            //Task<long> getLantencyTask = latencyMonitor.GetLatencyAsync();
-
-            //    while (!getLantencyTask.IsCompleted)
-            //{
-            //    Console.WriteLine("Asynchronous operations is not completed!");
-            //}
-
-            //var latency = getLantencyTask;
-
-            //Console.WriteLine($"Mean latency for address: {inputAddress} is {getLantencyTask.Result}ms \n");
-
-            //var bandwidthMonitor = new BandwidthMonitor(address);
-            //bandwidthMonitor.GetThroughoutputInBytes();
-
-            //Console.ReadKey();
+            return networkParameters;
         }
 
+        private double PacketLossTest()
+        {
+            var initialPacketsDiscarded = this.GetSelectedInterface().GetIPv4Statistics().OutgoingPacketsDiscarded;
+
+            // TODO: Perform stress tests.
+            Thread.Sleep(TimeSpan.FromSeconds(20));
+
+            var endPacketsDiscarded = this.GetSelectedInterface().GetIPv4Statistics().OutgoingPacketsDiscarded;
+
+            return (double)(endPacketsDiscarded - initialPacketsDiscarded) / 100;
+        }
+
+        private double ResponseTest()
+        {
+            var ping = new Ping();
+            var ip = this.IpAddress.GetAddressBytes();
+            double meanLatency = 0;
+            const int iterations = 10;
+
+            var pingReply = ping.Send(new IPAddress(ip));
+            for (int i = 0; i < iterations; i++)
+            {
+                if (pingReply == null) continue;
+                pingReply = ping.Send(new IPAddress(ip));
+                if (pingReply != null) meanLatency += pingReply.RoundtripTime;
+            }
+
+            return meanLatency / iterations;
+        }
+
+        private double ThroughoutputTest()
+        {
+            var initialBytesRecived = this.GetSelectedInterface().GetIPv4Statistics().BytesReceived;
+
+            // TODO: Perform stress tests.
+            Thread.Sleep(TimeSpan.FromSeconds(20));
+
+            var endBytesRecived = this.GetSelectedInterface().GetIPv4Statistics().BytesReceived;
+
+            return (double)(endBytesRecived - initialBytesRecived) / 1024;
+        }
     }
 }

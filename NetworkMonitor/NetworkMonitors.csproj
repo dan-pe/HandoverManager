@@ -53,5 +53,11 @@
     <Compile Include="NetworkStressers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
+      <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
+      <Name>RadioNetworks</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,18 +1,30 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using Logger;
-using RadioNetworks;
-using ViewModels;
+﻿using NetworkMonitors;
 
 namespace handovermgr.Controls
 {
+    #region Usings
+
+    using System;
+    using System.Windows;
+    using System.Windows.Input;
+    using Logger;
+    using RadioNetworks;
+    using ViewModels;
+
+    #endregion
+
     /// <summary>
     /// Interaction logic for NetworkView.xaml
     /// </summary>
     public partial class NetworkView : Window
     {
+        #region Private Fields
+
         private readonly NetworkManagerViewModel _networkManagerViewModel;
+
+        #endregion
+
+        #region Constructors
 
         public NetworkView()
         {
@@ -22,51 +34,50 @@ namespace handovermgr.Controls
             this.BindInterfaceInfoToView();
         }
 
+        #endregion
+
+        #region Private Methods
+
         private void BindInterfaceInfoToView()
         {
             var wlanInterface = this._networkManagerViewModel
-                                        .ActiveWlanInterface
-                                        .NetworkInterface;
+                .ActiveWlanInterface
+                .NetworkInterface;
 
             InterfaceNameTextBox.Text = wlanInterface.Description;
             InterfaceTypeTextBox.Text = wlanInterface.NetworkInterfaceType.ToString();
-            InterfaceSpeedTextBox.Text = $"{wlanInterface.Speed.ToString()} bps";
+            InterfaceSpeedTextBox.Text = $"{wlanInterface.Speed} bps";
         }
 
         private void NetworksViewList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var choosenNetworkName = NetworksViewList.SelectedItem.ToString();
 
-            Logger.Logger.AddMessage($"Trying to connect to: {choosenNetworkName }");
+            Logger.AddMessage($"Trying to connect to: {choosenNetworkName}");
 
             try
             {
                 _networkManagerViewModel._networkManager.ConnectToNetwork(choosenNetworkName);
-                Logger.Logger.AddMessage($"Connected successfully to: {choosenNetworkName}", 
-                                                                    MessageThreshold.SUCCESS);
+                Logger.AddMessage($"Connected successfully to: {choosenNetworkName}",
+                    MessageThreshold.SUCCESS);
             }
             catch (Exception exception)
             {
-                Logger.Logger.AddMessage($"Error occurred during connection attempt: {exception.Message}",
+                Logger.AddMessage($"Error occurred during connection attempt: {exception.Message}",
                     MessageThreshold.FAIL);
             }
 
-            // Mock of adding evaluated netwok to Main View.
-
+            // Mock of adding evaluated network to Main View.
             var network = new RadioNetworkModel()
             {
-                NetworkName = AddNameBox.Text,
-                NetworkType = AddTypeComboBox.Text,
-                Parameters = new NetworkParameters()
-                {
-                    ThroughputInMbps = double.Parse(AddThroughoutputBox.Text),
-                    PacketLossPercentage = double.Parse(AddPacketLossBox.Text),
-                    DelayInMsec = double.Parse(AddDelayBox.Text),
-                    ResponseTimeInMsec = double.Parse(AddResponseBox.Text)
-                    // TODO: Add security level based on network type
-                }
+                NetworkName = choosenNetworkName,
+                NetworkType = _networkManagerViewModel.ActiveWlanInterface.NetworkInterface.NetworkInterfaceType.ToString(),
+                Parameters = new NetworkMonitorBase().EvaluateNetwork()
             };
+
             MainWindow.NetworksList.Add(network);
         }
+
+        #endregion
     }
 }
