@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Net.NetworkInformation;
-using System.Threading.Tasks;
 
 namespace NetworkMonitors
 {
@@ -8,7 +7,7 @@ namespace NetworkMonitors
     {
         private const int Iterations = 10;
 
-        public async Task<long> GetLatencyAsync()
+        public long GetLatency()
         {
             var ping = new Ping();
             var ip = this.IpAddress.GetAddressBytes();

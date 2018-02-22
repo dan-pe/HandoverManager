@@ -1,9 +1,9 @@
-﻿using System;
-
+﻿
 namespace NetworkMonitors
 {
     #region Usings
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using NativeWifi;
@@ -34,10 +34,6 @@ namespace NetworkMonitors
             this.WlanClient = new WlanClient();
         }
 
-        #endregion
-
-        #region Public Methods
-
         public List<string> GetAvailableNetworkSSID()
         {
             var networkSSIDs = new List<string>();
@@ -59,7 +55,7 @@ namespace NetworkMonitors
                 this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

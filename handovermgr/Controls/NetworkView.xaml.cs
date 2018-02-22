@@ -68,14 +68,12 @@ namespace handovermgr.Controls
             }
 
             // Mock of adding evaluated network to Main View.
-            var network = new RadioNetworkModel()
+            MainWindow.NetworksList.Add(new RadioNetworkModel()
             {
                 NetworkName = choosenNetworkName,
                 NetworkType = _networkManagerViewModel.ActiveWlanInterface.NetworkInterface.NetworkInterfaceType.ToString(),
                 Parameters = new NetworkMonitorBase().EvaluateNetwork()
-            };
-
-            MainWindow.NetworksList.Add(network);
+            });
         }
 
         #endregion

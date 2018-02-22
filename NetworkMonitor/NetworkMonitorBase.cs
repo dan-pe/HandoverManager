@@ -18,8 +18,7 @@
         {
             get
             {
-                var byteArray = new Byte[]{212,77,98,9};
-                return new IPAddress(byteArray);
+                return new IPAddress(new byte[]{192,168,1,1});
             }
         }
 
@@ -73,15 +72,20 @@
         private double ResponseTest()
         {
             var ping = new Ping();
-            var ip = this.IpAddress.GetAddressBytes();
+            //var ip = this.IpAddress
             double meanLatency = 0;
             const int iterations = 10;
 
-            var pingReply = ping.Send(new IPAddress(ip));
+            //var pingReply = ping.Send(this.IpAddress.ToString());
+            var ipAddrString = this.IpAddress.ToString();
+            var pingReply = ping.Send("192.168.1.1");
+            var pingReply2 = ping.Send(this.IpAddress.ToString());
+
+
             for (int i = 0; i < iterations; i++)
             {
                 if (pingReply == null) continue;
-                pingReply = ping.Send(new IPAddress(ip));
+                pingReply = ping.Send(this.IpAddress.ToString());
                 if (pingReply != null) meanLatency += pingReply.RoundtripTime;
             }
 
@@ -97,7 +101,7 @@
 
             var endBytesRecived = this.GetSelectedInterface().GetIPv4Statistics().BytesReceived;
 
-            return (double)(endBytesRecived - initialBytesRecived) / 1024;
+            return (double)(endBytesRecived - initialBytesRecived) / 1048576;
         }
     }
 }
