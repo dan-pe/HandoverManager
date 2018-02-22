@@ -156,6 +156,10 @@
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NetworkManager\NetworkManager.csproj">
+      <Project>{6601cadd-9426-46cc-acc9-fb3bb3a0c549}</Project>
+      <Name>NetworkManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NetworkMonitor\NetworkMonitors.csproj">
       <Project>{a67786e7-7e88-4548-bcc3-6e895b120fc7}</Project>
       <Name>NetworkMonitors</Name>

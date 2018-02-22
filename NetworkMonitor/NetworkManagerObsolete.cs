@@ -11,7 +11,7 @@ namespace NetworkMonitors
 
     #endregion
 
-    public class NetworkManager
+    public class NetworkManagerObsolete
     {
         #region Properties
 
@@ -27,9 +27,9 @@ namespace NetworkMonitors
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of NetworkManager.
+        /// Initializes a new instance of NetworkManagerObsolete.
         /// </summary>
-        public NetworkManager()
+        public NetworkManagerObsolete()
         {
             this.WlanClient = new WlanClient();
         }

@@ -21,7 +21,7 @@
 
         #region Private Fields
         
-        public readonly NetworkManager _networkManager;
+        public readonly NetworkManagerObsolete NetworkManagerObsolete;
 
         #endregion
 
@@ -31,14 +31,14 @@
         {
             get
             {
-                var networks = new ObservableCollection<string>(this._networkManager.GetAvailableNetworkSSID());
+                var networks = new ObservableCollection<string>(this.NetworkManagerObsolete.GetAvailableNetworkSSID());
                 return networks;
             }
         }
 
         public WlanClient.WlanInterface ActiveWlanInterface
         {
-            get { return this._networkManager.ActiveInterface; }
+            get { return this.NetworkManagerObsolete.ActiveInterface; }
         }
 
         #endregion
@@ -47,7 +47,7 @@
 
         public NetworkManagerViewModel()
         {
-            this._networkManager = new NetworkManager();
+            this.NetworkManagerObsolete = new NetworkManagerObsolete();
         }
 
         #endregion

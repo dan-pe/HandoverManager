@@ -8,6 +8,7 @@ namespace handovermgr.Controls
     using System.Windows;
     using System.Windows.Input;
     using Logger;
+    using NetworkManager;
     using RadioNetworks;
     using ViewModels;
 
@@ -57,7 +58,7 @@ namespace handovermgr.Controls
 
             try
             {
-                _networkManagerViewModel._networkManager.ConnectToNetwork(choosenNetworkName);
+                _networkManagerViewModel.NetworkManagerObsolete.ConnectToNetwork(choosenNetworkName);
                 Logger.AddMessage($"Connected successfully to: {choosenNetworkName}",
                     MessageThreshold.SUCCESS);
             }
@@ -66,6 +67,7 @@ namespace handovermgr.Controls
                 Logger.AddMessage($"Error occurred during connection attempt: {exception.Message}",
                     MessageThreshold.FAIL);
             }
+
 
             // Mock of adding evaluated network to Main View.
             MainWindow.NetworksList.Add(new RadioNetworkModel()

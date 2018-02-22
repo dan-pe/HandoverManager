@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetworkMonitor", "NetworkMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkMonitors", "NetworkMonitor\NetworkMonitors.csproj", "{A67786E7-7E88-4548-BCC3-6E895B120FC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkManager", "NetworkManager\NetworkManager.csproj", "{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{A67786E7-7E88-4548-BCC3-6E895B120FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67786E7-7E88-4548-BCC3-6E895B120FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67786E7-7E88-4548-BCC3-6E895B120FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +122,7 @@ Global
 		{9925D854-F8F5-484D-B61C-9E0A9703A4F4} = {10CD80AC-F75A-4825-AB58-7C8D2CBE4FCC}
 		{92E7B795-5B10-4394-88D6-D13DB10DDCE9} = {DB8E696F-249F-42DC-961E-25B1533083DD}
 		{A67786E7-7E88-4548-BCC3-6E895B120FC7} = {92E7B795-5B10-4394-88D6-D13DB10DDCE9}
+		{6601CADD-9426-46CC-ACC9-FB3BB3A0C549} = {DD19DEDE-DBB5-4ABD-AD1B-EF47312424D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11D1D1FA-8554-4FF9-A9AD-5DB8196F2CA6}
