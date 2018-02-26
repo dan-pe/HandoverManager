@@ -8,7 +8,6 @@ namespace handovermgr.Controls
     using System.Windows;
     using System.Windows.Input;
     using Logger;
-    using NetworkManager;
     using RadioNetworks;
     using ViewModels;
 

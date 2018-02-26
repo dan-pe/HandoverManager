@@ -14,17 +14,13 @@
 
     public class NetworkMonitorBase
     {
-        protected IPAddress IpAddress
+        #region Constructors
+
+        public NetworkMonitorBase(INetworkInterface iNetworkInterface, IPAddress ipAddress)
         {
-            get
-            {
-                return new IPAddress(new byte[]{192,168,1,1});
-            }
+            //this.IpAddress = ipAddress;
+            this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
         }
-
-        protected IEnumerable<NetworkInterface> NetworkInterfaces;
-
-        protected readonly List<NetworkInterfaceType> SupportedInterfaces = new List<NetworkInterfaceType>();
 
         public NetworkMonitorBase(IPAddress ipAddress)
         {
@@ -37,6 +33,25 @@
             this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
         }
 
+        #endregion
+
+        #region Properties
+
+        protected IPAddress IpAddress
+        {
+            get
+            {
+                return new IPAddress(new byte[] { 192, 168, 1, 1 });
+            }
+        }
+
+        protected IEnumerable<NetworkInterface> NetworkInterfaces;
+
+        protected readonly List<NetworkInterfaceType> SupportedInterfaces = new List<NetworkInterfaceType>();
+
+        #endregion
+
+        #region Public Methods
 
         public NetworkInterface GetSelectedInterface()
         {
@@ -57,6 +72,10 @@
             return networkParameters;
         }
 
+        #endregion
+
+        #region Private Fields
+
         private double PacketLossTest()
         {
             var initialPacketsDiscarded = this.GetSelectedInterface().GetIPv4Statistics().OutgoingPacketsDiscarded;
@@ -72,7 +91,6 @@
         private double ResponseTest()
         {
             var ping = new Ping();
-            //var ip = this.IpAddress
             double meanLatency = 0;
             const int iterations = 10;
 
@@ -95,13 +113,16 @@
         private double ThroughoutputTest()
         {
             var initialBytesRecived = this.GetSelectedInterface().GetIPv4Statistics().BytesReceived;
+            const int bytesToMegaBytesConst = 1048576;
 
             // TODO: Perform stress tests.
             Thread.Sleep(TimeSpan.FromSeconds(20));
 
             var endBytesRecived = this.GetSelectedInterface().GetIPv4Statistics().BytesReceived;
 
-            return (double)(endBytesRecived - initialBytesRecived) / 1048576;
+            return (double)(endBytesRecived - initialBytesRecived) / bytesToMegaBytesConst;
         }
+
+        #endregion
     }
 }
