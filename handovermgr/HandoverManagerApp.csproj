@@ -152,6 +152,10 @@
       <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
       <Name>HandoverAlgorithms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HuaweiWebAPI\HuaweiWebAPI.csproj">
+      <Project>{4b402e3b-da63-427f-9be4-0188d76ee903}</Project>
+      <Name>HuaweiWebAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>

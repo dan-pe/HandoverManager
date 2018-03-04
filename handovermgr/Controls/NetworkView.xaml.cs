@@ -1,4 +1,7 @@
-﻿using NetworkMonitors;
+﻿using System.Linq;
+using System.Net.NetworkInformation;
+using NetworkMonitors;
+using HuaweiWebAPI;
 
 namespace handovermgr.Controls
 {
@@ -32,6 +35,21 @@ namespace handovermgr.Controls
             this.DataContext = _networkManagerViewModel;
             this.InitializeComponent();
             this.BindInterfaceInfoToView();
+            var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            var wireless =
+                networkInterfaces.FirstOrDefault(i => i.Description == "NDIS");
+
+            var requester = new GetRequest();
+
+            var costam = requester.Get("http://192.168.8.1/api/webserver/SesTokInfo");
+
+            //var stasts = wireless.GetIPv4Statistics();
+            //var cosInnego = wireless.GetIPProperties();
+
+            var wifi =
+                networkInterfaces.FirstOrDefault(i => i.Description.Contains("Intel"));
+            
+
         }
 
         #endregion

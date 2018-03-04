@@ -16,11 +16,11 @@
     {
         #region Constructors
 
-        public NetworkMonitorBase(INetworkInterface iNetworkInterface, IPAddress ipAddress)
-        {
-            //this.IpAddress = ipAddress;
-            this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-        }
+        //public NetworkMonitorBase(INetworkInterface iNetworkInterface, IPAddress ipAddress)
+        //{
+        //    //this.IpAddress = ipAddress;
+        //    this.NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+        //}
 
         public NetworkMonitorBase(IPAddress ipAddress)
         {
