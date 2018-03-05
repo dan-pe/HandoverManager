@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GetRequest.cs" />
-    <Compile Include="resposne.cs" />
+    <Compile Include="HuaweiWebApi.cs" />
+    <Compile Include="HuaweiWebClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

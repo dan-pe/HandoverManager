@@ -26,6 +26,5 @@ namespace Serializers
 
             return dataDictionary;
         }
-
     }
 }

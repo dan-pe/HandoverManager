@@ -39,9 +39,7 @@ namespace handovermgr.Controls
             var wireless =
                 networkInterfaces.FirstOrDefault(i => i.Description == "NDIS");
 
-            var requester = new GetRequest();
-
-            var costam = requester.Get("http://192.168.8.1/api/webserver/SesTokInfo");
+            var costam = HuaweiWebApi.GetNetworkInfo();
 
             //var stasts = wireless.GetIPv4Statistics();
             //var cosInnego = wireless.GetIPProperties();
