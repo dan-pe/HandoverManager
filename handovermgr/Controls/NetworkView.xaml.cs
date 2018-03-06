@@ -35,19 +35,9 @@ namespace handovermgr.Controls
             this.DataContext = _networkManagerViewModel;
             this.InitializeComponent();
             this.BindInterfaceInfoToView();
-            var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-            var wireless =
-                networkInterfaces.FirstOrDefault(i => i.Description == "NDIS");
-
-            var costam = HuaweiWebApi.GetNetworkInfo();
-
-            //var stasts = wireless.GetIPv4Statistics();
-            //var cosInnego = wireless.GetIPProperties();
-
-            var wifi =
-                networkInterfaces.FirstOrDefault(i => i.Description.Contains("Intel"));
-            
-
+            var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces()
+                .Where(i => i.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+                i.Description.Contains("RDI"));
         }
 
         #endregion

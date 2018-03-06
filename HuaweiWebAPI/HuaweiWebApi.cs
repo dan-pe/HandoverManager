@@ -12,7 +12,7 @@ namespace HuaweiWebAPI
 
         public static IDictionary<string, string> GetNetworkInfo()
         {
-            var networkInfo = WebClient.Get("http://192.168.8.1/api/global/module-switch");
+            var networkInfo = WebClient.HttpGet("http://192.168.8.1/api/global/module-switch");
             return networkInfo;
         }
     }
