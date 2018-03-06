@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:handovermgr.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
     
@@ -15,13 +14,23 @@
             <Button Margin="4 0 4 5" Click="AddNetwork_Click">Add Network</Button>
         </DockPanel>
         <DockPanel>
-            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 80 4 0"/>
+            <Button Margin="4 0 4 5" Click="Network_OnClick">Networks</Button>
         </DockPanel>
         <DockPanel>
-            <ComboBox x:Name="NovelProfileComboBox" Margin="4 10 4 10"/>
+            <Button Margin="4 0 4 5" Click="ManageUserProfile_OnCLick">Manage User Profile</Button>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 10" Click="Handover_Click">HandOver !</Button>
+            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 70 4 0"/>
+        </DockPanel>
+        <DockPanel>
+            <ComboBox x:Name="NovelProfileComboBox" 
+                      ItemsSource="{Binding Path=UserProfiles}"
+                      DisplayMemberPath ="Name"
+                      SelectedValuePath="Name"
+                      Margin="4 10 4 10" SelectionChanged="OnSelectedProfileChange"/>
+        </DockPanel>
+        <DockPanel>
+            <Button Margin="4 0 4 0" Click="Handover_Click">HandOver !</Button>
         </DockPanel>
     </StackPanel>
     

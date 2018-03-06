@@ -1,19 +1,35 @@
 namespace RadioNetworks
 {
+    #region Usings
+
+    using System;
+
+    #endregion
+
+
     public class NetworkParameters
     {
         #region Properties
 
+        [NetworkMetric]
         public double ThroughputInMbps { get; set; }
-        public double BitErrorRate { get; set; }
-        public double BurstErrorRate { get; set; }
-        public double PacketLossPercentage { get; set; }
-        public double DelayInMsec { get; set; }
-        public double ResponseTimeInMsec { get; set; }
-        public double JitterInMsec { get; set; }
-        public double SecurityLevel { get; set; }
-        public double CostInUnitsPerByte { get; set; }
 
+        [NetworkMetric]
+        public double PacketLossPercentage { get; set; }
+
+        [NetworkMetric]
+        public double DelayInMsec { get; set; }
+
+        [NetworkMetric]
+        public double ResponseTimeInMsec { get; set; }
+
+        [NetworkMetric]
+        public double SecurityLevel { get; set; }
+        
         #endregion
+    }
+
+    public class NetworkMetricAttribute : Attribute
+    {
     }
 }

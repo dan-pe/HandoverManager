@@ -71,14 +71,10 @@
                 Parameters = new NetworkParameters()
                 {
                     ThroughputInMbps = double.Parse(networkElements[2], CultureInfo.InvariantCulture),
-                    BitErrorRate = double.Parse(networkElements[3], CultureInfo.InvariantCulture),
-                    BurstErrorRate = double.Parse(networkElements[4], CultureInfo.InvariantCulture),
-                    PacketLossPercentage = double.Parse(networkElements[5], CultureInfo.InvariantCulture),
-                    DelayInMsec = double.Parse(networkElements[6], CultureInfo.InvariantCulture),
-                    ResponseTimeInMsec = double.Parse(networkElements[7], CultureInfo.InvariantCulture),
-                    JitterInMsec = double.Parse(networkElements[8], CultureInfo.InvariantCulture),
-                    CostInUnitsPerByte = double.Parse(networkElements[8], CultureInfo.InvariantCulture),
-                    SecurityLevel = double.Parse(networkElements[10], CultureInfo.InvariantCulture),
+                    PacketLossPercentage = double.Parse(networkElements[3], CultureInfo.InvariantCulture),
+                    DelayInMsec = double.Parse(networkElements[4], CultureInfo.InvariantCulture),
+                    ResponseTimeInMsec = double.Parse(networkElements[5], CultureInfo.InvariantCulture),
+                    SecurityLevel = double.Parse(networkElements[6], CultureInfo.InvariantCulture),
                 }
 
             };

@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EDD47BC7-04ED-4504-94CC-8884762EFE13}</ProjectGuid>
+    <ProjectGuid>{91EBFF46-B522-4734-917A-E9DEB4C28A46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HandoverAlgorithmBase</RootNamespace>
-    <AssemblyName>HandoverAlgorithmBase</AssemblyName>
+    <RootNamespace>Serializers</RootNamespace>
+    <AssemblyName>Serializers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,41 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HandoverAlgorithmBase.cs" />
-    <Compile Include="NovelAlgorithm\NovelHandoverAlgorithm.cs" />
-    <Compile Include="NovelAlgorithm\NovelNetworkModel.cs" />
+    <Compile Include="XmlSerialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logger\Logger.csproj">
-      <Project>{E80D676E-58FB-4063-8B80-90C6E52911D4}</Project>
-      <Name>Logger</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MathTools\MathTools.csproj">
-      <Project>{112835d9-0ff0-4126-9490-0130759d85e7}</Project>
-      <Name>MathTools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Profiler\ProfileManager.csproj">
-      <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
-      <Name>ProfileManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
-      <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
-      <Name>RadioNetworks</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FuzzyAlgoriths\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

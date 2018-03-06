@@ -7,6 +7,8 @@
     using System.Windows;
     using System.Collections.Generic;
 
+    using Logger;
+
     using RadioNetworks;
 
     #endregion
@@ -16,7 +18,7 @@
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region Fields
+        #region Properties
         
         public static ObservableCollection<RadioNetworkModel> NetworksList { get; set; }
 
@@ -26,9 +28,9 @@
 
         public MainWindow()
         {
-            InitializeComponent();
-            Logger.Logger.InitializeLogger(LogBox);
-            BindNetworks();
+            this.InitializeComponent();
+            Logger.InitializeLogger(LogBox);
+            this.BindNetworks();
         }
 
         #endregion
@@ -56,11 +58,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 10,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 1
@@ -74,11 +72,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 100,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 4
@@ -93,11 +87,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 10,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 3
@@ -112,11 +102,7 @@
                     Parameters = new NetworkParameters()
                     {
                         ThroughputInMbps = random.NextDouble() * 10,
-                        BitErrorRate = random.NextDouble() * 0.01d,
-                        BurstErrorRate = random.NextDouble() * 0.01d,
-                        CostInUnitsPerByte = random.NextDouble(),
                         DelayInMsec = random.NextDouble() * 0.1d,
-                        JitterInMsec = random.NextDouble() * 0.1d,
                         PacketLossPercentage = random.NextDouble(),
                         ResponseTimeInMsec = random.NextDouble() * 0.1d,
                         SecurityLevel = 2

@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedWifi">
+      <HintPath>..\ManagedWifi\ManagedWifi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -62,8 +65,14 @@
     <Compile Include="Controls\HandoverView.xaml.cs">
       <DependentUpon>HandoverView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NetworkView.xaml.cs">
+      <DependentUpon>NetworkView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserMenuView.xaml.cs">
       <DependentUpon>UserMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserProfileView.xaml.cs">
+      <DependentUpon>UserProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NetworkPropertiesView.xaml.cs">
       <DependentUpon>NetworkPropertiesView.xaml</DependentUpon>
@@ -78,7 +87,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\NetworkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UserMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,13 +152,33 @@
       <Project>{edd47bc7-04ed-4504-94cc-8884762efe13}</Project>
       <Name>HandoverAlgorithms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HuaweiWebAPI\HuaweiWebAPI.csproj">
+      <Project>{4b402e3b-da63-427f-9be4-0188d76ee903}</Project>
+      <Name>HuaweiWebAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NetworkManager\NetworkManager.csproj">
+      <Project>{6601cadd-9426-46cc-acc9-fb3bb3a0c549}</Project>
+      <Name>NetworkManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkMonitor\NetworkMonitors.csproj">
+      <Project>{a67786e7-7e88-4548-bcc3-6e895b120fc7}</Project>
+      <Name>NetworkMonitors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Profiler\ProfileManager.csproj">
+      <Project>{59553fbf-92a7-4cbf-a60b-84846ac08a8c}</Project>
+      <Name>ProfileManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
       <Project>{8b6db4aa-c274-41f2-8481-771a2ab7aad2}</Project>
       <Name>RadioNetworks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{9925d854-f8f5-484d-b61c-9e0a9703a4f4}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

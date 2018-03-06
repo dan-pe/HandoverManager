@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HandoverAlgorithmBase.NovelAlgorithm;
 using Logger;
 
 namespace handovermgr.Controls
@@ -10,10 +11,6 @@ namespace handovermgr.Controls
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
-
-
-    using HandoverAlgorithmBase.PlainAlgorithms.NovelAlgorithm;
-
     using RadioNetworks;
     using System;
 
@@ -66,11 +63,10 @@ namespace handovermgr.Controls
         private void PrepareHandoverNetworksView(List<RadioNetworkModel> radioNetworksList, ComboBox novelProfileComboBox)
         {
             Logger.Logger.AddMessage("Handover evaluation started.");
-            
-            var novelProfile = (NovelNetworkProfile) Enum.Parse(typeof(NovelNetworkProfile),
-                novelProfileComboBox.SelectedValue.ToString());
 
-            NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList, novelProfile);
+            var selectedUserProfile = Profiler.ProfileManager.Instance.GetProfileByName(novelProfileComboBox.Text);
+
+            NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList, selectedUserProfile);
 
             novelHandover.RunSelection();
             var resultNetwork = novelHandover.SelectResultNetwork();
