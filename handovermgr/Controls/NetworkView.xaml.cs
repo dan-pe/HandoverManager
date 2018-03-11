@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Net.NetworkInformation;
-using NetworkMonitors;
-using HuaweiWebAPI;
-
+﻿
 namespace handovermgr.Controls
 {
     #region Usings
@@ -10,9 +6,13 @@ namespace handovermgr.Controls
     using System;
     using System.Windows;
     using System.Windows.Input;
+    using System.Net.NetworkInformation;
+    using System.Linq;
+
     using Logger;
     using RadioNetworks;
     using ViewModels;
+    using NetworkMonitors;
 
     #endregion
 
