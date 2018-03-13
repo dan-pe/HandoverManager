@@ -1,10 +1,8 @@
-﻿using System.Net.NetworkInformation;
-
-namespace NetworkManager
+﻿namespace NetworkManager
 {
     public abstract class NetworkInterfaceManager
     {
-        protected NetworkInterfaceType Type;
+        protected string Type;
 
         protected string Name;
     }

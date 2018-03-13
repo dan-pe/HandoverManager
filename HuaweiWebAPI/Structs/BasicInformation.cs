@@ -2,30 +2,29 @@
 
 namespace HuaweiWebAPI.Structs
 {
-    //[XmlRoot(ElementName = "response", DataType = "string")]
     [XmlRoot("response")]
     public class BasicInformation
     {
         [XmlElement("productfamily")]
-        public string Productfamily;
+        public string ProductFamily;
 
         [XmlElement("classify")]
         public string Classify;
 
         [XmlElement("multimode")]
-        public string Multimode;
+        public int Multimode;
 
         [XmlElement("restore_default_status")]
-        public string RestoreDefaultStatus;
+        public int RestoreDefaultStatus;
 
         [XmlElement("autoupdate_guide_status")]
-        public string AutoupdateGuideStatus;
+        public int AutoupdateGuideStatus;
 
         [XmlElement("sim_save_pin_enable")]
-        public string SimSavePinEnable;
+        public int SimSavePinEnable;
 
         [XmlElement("devicename")]
-        public string Devicename;
+        public string DeviceName;
 
         [XmlElement("SoftwareVersion")]
         public string SoftwareVersion;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Collections.Generic;
 using HuaweiWebAPI.Structs;
 using Serializers;
 
@@ -23,14 +18,21 @@ namespace HuaweiWebAPI
             return networkInfo;
         }
 
-        public static IDictionary<string, string> GetBasicInformation()
+        public static IDictionary<string, string> GetBasicInformationDictionary()
         {
             
             var basicInformation = WebClient.HttpGet("api/device/basic_information");
             return basicInformation;
         }
 
-        public static BasicInformation BasicInformationFrom()
+        public static DhcpSettings DhcpSettings()
+        {
+            var dhcpXml = WebClient.XmlGet("api/dhcp/settings");
+            DhcpSettings dhcpSettings = XmlSerialization.Deserialize<DhcpSettings>(dhcpXml);
+            return dhcpSettings;
+        }
+
+        public static BasicInformation BasicInformation()
         {
             var basicInfoXml = WebClient.XmlGet("api/device/basic_information");
             BasicInformation basicInformation = XmlSerialization.Deserialize<BasicInformation>(basicInfoXml);

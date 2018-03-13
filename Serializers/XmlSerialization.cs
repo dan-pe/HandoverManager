@@ -1,12 +1,25 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
-
-namespace Serializers
+﻿namespace Serializers
 {
+    #region Usings
+
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Xml.Linq;
+
+    #endregion  
+
     public static class XmlSerialization
     {
+        #region Public Static Methods
+
+        /// <summary>
+        /// Deserializes XML to dictionary of strings.
+        /// </summary>
+        /// <param name="data">
+        /// The input data.
+        /// </param>
+        /// <returns></returns>
         public static Dictionary<string, string> XmlToDictionary(string data)
         {
             var doc = XDocument.Parse(data);
@@ -28,6 +41,16 @@ namespace Serializers
             return dataDictionary;
         }
 
+        /// <summary>
+        /// Deserialize XML format to object of type T.
+        /// </summary>
+        /// <typeparam name="T">
+        /// Type of object to deserialize to.
+        /// </typeparam>
+        /// <param name="input">
+        /// The input data to deserialize.
+        /// </param>
+        /// <returns></returns>
         public static T Deserialize<T>(string input) where T : class
         {
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(T));
@@ -37,5 +60,7 @@ namespace Serializers
                 return (T)ser.Deserialize(sr);
             }
         }
+
+        #endregion
     }
 }

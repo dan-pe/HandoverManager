@@ -4,10 +4,12 @@
     {
         public NdisNetworkInterfaceManager()
         {
-            this.Name = HuaweiWebAPI.HuaweiWebApi.GetBasicInformation()["productfamily"];
-            var basicInfo = HuaweiWebAPI.HuaweiWebApi.BasicInformationFrom();
+            var basicInterfaceInformation = HuaweiWebAPI.HuaweiWebApi.BasicInformation();
 
-            // "productfamily"
+            this.Name = basicInterfaceInformation.DeviceName;
+            this.Type = basicInterfaceInformation.ProductFamily;
+
+            var costam = HuaweiWebAPI.HuaweiWebApi.BasicInformation();
         }
     }
 
