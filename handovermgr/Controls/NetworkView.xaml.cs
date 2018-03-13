@@ -34,10 +34,21 @@ namespace handovermgr.Controls
             this._networkManagerViewModel = new NetworkManagerViewModel();
             this.DataContext = _networkManagerViewModel;
             this.InitializeComponent();
+
             this.BindInterfaceInfoToView();
+
+            var interfaces = NetworkInterface.GetAllNetworkInterfaces();
+
             var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces()
                 .Where(i => i.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
-                i.Description.Contains("RDI"));
+                i.Description.Contains("Remote NDIS based Internet Sharing Device")
+                && i.Speed != -1).ToList();
+
+            var dnsInfo = HuaweiWebAPI.HuaweiWebApi.GetBasicInformation();
+
+
+            var networkInfo = HuaweiWebAPI.HuaweiWebApi.GetNetworkInfo();
+
         }
 
         #endregion
