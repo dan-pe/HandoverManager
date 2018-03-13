@@ -16,6 +16,8 @@
 
         private static string SessionId { get; set; }
 
+        private static readonly string apiRoute = "http://192.168.8.1/";
+
         #endregion
 
         #region Constructors
@@ -31,7 +33,8 @@
 
         public IDictionary<string, string> HttpGet(string url)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest
+                .Create(string.Concat(apiRoute,url));
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             request.Headers.Set("Cookie", SessionId);
 
@@ -40,6 +43,21 @@
             using (StreamReader reader = new StreamReader(stream))
             {
                 return XmlSerialization.XmlToDictionary(reader.ReadToEnd());
+            }
+        }
+
+        public string XmlGet(string url)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest
+                .Create(string.Concat(apiRoute, url));
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            request.Headers.Set("Cookie", SessionId);
+
+            using (HttpWebResponse res = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = res.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
             }
         }
 

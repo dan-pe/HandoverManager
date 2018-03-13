@@ -49,7 +49,7 @@
                             <GridViewColumn Header="Delay [msec]"
                                                DisplayMemberBinding="{Binding Parameters.DelayInMsec, StringFormat=N3}">
                             </GridViewColumn>
-                            <GridViewColumn Header="Response"
+                            <GridViewColumn Header="BasicInformation"
                                                DisplayMemberBinding="{Binding Parameters.ResponseTimeInMsec, StringFormat=N2}">
                             </GridViewColumn>
                             <GridViewColumn Header="Security"

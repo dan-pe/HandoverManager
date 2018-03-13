@@ -1,6 +1,0 @@
-﻿namespace NetworkManager
-{
-    class RdiNetworkManager
-    {
-    }
-}

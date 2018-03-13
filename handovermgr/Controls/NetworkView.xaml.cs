@@ -1,4 +1,6 @@
 ﻿
+using NetworkManager;
+
 namespace handovermgr.Controls
 {
     #region Usings
@@ -44,10 +46,7 @@ namespace handovermgr.Controls
                 i.Description.Contains("Remote NDIS based Internet Sharing Device")
                 && i.Speed != -1).ToList();
 
-            var dnsInfo = HuaweiWebAPI.HuaweiWebApi.GetBasicInformation();
-
-
-            var networkInfo = HuaweiWebAPI.HuaweiWebApi.GetNetworkInfo();
+            var costam = new NdisNetworkInterfaceManager();
 
         }
 
