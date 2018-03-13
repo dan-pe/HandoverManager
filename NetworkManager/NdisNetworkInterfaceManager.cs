@@ -9,7 +9,7 @@
             this.Name = basicInterfaceInformation.DeviceName;
             this.Type = basicInterfaceInformation.ProductFamily;
 
-            var costam = HuaweiWebAPI.HuaweiWebApi.BasicInformation();
+            var costam = HuaweiWebAPI.HuaweiWebApi.MonitoringStatus();
         }
     }
 

@@ -39,5 +39,13 @@ namespace HuaweiWebAPI
 
             return basicInformation;
         }
+
+        public static MonitoringStatus MonitoringStatus()
+        {
+            var monitoringXml = WebClient.XmlGet("api/monitoring/status");
+            MonitoringStatus basicInformation = XmlSerialization.Deserialize<MonitoringStatus>(monitoringXml);
+
+            return basicInformation;
+        }
     }
 }
