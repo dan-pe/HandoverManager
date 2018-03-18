@@ -68,6 +68,9 @@
     <Compile Include="Controls\NetworkView.xaml.cs">
       <DependentUpon>NetworkView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NetworkViews\WifiView.xaml.cs">
+      <DependentUpon>WifiView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserMenuView.xaml.cs">
       <DependentUpon>UserMenuView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NetworkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NetworkViews\WifiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
