@@ -2,8 +2,8 @@
 {
     public abstract class NetworkInterfaceManager
     {
-        protected string Type;
+        public string Type;
 
-        protected string Name;
+        public string Name;
     }
 }

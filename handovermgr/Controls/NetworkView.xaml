@@ -23,37 +23,14 @@
         
         <!--#region Wireless Interface -->
 
-        <networkViews:WifiView Grid.ColumnSpan="1" Grid.RowSpan="2"/>
+        <networkViews:WifiView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
 
         <!--#endregion-->
         
         <!--#region RDI Interface-->
-
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <DockPanel>
-                <Label HorizontalAlignment="Center" FontWeight="Bold">Active RDI Interface</Label>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="100">Name:</Label>
-                <TextBlock x:Name="RDIInterfaceNameTextBox"/>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="100">Type:</Label>
-                <TextBlock x:Name="RDIInterfaceTypeTextBox"/>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="100">Speed:</Label>
-                <TextBlock x:Name="RDIInterfaceSpeedTextBox"/>
-            </DockPanel>
-        </StackPanel>
-
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
-            <Label HorizontalAlignment="Center" FontWeight="Bold">
-                Network List for active RDI interface
-            </Label>
-        </StackPanel>
+        
+        <networkViews:NdisView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"/>
 
         <!--#endregion-->
-
     </Grid>
 </Window>

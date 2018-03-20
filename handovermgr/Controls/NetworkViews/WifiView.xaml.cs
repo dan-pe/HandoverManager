@@ -1,15 +1,13 @@
-﻿using System;
-using System.Windows.Input;
-using Logger;
-using NetworkMonitors;
-using RadioNetworks;
-
-namespace handovermgr.Controls.NetworkViews
+﻿namespace handovermgr.Controls.NetworkViews
 {
     #region Usings
 
-    using System.Windows.Controls;
     using ViewModels;
+    using System;
+    using System.Windows.Input;
+    using Logger;
+    using NetworkMonitors;
+    using RadioNetworks;
 
     #endregion
 
@@ -43,24 +41,23 @@ namespace handovermgr.Controls.NetworkViews
             InterfaceSpeedTextBox.Text = $"{wlanInterface.Speed} bps";
         }
 
-        private void NetworksViewList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void NetworksListItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var choosenNetworkName = NetworksViewList.SelectedItem.ToString();
 
-            Logger.Logger.AddMessage($"Trying to connect to: {choosenNetworkName}");
+            Logger.AddMessage($"Trying to connect to: {choosenNetworkName}");
 
             try
             {
                 _networkManagerViewModel.NetworkManagerObsolete.ConnectToNetwork(choosenNetworkName);
-                Logger.Logger.AddMessage($"Connected successfully to: {choosenNetworkName}",
+                Logger.AddMessage($"Connected successfully to: {choosenNetworkName}",
                     MessageThreshold.SUCCESS);
             }
             catch (Exception exception)
             {
-                Logger.Logger.AddMessage($"Error occurred during connection attempt: {exception.Message}",
+                Logger.AddMessage($"Error occurred during connection attempt: {exception.Message}",
                     MessageThreshold.FAIL);
             }
-
 
             // Mock of adding evaluated network to Main View.
             MainWindow.NetworksList.Add(new RadioNetworkModel()

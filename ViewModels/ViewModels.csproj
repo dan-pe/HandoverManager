@@ -44,11 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NetworkViewModels\NdisViewModel.cs" />
     <Compile Include="NetworkManagerViewModel.cs" />
+    <Compile Include="NetworkViewModels\NetworkBaseViewModel.cs" />
+    <Compile Include="NetworkViewModels\WifiViewModel.cs" />
     <Compile Include="UserMenuViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NetworkManager\NetworkManager.csproj">
+      <Project>{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}</Project>
+      <Name>NetworkManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NetworkMonitor\NetworkMonitors.csproj">
       <Project>{A67786E7-7E88-4548-BCC3-6E895B120FC7}</Project>
       <Name>NetworkMonitors</Name>
