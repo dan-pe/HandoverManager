@@ -1,6 +1,6 @@
 ﻿namespace NetworkManager
 {
-    public abstract class NetworkInterfaceManager
+    public abstract class NetworkInterfaceManagerBase
     {
         public string Type;
 

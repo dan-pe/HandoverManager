@@ -21,15 +21,18 @@
             </DockPanel>
             <DockPanel>
                 <Label Width="100">Name:</Label>
-                <TextBlock x:Name="InterfaceNameTextBox"/>
+                <TextBlock x:Name="InterfaceNameTextBox" 
+                           Text="{Binding Path=Name}"/>
             </DockPanel>
             <DockPanel>
                 <Label Width="100">Type:</Label>
-                <TextBlock x:Name="InterfaceTypeTextBox"/>
+                <TextBlock x:Name="InterfaceTypeTextBox"
+                           Text="{Binding Path=Type}"/>
             </DockPanel>
             <DockPanel>
                 <Label Width="100">Speed:</Label>
-                <TextBlock x:Name="InterfaceSpeedTextBox"/>
+                <TextBlock x:Name="InterfaceSpeedTextBox"
+                           Text="{Binding Path=Speed}"/>
             </DockPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="1">

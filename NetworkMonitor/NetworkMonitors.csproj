@@ -48,7 +48,6 @@
     <Compile Include="Interfaces\INetworkStress.cs" />
     <Compile Include="LatencyMonitor.cs" />
     <Compile Include="Parsers\SsidParser.cs" />
-    <Compile Include="NetworkManagerObsolete.cs" />
     <Compile Include="NetworkMonitorBase.cs" />
     <Compile Include="NetworkStressers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

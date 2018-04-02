@@ -1,14 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
+using NetworkManager;
 
 namespace ViewModels.NetworkViewModels
 {
     public class WifiViewModel : NetworkBaseViewModel
     {
-        public List<string> NetworkSsidsList { get; set; }
+        public WifiNetworkInterfaceManager WifiNetworkInterfaceManager;
 
-        public WifiViewModel()
+        public ObservableCollection<string> ActiveNetworks
         {
-            this.NetworkSsidsList = new WifiNetworkInterfaceManager();
+            get
+            {
+                var networks = new ObservableCollection<string>(this.WifiNetworkInterfaceManager.GetAvailableNetworkSsids());
+                return networks;
+            }
+        }
+
+        public WifiViewModel(INetworkInterface iNetworkInterface) : base(iNetworkInterface)
+        {
+            this.WifiNetworkInterfaceManager = new WifiNetworkInterfaceManager();
         }
     }
 }

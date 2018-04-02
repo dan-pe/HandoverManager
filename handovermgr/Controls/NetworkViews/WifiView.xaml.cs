@@ -1,4 +1,7 @@
-﻿namespace handovermgr.Controls.NetworkViews
+﻿using NetworkManager;
+using ViewModels.NetworkViewModels;
+
+namespace handovermgr.Controls.NetworkViews
 {
     #region Usings
 
@@ -18,27 +21,15 @@
     {
         #region Private Fields
 
-        private readonly NetworkManagerViewModel _networkManagerViewModel;
+        private readonly WifiViewModel _wifiViewModel;
 
         #endregion
 
         public WifiView()
         {
-            this._networkManagerViewModel = new NetworkManagerViewModel();
-            this.DataContext = _networkManagerViewModel;
+            this._wifiViewModel = new WifiViewModel(new WifiNetworkInterfaceManager());
+            this.DataContext = _wifiViewModel;
             InitializeComponent();
-            this.BindInterfaceInfoToView();
-        }
-
-        private void BindInterfaceInfoToView()
-        {
-            var wlanInterface = this._networkManagerViewModel
-                .ActiveWlanInterface
-                .NetworkInterface;
-
-            InterfaceNameTextBox.Text = wlanInterface.Description;
-            InterfaceTypeTextBox.Text = wlanInterface.NetworkInterfaceType.ToString();
-            InterfaceSpeedTextBox.Text = $"{wlanInterface.Speed} bps";
         }
 
         private void NetworksListItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -49,7 +40,7 @@
 
             try
             {
-                _networkManagerViewModel.NetworkManagerObsolete.ConnectToNetwork(choosenNetworkName);
+                _wifiViewModel.WifiNetworkInterfaceManager.ConnectToNetwork(choosenNetworkName);
                 Logger.AddMessage($"Connected successfully to: {choosenNetworkName}",
                     MessageThreshold.SUCCESS);
             }
@@ -59,13 +50,13 @@
                     MessageThreshold.FAIL);
             }
 
-            // Mock of adding evaluated network to Main View.
-            MainWindow.NetworksList.Add(new RadioNetworkModel()
-            {
-                NetworkName = choosenNetworkName,
-                NetworkType = _networkManagerViewModel.ActiveWlanInterface.NetworkInterface.NetworkInterfaceType.ToString(),
-                Parameters = new NetworkMonitorBase().EvaluateNetwork()
-            });
+            //// Mock of adding evaluated network to Main View.
+            //MainWindow.NetworksList.Add(new RadioNetworkModel()
+            //{
+            //    NetworkName = choosenNetworkName,
+            //    NetworkType = _wifiViewModel.NetworkInterface.NetworkInterfaceType.ToString(),
+            //    Parameters = new NetworkMonitorBase().EvaluateNetwork()
+            //});
         }
     }
 }

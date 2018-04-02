@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NetworkViewModels\NdisViewModel.cs" />
-    <Compile Include="NetworkManagerViewModel.cs" />
     <Compile Include="NetworkViewModels\NetworkBaseViewModel.cs" />
     <Compile Include="NetworkViewModels\WifiViewModel.cs" />
     <Compile Include="UserMenuViewModel.cs" />

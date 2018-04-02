@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+﻿using NetworkManager;
 using ViewModels.NetworkViewModels;
 
 namespace handovermgr.Controls.NetworkViews
@@ -6,11 +6,11 @@ namespace handovermgr.Controls.NetworkViews
     /// <summary>
     /// Interaction logic for NdisView.xaml
     /// </summary>
-    public partial class NdisView : UserControl
+    public partial class NdisView
     {
         public NdisView()
         {
-            this.DataContext = new NdisViewModel();
+            this.DataContext = new NdisViewModel(new NdisNetworkInterfaceManager());
             InitializeComponent();
         }
     }
