@@ -53,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
       <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
       <Name>RadioNetworks</Name>

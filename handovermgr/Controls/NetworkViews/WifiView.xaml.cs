@@ -30,6 +30,12 @@ namespace handovermgr.Controls.NetworkViews
             this._wifiViewModel = new WifiViewModel(new WifiNetworkInterfaceManager());
             this.DataContext = _wifiViewModel;
             InitializeComponent();
+
+            // Debugging network monitor
+            var monitor = new BandwidthMonitor();
+            monitor.NewBandwidthMonitor();
+
+
         }
 
         private void NetworksListItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

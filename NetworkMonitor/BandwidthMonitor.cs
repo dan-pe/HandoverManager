@@ -2,9 +2,12 @@
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace NetworkMonitors
 {
+    using Logger;
+
     public class BandwidthMonitor : NetworkMonitorBase
     {
         private readonly System.Net.NetworkInformation.NetworkInterface _selectedInterface;
@@ -31,6 +34,33 @@ namespace NetworkMonitors
             Console.WriteLine($"Selected: {this._selectedInterface.Description}");
             Console.WriteLine($"Interface type: {this._selectedInterface.NetworkInterfaceType.ToString()}");
             Console.WriteLine($"Supported Interface speed: {this._selectedInterface.Speed}");
+        }
+
+        public BandwidthMonitor()
+        {
+            
+        }
+
+        public void NewBandwidthMonitor()
+        {
+            var dnsHostAddresses = Dns.GetHostAddresses(Dns.GetHostName()).
+                Where(addr => addr.AddressFamily == AddressFamily.InterNetwork);
+
+            foreach (var ip in dnsHostAddresses)
+            {
+                Logger.AddMessage("Request from: " + ip);
+                var request = (HttpWebRequest)WebRequest.Create("https://google.pl");
+                request.ServicePoint.BindIPEndPointDelegate = delegate {
+                    return new IPEndPoint(ip, 0);
+                };
+                var response = (HttpWebResponse)request.GetResponse();
+                //Logger.AddMessage("Actual IP: " + response.GetResponseHeader("X-YourIP"));
+
+                foreach (var responseHeader in response.Headers)           {
+                    Logger.AddMessage($"header: {responseHeader.ToString()}");
+                }
+                response.Close();
+            }
         }
     }
 }
