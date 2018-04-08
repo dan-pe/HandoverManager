@@ -1,4 +1,6 @@
-﻿using NetworkManager;
+﻿using System.Linq;
+using System.Net.NetworkInformation;
+using NetworkManager;
 using ViewModels.NetworkViewModels;
 
 namespace handovermgr.Controls.NetworkViews
@@ -30,12 +32,6 @@ namespace handovermgr.Controls.NetworkViews
             this._wifiViewModel = new WifiViewModel(new WifiNetworkInterfaceManager());
             this.DataContext = _wifiViewModel;
             InitializeComponent();
-
-            // Debugging network monitor
-            var monitor = new BandwidthMonitor();
-            monitor.NewBandwidthMonitor();
-
-
         }
 
         private void NetworksListItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -56,13 +52,19 @@ namespace handovermgr.Controls.NetworkViews
                     MessageThreshold.FAIL);
             }
 
+
+            var name = _wifiViewModel.WifiNetworkInterfaceManager.GetInterfaceName();
+            var interfaces = NetworkInterface.GetAllNetworkInterfaces();
+
             //// Mock of adding evaluated network to Main View.
-            //MainWindow.NetworksList.Add(new RadioNetworkModel()
-            //{
-            //    NetworkName = choosenNetworkName,
-            //    NetworkType = _wifiViewModel.NetworkInterface.NetworkInterfaceType.ToString(),
-            //    Parameters = new NetworkMonitorBase().EvaluateNetwork()
-            //});
+            MainWindow.NetworksList.Add(new RadioNetworkModel()
+            {
+                NetworkName = choosenNetworkName,
+                NetworkType = _wifiViewModel.WifiNetworkInterfaceManager.GetInterfaceType().ToString(),
+                Parameters = new NetworkMonitor(NetworkInterface.GetAllNetworkInterfaces()
+                .FirstOrDefault(ni => ni.Description == _wifiViewModel.WifiNetworkInterfaceManager.GetInterfaceName()))
+                .EvaluateNetwork()
+            });
         }
     }
 }

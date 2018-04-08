@@ -8,15 +8,17 @@ using NetworkMonitors.Parsers;
 
 #endregion
 
-
 namespace NetworkManager
 {
     public class WifiNetworkInterfaceManager : NetworkInterfaceManagerBase, INetworkInterface
     {
+        #region Public Properties
 
         public WlanClient WlanClient { get; }
 
         public WlanClient.WlanInterface ActiveInterface => this.WlanClient.Interfaces.FirstOrDefault();
+
+        #endregion
 
         #region Implementation of INetworkInterface
 
@@ -82,6 +84,5 @@ namespace NetworkManager
         }
 
         #endregion
-
     }
 }

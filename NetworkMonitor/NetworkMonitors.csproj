@@ -44,12 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BandwidthMonitor.cs" />
     <Compile Include="Interfaces\INetworkStress.cs" />
-    <Compile Include="LatencyMonitor.cs" />
+    <Compile Include="Interfaces\IParameterTest.cs" />
     <Compile Include="Parsers\SsidParser.cs" />
-    <Compile Include="NetworkMonitorBase.cs" />
-    <Compile Include="NetworkStressers.cs" />
+    <Compile Include="NetworkMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +59,9 @@
       <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
       <Name>RadioNetworks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Monitors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
