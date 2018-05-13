@@ -1,4 +1,5 @@
 ﻿using Logger;
+using RadioNetworks;
 
 namespace handovermgr.Controls
 {
@@ -7,7 +8,6 @@ namespace handovermgr.Controls
     using System;
     using System.Linq;
     using System.Windows;
-    using RadioNetworks;
 
     #endregion
 
