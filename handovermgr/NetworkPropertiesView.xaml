@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:handovermgr"
         mc:Ignorable="d"
-        Title="NetworkPropertiesView" Height="300" Width="200">
+        Title="Properties" Height="300" Width="200">
 
     <StackPanel x:Name="NetworkItemView" Orientation="Vertical" >
         <StackPanel  Orientation="Horizontal">
@@ -24,17 +24,17 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="Bit Error Rate" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.BitErrorRate}"/>
+            <Label Content="Packet Loss [%]" Width="100" Margin="5"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.PacketLossPercentage}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-                <Label Content="Jitter" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.JitterInMsec}"/>
+                <Label Content="Delay [msec]" Width="100" Margin="5"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.DelayInMsec}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Packet Loss" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.PacketLossPercentage}"/>
+            <Label Content="Response [msec]" Width="100" Margin="5"/>
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.ResponseTimeInMsec}"/>
         </StackPanel>
         
         <StackPanel Orientation="Vertical">
