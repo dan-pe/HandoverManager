@@ -1,17 +1,9 @@
 ﻿namespace NetworkManager
 {
-    public abstract class NetworkInterface
+    public interface INetworkInterface
     {
-        protected InterfaceType InterfaceType;
-
-        protected string InterfaceName;
-
-        protected int InterfaceSpeed;
-    }
-
-    public enum InterfaceType
-    {
-        Wifi,
-        RDI
+        string GetInterfaceName();
+        string GetInterfaceType();
+        string GetInterfaceSpeed();
     }
 }

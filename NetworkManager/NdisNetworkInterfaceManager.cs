@@ -1,15 +1,29 @@
-﻿namespace NetworkManager
+﻿using HuaweiWebAPI.Structs;
+
+namespace NetworkManager
 {
-    public class NdisNetworkInterfaceManager : NetworkInterfaceManager
+    public class NdisNetworkInterfaceManager : NetworkInterfaceManagerBase, INetworkInterface
     {
+        private readonly BasicInformation _basicInformation;
+
         public NdisNetworkInterfaceManager()
         {
-            var basicInterfaceInformation = HuaweiWebAPI.HuaweiWebApi.BasicInformation();
+            this._basicInformation = HuaweiWebAPI.HuaweiWebApi.BasicInformation();
+        }
 
-            this.Name = basicInterfaceInformation.DeviceName;
-            this.Type = basicInterfaceInformation.ProductFamily;
+        public string GetInterfaceName()
+        {
+            return _basicInformation.DeviceName;
+        }
 
-            var costam = HuaweiWebAPI.HuaweiWebApi.MonitoringStatus();
+        public string GetInterfaceType()
+        {
+            return _basicInformation.ProductFamily;
+        }
+
+        public string GetInterfaceSpeed()
+        {
+            return "NotImplemented";
         }
     }
 

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HandoverAlgorithmBase.NovelAlgorithm.NovelHandoverAlgorithm">
+    <Position X="3.75" Y="2" Width="2.5" />
+    <Members>
+      <Method Name="NovelHandoverAlgorithm" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAwAAAQAAAAAAAIAAAEAEAAAAA=</HashCode>
+      <FileName>NovelAlgorithm\NovelHandoverAlgorithm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="NovelNetworkModels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HandoverAlgorithmBase.NovelAlgorithm.NovelNetworkModel">
+    <Position X="8" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NovelAlgorithm\NovelNetworkModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RadioNetworkModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RadioNetworks.RadioNetworkModel">
+    <Position X="8" Y="3.75" Width="2" />
+    <Members>
+      <Method Name="RadioNetworkModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Parameters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RadioNetworks.NetworkParameters">
+    <Position X="10.5" Y="2" Width="2" />
+    <Members>
+      <Method Name="NetworkParameters" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

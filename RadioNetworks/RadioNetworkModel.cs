@@ -1,9 +1,5 @@
 ﻿namespace RadioNetworks
 {
-    #region Usings
-
-    #endregion
-
     /// <summary>
     /// The radio network model.
     /// </summary>
@@ -17,9 +13,9 @@
 
         public RadioNetworkModel(string name, string networkType, NetworkParameters networkParameters)
         {
-            NetworkName = name;
-            NetworkType = networkType;
-            Parameters = networkParameters;
+            this.NetworkName = name;
+            this.NetworkType = networkType;
+            this.Parameters = networkParameters;
         }
 
         #endregion

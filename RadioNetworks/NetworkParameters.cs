@@ -1,11 +1,11 @@
+#region Usings
+
+using System;
+
+#endregion
+
 namespace RadioNetworks
 {
-    #region Usings
-
-    using System;
-
-    #endregion
-
 
     public class NetworkParameters
     {

@@ -1,11 +1,11 @@
-﻿using RadioNetworks;
+﻿#region Usings
+
+using RadioNetworks;
+
+#endregion
 
 namespace HandoverAlgorithmBase.NovelAlgorithm
 {
-    #region Usings
-
-    #endregion
-
     #region Constructor
 
     /// <summary>

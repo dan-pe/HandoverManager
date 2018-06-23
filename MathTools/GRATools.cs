@@ -25,14 +25,12 @@ namespace MathTools
         /// Value to normalize.
         /// </param>
         /// <returns>
-        /// <see cref="float"/>
+        /// <see cref="double"/>
         /// Normalized value.
         /// </returns>
         public static double NormalizeSmallerTheBetter(IEnumerable<double> passedValues, double value)
         {
             var enumerable = passedValues as double[] ?? passedValues.ToArray();
-            var meter = (enumerable.Max() - value);
-
             var result = (enumerable.Max() - value) / (enumerable.Max() - enumerable.Min());
 
             if (Double.IsNaN(result))
@@ -49,9 +47,11 @@ namespace MathTools
         /// <param name="passedValues">
         /// Passed values collection.
         /// </param>
-        /// <param name="value"></param>
+        /// <param name="value">
+        /// Value to normalize.
+        /// </param>
         /// <returns>
-        /// <see cref="float"/>
+        /// <see cref="double"/>
         /// Normalized value.
         /// </returns>
         public static double NormalizeLargerTheBetter(IEnumerable<double> passedValues, double value)

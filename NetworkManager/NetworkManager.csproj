@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedWifi">
+      <HintPath>..\ManagedWifi\ManagedWifi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,14 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="INetworkInterface.cs" />
-    <Compile Include="NetworkInterfaceManager.cs" />
+    <Compile Include="NetworkInterfaceManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NdisNetworkInterfaceManager.cs" />
+    <Compile Include="WifiNetworkInterfaceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HuaweiWebAPI\HuaweiWebAPI.csproj">
       <Project>{4b402e3b-da63-427f-9be4-0188d76ee903}</Project>
       <Name>HuaweiWebAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkMonitor\NetworkMonitors.csproj">
+      <Project>{A67786E7-7E88-4548-BCC3-6E895B120FC7}</Project>
+      <Name>NetworkMonitors</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

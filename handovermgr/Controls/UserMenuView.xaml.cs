@@ -101,7 +101,7 @@
                     MainWindow.NetworksList.Add(csvNetwork);
 
                 Logger.AddMessage(
-                    $"Succesfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
+                    $"Successfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
                     MessageThreshold.SUCCESS);
             }
             catch (Exception exception)
