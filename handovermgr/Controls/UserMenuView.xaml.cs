@@ -1,4 +1,8 @@
-﻿namespace handovermgr.Controls
+﻿using handovermgr.Controls.NetworkViews;
+using RadioNetworks;
+using ViewModels.NetworkViewModels;
+
+namespace handovermgr.Controls
 {
     #region Usings
 
@@ -147,9 +151,15 @@
                 .SetProfile((sender as ComboBox)?.SelectedItem as string);
         }
 
-        private void Network_OnClick(object sender, RoutedEventArgs e)
+        private void WifiNetworks_OnClick(object sender, RoutedEventArgs e)
         {
-            var networkView = new NetworkView();
+            var wifiNetworksView = new WifiNetworksView();
+            wifiNetworksView.Show();
+        }
+
+        private void RadioNetworks_OnClick(object sender, RoutedEventArgs e)
+        {
+            var networkView = new RadioNetworksView();
             networkView.Show();
         }
     }

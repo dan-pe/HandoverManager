@@ -1,18 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using HandoverAlgorithmBase.NovelAlgorithm;
 using Logger;
+using RadioNetworks;
 
-namespace handovermgr.Controls
+namespace handovermgr.Controls.NetworkViews
 {
     #region Usings
-
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
-    using RadioNetworks;
-    using System;
 
     #endregion
 

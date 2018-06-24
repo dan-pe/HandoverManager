@@ -62,11 +62,14 @@
     <Compile Include="Controls\AddNetworkView.xaml.cs">
       <DependentUpon>AddNetworkView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\HandoverView.xaml.cs">
+    <Compile Include="Controls\NetworkViews\HandoverView.xaml.cs">
       <DependentUpon>HandoverView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\NetworkView.xaml.cs">
-      <DependentUpon>NetworkView.xaml</DependentUpon>
+    <Compile Include="Controls\NetworkViews\RadioNetworksView.xaml.cs">
+      <DependentUpon>RadioNetworksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NetworkViews\WifiNetworksView.xaml.cs">
+      <DependentUpon>WifiNetworksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NetworkViews\NdisView.xaml.cs">
       <DependentUpon>NdisView.xaml</DependentUpon>
@@ -89,11 +92,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\HandoverView.xaml">
+    <Page Include="Controls\NetworkViews\HandoverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\NetworkView.xaml">
+    <Page Include="Controls\NetworkViews\RadioNetworksView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NetworkViews\WifiNetworksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

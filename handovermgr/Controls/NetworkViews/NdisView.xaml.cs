@@ -11,7 +11,7 @@ namespace handovermgr.Controls.NetworkViews
         public NdisView()
         {
             this.DataContext = new NdisViewModel(new NdisNetworkInterfaceManager());
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
