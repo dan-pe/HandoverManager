@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using NativeWifi;
 using NetworkMonitors.Parsers;
 
@@ -57,7 +58,8 @@ namespace NetworkManager
             this.ActiveInterface.Scan();
 
             foreach (var availableNetwork in this.ActiveInterface
-                .GetNetworkBssList())
+                .GetNetworkBssList()
+                .Where(n => n.dot11Ssid.SSID.Length > 0))
             {
                 networkSsiDs.Add(SsidParser.ParseFromBytes(availableNetwork.dot11Ssid.SSID));
             }
@@ -70,6 +72,7 @@ namespace NetworkManager
             try
             {
                 this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
+                Thread.Sleep(TimeSpan.FromSeconds(5));
                 return true;
             }
             catch (Exception)

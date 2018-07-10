@@ -113,7 +113,6 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
         {
             var througoutputs = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ThroughputInMbps).ToArray();
             var packtloses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.PacketLossPercentage).ToArray();
-            var delays = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.DelayInMsec).ToArray();
             var responses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ResponseTimeInMsec).ToArray();
             var sec = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
 
@@ -129,12 +128,10 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
                         networkModel.RadioNetworkModel.Parameters.ThroughputInMbps) * ahpWeights[0] +
                     GraTools.NormalizeSmallerTheBetter(packtloses,
                         networkModel.RadioNetworkModel.Parameters.PacketLossPercentage) * ahpWeights[1] +
-                    GraTools.NormalizeSmallerTheBetter(delays,
-                        networkModel.RadioNetworkModel.Parameters.DelayInMsec) * ahpWeights[2] +
                     GraTools.NormalizeSmallerTheBetter(responses,
-                        networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) * ahpWeights[3] +
+                        networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) * ahpWeights[2] +
                     GraTools.NormalizeLargerTheBetter(sec,
-                        networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[4]; 
+                        networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[3]; 
 
                 networkModel.GrcFactor = grc;
             }

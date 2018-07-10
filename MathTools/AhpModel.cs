@@ -52,25 +52,26 @@
         /// </returns>
         public double[] GetOutputWeights()
         {
-            var meansVector = new double[NumberOfCriteria];
-            var criteriaVector = new double[NumberOfCriteria];
-            var weightCoefficients = new double[NumberOfCriteria];
+            //var meansVector = new double[NumberOfCriteria];
+            //var criteriaVector = new double[NumberOfCriteria];
+            //var weightCoefficients = new double[NumberOfCriteria];
 
-            for (var i = 0; i < NumberOfCriteria; i++)
-            {
-                for (var j = 0; j < NumberOfCriteria; j++)
-                {
-                    criteriaVector[j] = InputWeights[i, j];
-                }
-                meansVector[i] = GeometricMean(criteriaVector);
-            }
+            //for (var i = 0; i < NumberOfCriteria; i++)
+            //{
+            //    for (var j = 0; j < NumberOfCriteria; j++)
+            //    {
+            //        criteriaVector[j] = InputWeights[i, j];
+            //    }
+            //    meansVector[i] = GeometricMean(criteriaVector);
+            //}
 
-            for (var i = 0; i < NumberOfCriteria; i++)
-            {
-                weightCoefficients[i] = meansVector[i] / meansVector.Sum();
-            }
+            //for (var i = 0; i < NumberOfCriteria; i++)
+            //{
+            //    weightCoefficients[i] = meansVector[i] / meansVector.Sum();
+            //}
 
-            return weightCoefficients;
+            //return weightCoefficients;
+            return ComputeNormalizedVector(this.InputWeights);
         }
 
         /// <summary>
