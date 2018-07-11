@@ -1,4 +1,3 @@
-﻿name, type, throutp,  packetloss,  response,  security
-DanNet, LTE-A, 10.0, 0.02, 2.0, 32.0
-OtherNet, WiMax, 2.0, 0.01, 2.0, 1.0 
-OtheriestNet, WiFI, 24.0, 0.2, 22.0, 1.0
+﻿name	, type			, throutp	,  packetloss	,  response ,  security
+DanNet	, Wireless80211	, 9.011		,  1.350		,  87.0		,  5.0
+DanNet5	, Wireless80211 , 11.180	,  2.925		,  24.70	,  5.0 

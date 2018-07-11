@@ -72,9 +72,8 @@
                 {
                     ThroughputInMbps = double.Parse(networkElements[2], CultureInfo.InvariantCulture),
                     PacketLossPercentage = double.Parse(networkElements[3], CultureInfo.InvariantCulture),
-                    DelayInMsec = double.Parse(networkElements[4], CultureInfo.InvariantCulture),
-                    ResponseTimeInMsec = double.Parse(networkElements[5], CultureInfo.InvariantCulture),
-                    SecurityLevel = double.Parse(networkElements[6], CultureInfo.InvariantCulture),
+                    ResponseTimeInMsec = double.Parse(networkElements[4], CultureInfo.InvariantCulture),
+                    SecurityLevel = double.Parse(networkElements[5], CultureInfo.InvariantCulture),
                 }
 
             };
