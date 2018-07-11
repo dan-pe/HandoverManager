@@ -21,23 +21,24 @@
             <DockPanel>
                 <Label Width="100">Name:</Label>
                 <TextBlock x:Name="RDIInterfaceNameTextBox"
+                           VerticalAlignment="Center"
                            Text="{Binding Path=Name}"/>
             </DockPanel>
             <DockPanel>
                 <Label Width="100">Type:</Label>
                 <TextBlock x:Name="RDIInterfaceTypeTextBox"
+                           VerticalAlignment="Center"
                            Text="{Binding Path=Type}"/>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="100">Speed:</Label>
-                <TextBlock x:Name="RDIInterfaceSpeedTextBox"/>
             </DockPanel>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
-            <Label HorizontalAlignment="Center" FontWeight="Bold">
-                Network List for active RDI interface
-            </Label>
+           
+            <Button 
+                x:Name="EvaluteButton"
+                Width="200" Click="EvaluteButton_Click">
+                 Evaluate Network
+            </Button>
         </StackPanel>
     </Grid>
     </Border>

@@ -72,7 +72,14 @@ namespace NetworkManager
             try
             {
                 this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
-                Thread.Sleep(TimeSpan.FromSeconds(5));
+                //this.ActiveInterface.ConnectSynchronously(
+                //    Wlan.WlanConnectionMode.Profile,
+                //    Wlan.Dot11BssType.Any,
+                //    profileName,
+                //        400);
+
+                //)nect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
+                Thread.Sleep(TimeSpan.FromSeconds(3));
                 return true;
             }
             catch (Exception)
@@ -84,6 +91,11 @@ namespace NetworkManager
         public Wlan.WlanProfileInfo[] GetNetworkProfiles()
         {
             return this.ActiveInterface.GetProfiles();
+        }
+
+        public Wlan.WlanSecurityAttributes GetSecurityInfo()
+        {
+            return this.ActiveInterface.CurrentConnection.wlanSecurityAttributes;
         }
 
         #endregion

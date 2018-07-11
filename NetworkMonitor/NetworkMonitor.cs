@@ -1,8 +1,5 @@
 ﻿using System;
-using System.CodeDom;
-using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using Logger;
 
 namespace NetworkMonitors
@@ -31,7 +28,7 @@ namespace NetworkMonitors
         #region Properties
 
         private readonly NetworkInterface _networkInterface;
-        private string _gatewayAddress;
+        private readonly string _gatewayAddress;
 
         private IPAddress IpAddress
         {
@@ -53,10 +50,22 @@ namespace NetworkMonitors
                 ResponseTimeInMsec = this.ResponseTest(),
                 ThroughputInMbps = this.ThroughoutputTest(),
                 PacketLossPercentage = this.PacketLossTest(),
-                SecurityLevel = 5
+                SecurityLevel = this.GetSecurityLevel()
             };
 
             return networkParameters;
+        }
+
+        private double GetSecurityLevel()
+        {
+            switch (this._networkInterface.NetworkInterfaceType)
+            {
+                case NetworkInterfaceType.Wireless80211:
+                    return 5;
+                default:
+                    return 3;
+                    
+            }
         }
 
         #endregion
@@ -97,14 +106,13 @@ namespace NetworkMonitors
             double meanLatency = 0;
             const int iterations = 10;
 
-            var pingReply = ping.Send(this.IpAddress);
+            var pingReply = ping.Send(this._gatewayAddress);
 
             for (int i = 0; i < iterations; i++)
             {
                 if (pingReply == null) continue;
 
-                var address = this._networkInterface.GetIPProperties().GatewayAddresses.FirstOrDefault()?.Address.ToString();
-                pingReply = ping.Send(address ?? throw new InvalidOperationException());
+                pingReply = ping.Send(this._gatewayAddress ?? throw new InvalidOperationException());
                 if (pingReply != null) meanLatency += pingReply.RoundtripTime;
             }
 
@@ -140,34 +148,6 @@ namespace NetworkMonitors
             var mBytes = this.ConvertBytestoMbytes(length);
             Logger.Logger.AddMessage($"Testing for {this._gatewayAddress} done.");
             return mBytes / totalSecondsDiff;
-        }
-
-        private void StressNetwork()
-        {
-
-            //var tcpUtil = new TcpUtil.TcpUtil(this.IpAddress.ToString());
-
-
-                var request = (HttpWebRequest)WebRequest.Create("http://gameranx.com/wp-content/uploads/2016/06/Scalebound-4K-Wallpaper.jpg");
-                request.ServicePoint.BindIPEndPointDelegate = delegate {
-                    return new IPEndPoint(this.IpAddress, 0);
-                };
-
-            Logger.Logger.AddMessage($"Binding EndPoint to: {this.IpAddress}");
-
-            try
-            {
-                var response = (HttpWebResponse)request.GetResponse();
-                var length = response.ContentLength;
-                var inBytes = this.ConvertBytestoMbytes(length);
-                Logger.Logger.AddMessage($"Starting stress test");
-
-            }
-            catch (Exception e)
-            {
-                Logger.Logger.AddMessage($"Error occurred while getting: {request.RequestUri} message {e.Message}");
-
-            }
         }
 
         private double ConvertBytestoMbytes(long bytes)

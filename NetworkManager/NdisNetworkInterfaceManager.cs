@@ -1,4 +1,5 @@
-﻿using HuaweiWebAPI.Structs;
+﻿using HuaweiWebAPI;
+using HuaweiWebAPI.Structs;
 
 namespace NetworkManager
 {
@@ -18,7 +19,7 @@ namespace NetworkManager
 
         public string GetInterfaceType()
         {
-            return _basicInformation.ProductFamily;
+            return ((NetworkType)HuaweiWebApi.MonitoringStatus().CurrentNetworkType).ToString();
         }
 
         public string GetInterfaceSpeed()
