@@ -1,3 +1,4 @@
-﻿name	, type			, throutp	,  packetloss	,  response ,  security
-DanNet	, Wireless80211	, 9.011		,  1.350		,  87.0		,  5.0
-DanNet5	, Wireless80211 , 11.180	,  2.925		,  24.70	,  5.0 
+﻿name		, type			, throutp	,  packetloss	,  response ,  security
+DanNet		, Wireless80211	, 9.011		,  1.350		,  87.0		,  5.0
+DanNet5		, Wireless80211 , 11.180	,  2.925		,  24.70	,  5.0 
+FunBox-C275	, Wireless80211 , 8.801		,  0.475		,  1.80		,  5.0 
