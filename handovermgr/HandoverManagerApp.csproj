@@ -165,6 +165,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExcelLogger\ExcelLogger.csproj">
+      <Project>{6747ed1b-8286-4ee4-87c1-fa7271851a29}</Project>
+      <Name>ExcelLogger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileReaders\FileReaders.csproj">
       <Project>{eb20c56d-a44f-4b7c-b4b1-ba3da787d4fc}</Project>
       <Name>FileReaders</Name>
