@@ -1,6 +1,4 @@
 ﻿using handovermgr.Controls.NetworkViews;
-using RadioNetworks;
-using ViewModels.NetworkViewModels;
 
 namespace handovermgr.Controls
 {

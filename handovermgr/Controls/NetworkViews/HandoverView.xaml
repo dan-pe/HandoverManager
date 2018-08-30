@@ -10,6 +10,8 @@
             <StackPanel Orientation="Horizontal">
                 <Label Width="90" Margin="5" FontWeight="DemiBold">Network name</Label>
                 <Label Margin="5" FontWeight="DemiBold">GRC Factor</Label>
+                <Button x:Name="GenerateXlsButton" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Click="GenerateXlsButton_Click">Generate XLS</Button>
             </StackPanel>
-        </StackPanel>    
+    </StackPanel>
+    
 </Window>

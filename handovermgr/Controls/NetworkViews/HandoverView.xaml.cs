@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
+﻿#region Usings
+
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ExcelLogger;
 using HandoverAlgorithmBase.NovelAlgorithm;
 using Logger;
+using Microsoft.Win32;
+using Profiler;
 using RadioNetworks;
+
+#endregion
 
 namespace handovermgr.Controls.NetworkViews
 {
-    #region Usings
-
-    #endregion
-
     /// <summary>
     /// Interaction logic for HandoverView.xaml
     /// </summary>
@@ -25,11 +28,14 @@ namespace handovermgr.Controls.NetworkViews
         /// </summary>
         private readonly List<RadioNetworkModel> _radioNetworksList;
 
+        private List<NovelNetworkModel> _novelNetworksList;
+
         /// <summary>
         /// Margins thickness.
         /// </summary>
         private int _marginThickness = 5;
 
+        UserProfile selectedUserProfile;
 
         #endregion
 
@@ -61,12 +67,13 @@ namespace handovermgr.Controls.NetworkViews
         {
             Logger.Logger.AddMessage("Handover evaluation started.");
 
-            var selectedUserProfile = Profiler.ProfileManager.Instance.GetProfileByName(novelProfileComboBox.Text);
+            this.selectedUserProfile = Profiler.ProfileManager.Instance.GetProfileByName(novelProfileComboBox.Text);
 
-            NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList, selectedUserProfile);
+            NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList,this.selectedUserProfile);
 
             novelHandover.RunSelection();
             var resultNetwork = novelHandover.SelectResultNetwork();
+            this._novelNetworksList = novelHandover.NovelNetworkModels;
 
             foreach (var radioNetwork in novelHandover.NovelNetworkModels)
             {
@@ -109,6 +116,20 @@ namespace handovermgr.Controls.NetworkViews
             stackpanel.Children.Add(textBox);
 
             HandoverPanel.Children.Add(stackpanel);
+        }
+
+        /// <summary>
+        /// Generates Xls format log.
+        /// </summary>
+        private void GenerateXlsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel file (*.xlsx)|*.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.ShowDialog();
+
+            ExcelLog excelLog = new ExcelLog(saveFileDialog.FileName, this._novelNetworksList, this.selectedUserProfile);
         }
     }
 }

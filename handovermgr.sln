@@ -55,6 +55,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serializers", "Serializers"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serializers", "Serializers\Serializers.csproj", "{91EBFF46-B522-4734-917A-E9DEB4C28A46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelLogger", "ExcelLogger\ExcelLogger.csproj", "{6747ED1B-8286-4EE4-87C1-FA7271851A29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,10 @@ Global
 		{91EBFF46-B522-4734-917A-E9DEB4C28A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91EBFF46-B522-4734-917A-E9DEB4C28A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91EBFF46-B522-4734-917A-E9DEB4C28A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6747ED1B-8286-4EE4-87C1-FA7271851A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6747ED1B-8286-4EE4-87C1-FA7271851A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6747ED1B-8286-4EE4-87C1-FA7271851A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6747ED1B-8286-4EE4-87C1-FA7271851A29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,6 +140,7 @@ Global
 		{4B402E3B-DA63-427F-9BE4-0188D76EE903} = {83B31BE0-6E8C-4827-915B-B362BBEF87AF}
 		{F0AE4AF1-0E44-4CCD-AEE4-0CEAA2A41DB9} = {DB8E696F-249F-42DC-961E-25B1533083DD}
 		{91EBFF46-B522-4734-917A-E9DEB4C28A46} = {F0AE4AF1-0E44-4CCD-AEE4-0CEAA2A41DB9}
+		{6747ED1B-8286-4EE4-87C1-FA7271851A29} = {DD19DEDE-DBB5-4ABD-AD1B-EF47312424D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11D1D1FA-8554-4FF9-A9AD-5DB8196F2CA6}
