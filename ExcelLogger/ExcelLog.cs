@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Excel;
-using Profiler;
+
 using HandoverAlgorithmBase.NovelAlgorithm;
+using Profiler;
 
 #endregion
 
@@ -13,10 +14,16 @@ namespace ExcelLogger
 {
     public class ExcelLog
     {
-        private Application _excelApp;
+        #region Private Fields
+        
+        private readonly Application _excelApp;
 
         private readonly Workbook workbook;
 
+        #endregion
+
+        #region Constructors
+        
         public ExcelLog(string fileName, List<NovelNetworkModel> novelNetworks, UserProfile profileName)
         {
             this._excelApp = new Application();
@@ -32,6 +39,8 @@ namespace ExcelLogger
             Marshal.ReleaseComObject(this.workbook);
             Marshal.ReleaseComObject(this._excelApp);
         }
+
+        #endregion
 
         private void GenerateContent(List<NovelNetworkModel> novelNetworks, UserProfile profileName)
         {
@@ -79,9 +88,9 @@ namespace ExcelLogger
 
             // Generate Chart
 
-            ChartObjects charts = (ChartObjects) workSheet.ChartObjects(Type.Missing);
-            ChartObject chartObject = (ChartObject) charts.Add(200, 200, 200, 200);
-            Chart chart = (Chart) chartObject.Chart;
+            var charts = (ChartObjects) workSheet.ChartObjects(Type.Missing);
+            var chartObject = charts.Add(200, 200, 200, 200);
+            var chart = chartObject.Chart;
 
 
             var chartRange = workSheet.Range[
@@ -90,10 +99,6 @@ namespace ExcelLogger
             chart.SetSourceData(chartRange, System.Reflection.Missing.Value);
             chart.ChartType = XlChartType.xlColumnClustered;
             chart.ChartTitle.Caption = "Networks GRC Factor";
-
-
-        }
+            }
     }
-
-    
 }
