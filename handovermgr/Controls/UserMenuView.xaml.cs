@@ -158,7 +158,15 @@ namespace handovermgr.Controls
         private void RadioNetworks_OnClick(object sender, RoutedEventArgs e)
         {
             var networkView = new RadioNetworksView();
-            networkView.Show();
+            try
+            {
+                networkView.Show();
+            }
+            catch (Exception exception)
+            {
+                Logger.AddMessage($"Failed to initalize Cellular Networks: {exception.Message}",
+                    MessageThreshold.FAIL);
+            }
         }
     }
 }

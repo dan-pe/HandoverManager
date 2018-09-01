@@ -17,7 +17,7 @@
             <Button Margin="4 0 4 5" Click="WifiNetworks_OnClick">WiFi Networks</Button>
         </DockPanel>
         <DockPanel>
-            <Button Margin="4 0 4 5" Click="RadioNetworks_OnClick">Radio Networks</Button>
+            <Button Margin="4 0 4 5" Click="RadioNetworks_OnClick">Cellular Networks</Button>
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 5" Click="ManageUserProfile_OnCLick">Manage User Profile</Button>

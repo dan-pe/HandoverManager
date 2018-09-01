@@ -20,13 +20,13 @@
                 </Label>
             </DockPanel>
             <DockPanel>
-                <Label Width="100">Name:</Label>
+                <Label Width="80">Name:</Label>
                 <TextBlock x:Name="InterfaceNameTextBox"
                            VerticalAlignment="Center"
                            Text="{Binding Path=Name}"/>
             </DockPanel>
             <DockPanel>
-                <Label Width="100">Type:</Label>
+                <Label Width="80">Type:</Label>
                 <TextBlock x:Name="InterfaceTypeTextBox"
                            VerticalAlignment="Center"
                            Text="{Binding Path=Type}"/>

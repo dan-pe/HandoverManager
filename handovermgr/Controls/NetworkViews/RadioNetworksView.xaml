@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:networkViews="clr-namespace:handovermgr.Controls.NetworkViews"
         mc:Ignorable="d"
-        Title="WifiNetworksView" Height="400" Width="300"
+        Title="Cellular Network" Height="180" Width="300"
         Background="Aquamarine">
     <Grid>
         <!--#region Grid Definitions-->

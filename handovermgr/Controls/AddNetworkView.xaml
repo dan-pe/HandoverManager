@@ -25,12 +25,12 @@
             <TextBox x:Name="AddPacketLossBox"  Height="25" Width="80"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Delay" Width="100" Margin="5"/>
-            <TextBox x:Name="AddDelayBox"  Height="25" Width="80"/>
+            <Label Content="Response" Width="100" Margin="5"/>
+            <TextBox x:Name="AddResponseBox"  Height="25" Width="80"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="BasicInformation" Width="100" Margin="5"/>
-            <TextBox x:Name="AddResponseBox"  Height="25" Width="80"/>
+            <Label Content="Security" Width="100" Margin="5"/>
+            <TextBox x:Name="AddSecurityBox"  Height="25" Width="80"/>
         </StackPanel>
 
 

@@ -48,8 +48,8 @@ namespace handovermgr.Controls
                     {
                         ThroughputInMbps = double.Parse(AddThroughoutputBox.Text),
                         PacketLossPercentage = double.Parse(AddPacketLossBox.Text),
-                        DelayInMsec = double.Parse(AddDelayBox.Text),
-                        ResponseTimeInMsec = double.Parse(AddResponseBox.Text)
+                        ResponseTimeInMsec = double.Parse(AddResponseBox.Text),
+                        SecurityLevel = double.Parse(AddSecurityBox.Text)
                         // TODO: Add security level based on network type
                     }
 
