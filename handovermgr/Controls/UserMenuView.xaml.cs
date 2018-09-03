@@ -157,9 +157,9 @@ namespace handovermgr.Controls
 
         private void RadioNetworks_OnClick(object sender, RoutedEventArgs e)
         {
-            var networkView = new RadioNetworksView();
             try
             {
+                var networkView = new RadioNetworksView();
                 networkView.Show();
             }
             catch (Exception exception)
