@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Logger;
 
@@ -10,6 +11,7 @@ namespace NetworkMonitors
     using System.Linq;
     using System.Net;
     using System.Net.NetworkInformation;
+    using System.Threading;
     using RadioNetworks;
 
     #endregion
@@ -104,8 +106,9 @@ namespace NetworkMonitors
         private double ResponseTest()
         {
             var ping = new Ping();
+            
             double meanLatency = 0;
-            const int iterations = 10;
+            const int iterations = 50;
 
             var pingReply = ping.Send(this._gatewayAddress);
 
@@ -113,8 +116,9 @@ namespace NetworkMonitors
             {
                 if (pingReply == null) continue;
 
-                pingReply = ping.Send(this._gatewayAddress ?? throw new InvalidOperationException());
+                pingReply = ping.Send(this._gatewayAddress, TimeSpan.FromMilliseconds(80).Milliseconds);
                 if (pingReply != null) meanLatency += pingReply.RoundtripTime;
+
             }
 
             return meanLatency / iterations;
@@ -146,7 +150,7 @@ namespace NetworkMonitors
             var endTime = DateTime.Now;
             var totalSecondsDiff = (endTime - startTime).TotalSeconds;
             var mBytes = this.ConvertBytestoMbytes(length);
-            Logger.Logger.AddMessage($"Testing for {this._gatewayAddress} done.");
+            Logger.Logger.AddMessage($"Testing for {this.IpAddress} done.");
             return mBytes / totalSecondsDiff;
         }
 
@@ -163,15 +167,97 @@ namespace NetworkMonitors
             List<double> results = new List<double>();
             foreach (var serverName in serverList)
             {
-                var a = ThroughoutputTest(serverName);
-                results.Add(a);
-                Logger.Logger.AddMessage($"Evaluation of network: {a} MBps");
+                var MbpsResult = 0.0;
+
+                if (serverName.Contains("ftp"))
+                {
+                    MbpsResult = DownloadViaFtp(serverName);
+                }
+
+                if (serverName.Contains("http"))
+                {
+                    MbpsResult = DownloadViaHttp(serverName);
+                }
+
+                results.Add(MbpsResult);
+                Logger.Logger.AddMessage($"Evaluation of network: {MbpsResult} MBps");
             }
 
             var result = results.Sum() / results.Count;
             return result;
         }
 
+        public double DownloadViaFtp(string urlSource)
+        {
+            var startTime = DateTime.Now;
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(urlSource);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.UseBinary = true;
+            request.UsePassive = true;
+            request.Timeout = 20 * 10000;
+            request.ReadWriteTimeout = 20 * 10000;
+            request.Credentials = new NetworkCredential("anonymous", "anonymous");
+
+            request.ServicePoint.BindIPEndPointDelegate = delegate
+            {
+                return new IPEndPoint(this.IpAddress, 0);
+            };
+
+            var response = (FtpWebResponse)request.GetResponse();
+            var length = response.ContentLength;
+
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+
+            reader.ReadToEnd();
+
+            //while (!reader.EndOfStream)
+            //{
+            //    var a = reader.Read();
+            //}
+
+
+            Console.WriteLine($"Download Complete via FTP, status {response.StatusDescription}");
+
+            reader.Close();
+            response.Close();
+
+            var endTime = DateTime.Now;
+            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
+            var mBytes = this.ConvertBytestoMbytes(length);
+            Logger.Logger.AddMessage($"Testing for {this.IpAddress} done. Elapsed time {totalSecondsDiff}s" );
+            return mBytes / totalSecondsDiff;
+        }
+
+        public double DownloadViaHttp(string urlSource)
+        {
+            var startTime = DateTime.Now;
+            var length = 0;
+            var request = (HttpWebRequest)WebRequest.Create(urlSource);
+            request.ServicePoint.BindIPEndPointDelegate = delegate {
+                return new IPEndPoint(this.IpAddress, 0);
+            };
+
+            Logger.Logger.AddMessage($"Binding EndPoint to: {this.IpAddress}");
+
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+                length = (int)response.ContentLength;
+                Logger.Logger.AddMessage($"Starting stress test ...");
+
+            }
+            catch (Exception e)
+            {
+                Logger.Logger.AddMessage($"Error occurred while getting: {request.RequestUri} message {e.Message}");
+            }
+
+            var endTime = DateTime.Now;
+            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
+            var mBytes = this.ConvertBytestoMbytes(length);
+            Logger.Logger.AddMessage($"Testing for {this.IpAddress} done.");
+            return mBytes / totalSecondsDiff;
+        }
         #endregion
     }
 }

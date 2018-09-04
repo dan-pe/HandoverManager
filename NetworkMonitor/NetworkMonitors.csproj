@@ -48,6 +48,7 @@
     <Compile Include="Downloaders\HttpDownloader.cs" />
     <Compile Include="Interfaces\INetworkStress.cs" />
     <Compile Include="Interfaces\IParameterTest.cs" />
+    <Compile Include="Monitors\ResponseTester.cs" />
     <Compile Include="Parsers\SsidParser.cs" />
     <Compile Include="NetworkMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,8 +64,6 @@
       <Name>RadioNetworks</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Monitors\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
