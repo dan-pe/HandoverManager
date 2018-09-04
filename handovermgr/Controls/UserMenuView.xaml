@@ -23,6 +23,9 @@
             <Button Margin="4 0 4 5" Click="ManageUserProfile_OnCLick">Manage User Profile</Button>
         </DockPanel>
         <DockPanel>
+            <Button Margin="4 0 4 5" Click="ServerList_OnCLick">Server List</Button>
+        </DockPanel>
+        <DockPanel>
             <Label  Content="Select profile: " FontWeight="Bold" Margin="4 70 4 0"/>
         </DockPanel>
         <DockPanel>

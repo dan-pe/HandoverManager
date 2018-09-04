@@ -1,0 +1,33 @@
+﻿<Window x:Class="handovermgr.Controls.ServerListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:handovermgr.Controls"
+        mc:Ignorable="d"
+        Title="ServerListView" Height="450" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <ListView x:Name="ServerListViewBox" DisplayMemberPath="">
+
+            </ListView>
+        </DockPanel>
+        <DockPanel Grid.Row="1">
+            <DockPanel VerticalAlignment="Center">
+                <TextBox x:Name="ServerNameTextBox"
+                         Width="240">
+                     insert server name
+                </TextBox>
+                <Button x:Name="AddServerButton" Click="AddServerButton_OnClick"> Add </Button>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -168,5 +168,11 @@ namespace handovermgr.Controls
                     MessageThreshold.FAIL);
             }
         }
+
+        private void ServerList_OnCLick(object sender, RoutedEventArgs e)
+        {
+            var serverListView = new ServerListView();
+            serverListView.Show();
+        }
     }
 }
