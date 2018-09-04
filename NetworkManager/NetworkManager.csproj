@@ -48,7 +48,6 @@
     <Compile Include="NetworkInterfaceManagerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NdisNetworkInterfaceManager.cs" />
-    <Compile Include="ServerListHandler.cs" />
     <Compile Include="WifiNetworkInterfaceManager.cs" />
   </ItemGroup>
   <ItemGroup>

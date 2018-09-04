@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Logger;
 
@@ -48,7 +49,7 @@ namespace NetworkMonitors
             var networkParameters = new NetworkParameters
             {
                 ResponseTimeInMsec = this.ResponseTest(),
-                ThroughputInMbps = this.ThroughoutputTest(),
+                ThroughputInMbps = this.ThroughoutputTestNew(),
                 PacketLossPercentage = this.PacketLossTest(),
                 SecurityLevel = this.GetSecurityLevel()
             };
@@ -119,11 +120,11 @@ namespace NetworkMonitors
             return meanLatency / iterations;
         }
 
-        private double ThroughoutputTest()
+        private double ThroughoutputTest(string httpSource)
         {
             var startTime = DateTime.Now;
             var length = 0;
-            var request = (HttpWebRequest)WebRequest.Create("http://gameranx.com/wp-content/uploads/2016/06/Scalebound-4K-Wallpaper.jpg");
+            var request = (HttpWebRequest)WebRequest.Create(httpSource);
             request.ServicePoint.BindIPEndPointDelegate = delegate {
                 return new IPEndPoint(this.IpAddress, 0);
             };
@@ -140,7 +141,6 @@ namespace NetworkMonitors
             catch (Exception e)
             {
                 Logger.Logger.AddMessage($"Error occurred while getting: {request.RequestUri} message {e.Message}");
-
             }
 
             var endTime = DateTime.Now;
@@ -155,6 +155,21 @@ namespace NetworkMonitors
             const double bytesToMegaBytesConst = 1024f;
 
             return (bytes / bytesToMegaBytesConst) / bytesToMegaBytesConst;
+        }
+
+        private double ThroughoutputTestNew()
+        {
+            var serverList = ServerListHandler.GetInstance().ServerList;
+            List<double> results = new List<double>();
+            foreach (var serverName in serverList)
+            {
+                var a = ThroughoutputTest(serverName);
+                results.Add(a);
+                Logger.Logger.AddMessage($"Evaluation of network: {a} MBps");
+            }
+
+            var result = results.Sum() / results.Count;
+            return result;
         }
 
         #endregion

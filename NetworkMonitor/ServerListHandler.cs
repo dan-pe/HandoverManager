@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NetworkManager
+namespace NetworkMonitors
 {
     public class ServerListHandler
     {
