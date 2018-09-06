@@ -1,8 +1,14 @@
-﻿using System;
+﻿#region Usings
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Logger;
+using NetTool;
+using NetworkManager;
+
+#endregion
 
 namespace NetworkMonitors
 {
@@ -11,7 +17,6 @@ namespace NetworkMonitors
     using System.Linq;
     using System.Net;
     using System.Net.NetworkInformation;
-    using System.Threading;
     using RadioNetworks;
 
     #endregion
@@ -20,27 +25,24 @@ namespace NetworkMonitors
     {
         #region Constructors
 
-        public NetworkMonitor(NetworkInterface networkInterface)
+        public NetworkMonitor(NetworkInterfaceManagerBase networkInterface)
         {
             this._networkInterface = networkInterface;
-            this._gatewayAddress = this._networkInterface.GetIPProperties().GatewayAddresses.FirstOrDefault()?.Address.ToString();
         }
 
         #endregion
 
         #region Properties
 
-        private readonly NetworkInterface _networkInterface;
-        private readonly string _gatewayAddress;
+        private readonly NetworkInterfaceManagerBase _networkInterface;
 
-        private IPAddress IpAddress
-        {
-            get
-            {
-                var ipAddress = this._networkInterface.GetIPProperties().UnicastAddresses.FirstOrDefault(ua => ua.PrefixOrigin == PrefixOrigin.Dhcp)?.Address;
-                return ipAddress;
-            }
-        }
+        #endregion
+
+        #region Fields
+
+        private int TimeoutInMsec = SettingsHandler.GetInstance().PingTimeoutInMsec;
+        private int BufferSizeInBytes = SettingsHandler.GetInstance().BufferSizeInBytes;
+        private int PingCount = SettingsHandler.GetInstance().PingCount;
 
         #endregion
 
@@ -51,7 +53,7 @@ namespace NetworkMonitors
             var networkParameters = new NetworkParameters
             {
                 ResponseTimeInMsec = this.ResponseTest(),
-                ThroughputInMbps = this.ThroughoutputTestNew(),
+                //ThroughputInMbps = this.ThroughoutputTestNew(),
                 PacketLossPercentage = this.PacketLossTest(),
                 SecurityLevel = this.GetSecurityLevel()
             };
@@ -61,13 +63,12 @@ namespace NetworkMonitors
 
         private double GetSecurityLevel()
         {
-            switch (this._networkInterface.NetworkInterfaceType)
+            switch (this._networkInterface.NetworkInterface.NetworkInterfaceType)
             {
                 case NetworkInterfaceType.Wireless80211:
-                    return 5;
-                default:
                     return 3;
-                    
+                default:
+                    return 5;
             }
         }
 
@@ -77,22 +78,28 @@ namespace NetworkMonitors
 
         private double PacketLossTest()
         {
-            var pingSender = new Ping();
+            
+
             var options = new PingOptions
             {
                 DontFragment = true
             };
 
-            // Create a buffer of 32 bytes of data to be transmitted.
-            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
-            int timeout = 120;
+            var data = new char[BufferSizeInBytes];
+
+            for (var i = 0; i < BufferSizeInBytes; i++)
+            {
+                data[i] = 'a';
+            }
+
+            var buffer = Encoding.ASCII.GetBytes(data);
             int failed = 0;
-            int pingAmount = 4000;
-            for (int i = 0; i < pingAmount; i++)
+           
+
+            for (int i = 0; i < PingCount; i++)
             {
                 
-                var reply = pingSender.Send(this._gatewayAddress, timeout, buffer, options);
+                var reply = Icmp.Send(this._networkInterface.IpAddress, this._networkInterface.GatewayIpAddress, TimeoutInMsec, buffer, options);
                 if (reply.Status != IPStatus.Success)
                 {
                     failed += 1;
@@ -100,58 +107,25 @@ namespace NetworkMonitors
                 }
             } 
 
-            return ((double)failed / pingAmount) * 100; ;
+            return ((double)failed / PingCount) * 100;
         }
 
         private double ResponseTest()
         {
-            var ping = new Ping();
-            
             double meanLatency = 0;
-            const int iterations = 50;
 
-            var pingReply = ping.Send(this._gatewayAddress);
+            var pingReply = Icmp.Send(this._networkInterface.IpAddress, this._networkInterface.GatewayIpAddress, TimeoutInMsec);
 
-            for (int i = 0; i < iterations; i++)
+            for (int i = 0; i < PingCount; i++)
             {
                 if (pingReply == null) continue;
 
-                pingReply = ping.Send(this._gatewayAddress, TimeSpan.FromMilliseconds(80).Milliseconds);
-                if (pingReply != null) meanLatency += pingReply.RoundtripTime;
+                pingReply = Icmp.Send(this._networkInterface.IpAddress, this._networkInterface.GatewayIpAddress);
+                if (pingReply != null) meanLatency += pingReply.RoundTripTime.TotalMilliseconds;
 
             }
 
-            return meanLatency / iterations;
-        }
-
-        private double ThroughoutputTest(string httpSource)
-        {
-            var startTime = DateTime.Now;
-            var length = 0;
-            var request = (HttpWebRequest)WebRequest.Create(httpSource);
-            request.ServicePoint.BindIPEndPointDelegate = delegate {
-                return new IPEndPoint(this.IpAddress, 0);
-            };
-
-            Logger.Logger.AddMessage($"Binding EndPoint to: {this.IpAddress}");
-
-            try
-            {
-                var response = (HttpWebResponse)request.GetResponse();
-                length = (int) response.ContentLength;
-                Logger.Logger.AddMessage($"Starting stress test ...");
-
-            }
-            catch (Exception e)
-            {
-                Logger.Logger.AddMessage($"Error occurred while getting: {request.RequestUri} message {e.Message}");
-            }
-
-            var endTime = DateTime.Now;
-            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
-            var mBytes = this.ConvertBytestoMbytes(length);
-            Logger.Logger.AddMessage($"Testing for {this.IpAddress} done.");
-            return mBytes / totalSecondsDiff;
+            return meanLatency / PingCount;
         }
 
         private double ConvertBytestoMbytes(long bytes)
@@ -163,24 +137,24 @@ namespace NetworkMonitors
 
         private double ThroughoutputTestNew()
         {
-            var serverList = ServerListHandler.GetInstance().ServerList;
+            var serverList = SettingsHandler.GetInstance().ServerList;
             List<double> results = new List<double>();
             foreach (var serverName in serverList)
             {
-                var MbpsResult = 0.0;
+                var mbpsResult = 0.0;
 
                 if (serverName.Contains("ftp"))
                 {
-                    MbpsResult = DownloadViaFtp(serverName);
+                    mbpsResult = DownloadViaFtp(serverName);
                 }
 
                 if (serverName.Contains("http"))
                 {
-                    MbpsResult = DownloadViaHttp(serverName);
+                    mbpsResult = DownloadViaHttp(serverName);
                 }
 
-                results.Add(MbpsResult);
-                Logger.Logger.AddMessage($"Evaluation of network: {MbpsResult} MBps");
+                results.Add(mbpsResult);
+                Logger.Logger.AddMessage($"Evaluation of network: {mbpsResult} MBps");
             }
 
             var result = results.Sum() / results.Count;
@@ -189,7 +163,6 @@ namespace NetworkMonitors
 
         public double DownloadViaFtp(string urlSource)
         {
-            var startTime = DateTime.Now;
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(urlSource);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.UseBinary = true;
@@ -200,23 +173,17 @@ namespace NetworkMonitors
 
             request.ServicePoint.BindIPEndPointDelegate = delegate
             {
-                return new IPEndPoint(this.IpAddress, 0);
+                return new IPEndPoint(this._networkInterface.IpAddress, 0);
             };
 
             var response = (FtpWebResponse)request.GetResponse();
             var length = response.ContentLength;
+            var startTime = DateTime.Now;
 
             Stream responseStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(responseStream);
 
             reader.ReadToEnd();
-
-            //while (!reader.EndOfStream)
-            //{
-            //    var a = reader.Read();
-            //}
-
-
             Console.WriteLine($"Download Complete via FTP, status {response.StatusDescription}");
 
             reader.Close();
@@ -225,7 +192,7 @@ namespace NetworkMonitors
             var endTime = DateTime.Now;
             var totalSecondsDiff = (endTime - startTime).TotalSeconds;
             var mBytes = this.ConvertBytestoMbytes(length);
-            Logger.Logger.AddMessage($"Testing for {this.IpAddress} done. Elapsed time {totalSecondsDiff}s" );
+            Logger.Logger.AddMessage($"Testing for {this._networkInterface.IpAddress} done. Elapsed time {totalSecondsDiff}s" );
             return mBytes / totalSecondsDiff;
         }
 
@@ -235,10 +202,10 @@ namespace NetworkMonitors
             var length = 0;
             var request = (HttpWebRequest)WebRequest.Create(urlSource);
             request.ServicePoint.BindIPEndPointDelegate = delegate {
-                return new IPEndPoint(this.IpAddress, 0);
+                return new IPEndPoint(this._networkInterface.IpAddress, 0);
             };
 
-            Logger.Logger.AddMessage($"Binding EndPoint to: {this.IpAddress}");
+            Logger.Logger.AddMessage($"Binding EndPoint to: {this._networkInterface.IpAddress}");
 
             try
             {
@@ -255,9 +222,10 @@ namespace NetworkMonitors
             var endTime = DateTime.Now;
             var totalSecondsDiff = (endTime - startTime).TotalSeconds;
             var mBytes = this.ConvertBytestoMbytes(length);
-            Logger.Logger.AddMessage($"Testing for {this.IpAddress} done.");
+            Logger.Logger.AddMessage($"Testing for {this._networkInterface.IpAddress} done.");
             return mBytes / totalSecondsDiff;
         }
+        
         #endregion
     }
 }

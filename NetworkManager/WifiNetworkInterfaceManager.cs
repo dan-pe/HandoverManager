@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading;
 using NativeWifi;
 using NetworkMonitors.Parsers;
@@ -45,7 +46,13 @@ namespace NetworkManager
 
         public WifiNetworkInterfaceManager()
         {
+
             this.WlanClient = new WlanClient();
+            this.NetworkInterface = NetworkInterface.GetAllNetworkInterfaces()
+                .FirstOrDefault(ni => ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 && ni.OperationalStatus == OperationalStatus.Up);
+            this.IpAddress = ActiveInterface.NetworkInterface.GetIPProperties().UnicastAddresses
+                .FirstOrDefault(ua => ua.PrefixOrigin == PrefixOrigin.Dhcp)?.Address;
+            this.GatewayIpAddress = NetworkInterface?.GetIPProperties().GatewayAddresses.FirstOrDefault()?.Address;
         }
 
         #endregion
@@ -72,13 +79,6 @@ namespace NetworkManager
             try
             {
                 this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
-                //this.ActiveInterface.ConnectSynchronously(
-                //    Wlan.WlanConnectionMode.Profile,
-                //    Wlan.Dot11BssType.Any,
-                //    profileName,
-                //        400);
-
-                //)nect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
                 Thread.Sleep(TimeSpan.FromSeconds(3));
                 return true;
             }
@@ -86,16 +86,6 @@ namespace NetworkManager
             {
                 return false;
             }
-        }
-
-        public Wlan.WlanProfileInfo[] GetNetworkProfiles()
-        {
-            return this.ActiveInterface.GetProfiles();
-        }
-
-        public Wlan.WlanSecurityAttributes GetSecurityInfo()
-        {
-            return this.ActiveInterface.CurrentConnection.wlanSecurityAttributes;
         }
 
         #endregion

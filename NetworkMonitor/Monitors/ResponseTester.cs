@@ -33,7 +33,7 @@ namespace NetworkMonitors.Monitors
                 if (pingReply == null) continue;
 
                 pingReply = ping.Send(this.testedAddress ?? throw new InvalidOperationException());
-                //Thread.Sleep(TimeSpan.FromSeconds(ServerListHandler.GetInstance().PingInterval));
+                //Thread.Sleep(TimeSpan.FromSeconds(SettingsHandler.GetInstance().PingInterval));
                 if (pingReply != null) meanLatency += pingReply.RoundtripTime;
 
             }

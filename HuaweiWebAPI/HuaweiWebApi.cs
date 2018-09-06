@@ -48,6 +48,14 @@ namespace HuaweiWebAPI
             return basicInformation;
         }
 
+        public static string GatewatAddres()
+        {
+            var webRespose = WebClient.XmlGet("html/deviceinformation.html");
+            var isIppresent = webRespose.Contains("100.94.248.69");
+            var anotherResp = webRespose.Contains("<td>WAN IP Address:</td>");
+            return string.Empty;
+        }
+
        
 
         //CurrentNetworkType, CurrentNetworkTypeEx:

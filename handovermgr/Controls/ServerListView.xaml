@@ -5,29 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:handovermgr.Controls"
         mc:Ignorable="d"
-        Title="ServerListView" Height="450" Width="300">
+        Title="Settings" Height="250" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="4*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0">
-            <ListView x:Name="ServerListViewBox" DisplayMemberPath="">
+        
+        <TabControl>
+            <TabItem Header="Server List">
+                <StackPanel>
+                    <DockPanel >
+                        <DockPanel VerticalAlignment="Center">
+                            <TextBox x:Name="ServerNameTextBox"
+                                     Width="240">
+                                server name ...
+                            </TextBox>
+                            <Button x:Name="AddServerButton" Click="AddServerButton_OnClick">Add</Button>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel>
+                    <ListView x:Name="ServerListViewBox" DisplayMemberPath="">
+                    </ListView>
+                </DockPanel>
+                
+                </StackPanel>
+            </TabItem>
 
-            </ListView>
-        </DockPanel>
-        <DockPanel Grid.Row="1">
-            <DockPanel VerticalAlignment="Center">
-                <TextBox x:Name="ServerNameTextBox"
-                         Width="240">
-                     insert server name
-                </TextBox>
-                <Button x:Name="AddServerButton" Click="AddServerButton_OnClick"> Add </Button>
-            </DockPanel>
-        </DockPanel>
+            <TabItem Header="ICMP Settings">
+                <StackPanel>
+                    <DockPanel>
+                        <Label Width="80">Timeout: </Label>
+                        <TextBox VerticalAlignment="Center" x:Name="PingTimeoutTextBox" Width="100"> 100 </TextBox>
+                        <Label> msec</Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Width="80">Buffer Size:</Label>
+                        <TextBox VerticalAlignment="Center" x:Name="BufferSizeTextBox" Width="100"> Value </TextBox>
+                        <Label> bytes</Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Width="80">Count:</Label>
+                        <TextBox VerticalAlignment="Center" x:Name="PingCountTextBox" Width="100">400</TextBox>
+                        <Label></Label>
+                    </DockPanel>
+                    <Button x:Name="SavePingTimeoutButton" Click="SavePingSettings_Click" Width="50">Save</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

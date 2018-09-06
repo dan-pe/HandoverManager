@@ -14,8 +14,11 @@ namespace handovermgr.Controls.NetworkViews
     {
         private readonly NdisViewModel _ndisViewModel;
 
+        private readonly NdisNetworkInterfaceManager _ndisNetworkInterfaceManager;
+
         public NdisView()
         {
+            this._ndisNetworkInterfaceManager = new NdisNetworkInterfaceManager();
             this._ndisViewModel = new NdisViewModel(new NdisNetworkInterfaceManager());
             this.DataContext = _ndisViewModel;
             this.InitializeComponent();
@@ -27,8 +30,7 @@ namespace handovermgr.Controls.NetworkViews
             {
                 NetworkName = RDIInterfaceNameTextBox.Text,
                 NetworkType = RDIInterfaceTypeTextBox.Text,
-                Parameters = new NetworkMonitor(NetworkInterface.GetAllNetworkInterfaces()
-                        .FirstOrDefault(ni => ni.Description.Contains("NDIS")))
+                Parameters = new NetworkMonitor(_ndisNetworkInterfaceManager)
                     .EvaluateNetwork()
             });
 
