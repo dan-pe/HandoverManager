@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 
 namespace NetworkMonitors
 {
@@ -10,11 +11,7 @@ namespace NetworkMonitors
 
         private readonly List<string> _serverList;
 
-        private int _bufferSizeInBytes;
-
         private int _pingCount;
-
-        private int _pingTimeoutInMsec;
 
         #endregion
 
@@ -23,67 +20,45 @@ namespace NetworkMonitors
         private SettingsHandler()
         {
             _serverList = new List<string>();
+            _pingCount = 100;
+            BufferSizeInBytes = 32;
+            PingTimeoutInMsec = 120;
+
         }
 
         #endregion
 
-        public List<string> ServerList
-        {
-            get
-            {
-                if (_serverList != null)
-                {
-                    return _serverList;
-                }
-                return new List<string>();
-            }
-        }
+        public List<string> ServerList => _serverList ?? new List<string>();
 
-        public int PingTimeoutInMsec
-        {
-            get
-            {
-                if (_bufferSizeInBytes != null)
-                {
-                    return _bufferSizeInBytes;
-                }
-                return 0;
-            }
+        public int PingTimeoutInMsec { get; set; }
 
-            set { _bufferSizeInBytes = value; }
-        }
-
-        public int BufferSizeInBytes
-        {
-            get
-            {
-                if (_pingTimeoutInMsec != null)
-                {
-                    return _pingTimeoutInMsec;
-                }
-                return 0;
-            }
-
-            set { _pingTimeoutInMsec = value; }
-        }
+        public int BufferSizeInBytes { get; set; }
 
         public int PingCount
         {
-            get
-            {
-                if (_pingCount != null)
-                {
-                    return _pingCount;
-                }
-                return 0;
-            }
+            get => _pingCount;
 
-            set { _pingCount = value; }
+            set => value = _pingCount;
         }
 
         public static SettingsHandler GetInstance()
         {
             return _settingsHandler ?? (_settingsHandler = new SettingsHandler());
+        }
+
+        public List<IPAddress> DnsAddresses
+        {
+            get
+            {
+                var dnsAddresses = new List<IPAddress>()
+                {
+                    IPAddress.Parse("8.8.8.8"),
+                    IPAddress.Parse("8.8.4.4"),
+                    IPAddress.Parse("1.1.1.1"),
+                    IPAddress.Parse("1.0.0.1")
+                };
+                return dnsAddresses;
+            }
         }
     }
 }

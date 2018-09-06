@@ -40,9 +40,9 @@ namespace NetworkMonitors
 
         #region Fields
 
-        private int TimeoutInMsec = SettingsHandler.GetInstance().PingTimeoutInMsec;
-        private int BufferSizeInBytes = SettingsHandler.GetInstance().BufferSizeInBytes;
-        private int PingCount = SettingsHandler.GetInstance().PingCount;
+        private readonly int _timeoutInMsec = SettingsHandler.GetInstance().PingTimeoutInMsec;
+        private readonly int _bufferSizeInBytes = SettingsHandler.GetInstance().BufferSizeInBytes;
+        private readonly int _pingCount = SettingsHandler.GetInstance().PingCount;
 
         #endregion
 
@@ -53,7 +53,7 @@ namespace NetworkMonitors
             var networkParameters = new NetworkParameters
             {
                 ResponseTimeInMsec = this.ResponseTest(),
-                //ThroughputInMbps = this.ThroughoutputTestNew(),
+                ThroughputInMbps = this.ThroughoutputTestNew(),
                 PacketLossPercentage = this.PacketLossTest(),
                 SecurityLevel = this.GetSecurityLevel()
             };
@@ -78,54 +78,78 @@ namespace NetworkMonitors
 
         private double PacketLossTest()
         {
-            
+            double packetLoss = 0.0d;
+            var dnsAddresses = SettingsHandler.GetInstance().DnsAddresses;
 
+            foreach (var dnsAddress in dnsAddresses)
+            {
+                packetLoss += PacketLossTestSignleRun(dnsAddress);
+            }
+
+            return packetLoss / dnsAddresses.Count;
+        }
+
+        private double PacketLossTestSignleRun(IPAddress destinationIpAddress)
+        {
             var options = new PingOptions
             {
                 DontFragment = true
             };
 
-            var data = new char[BufferSizeInBytes];
+            var data = new char[_bufferSizeInBytes];
 
-            for (var i = 0; i < BufferSizeInBytes; i++)
+            for (var i = 0; i < _bufferSizeInBytes; i++)
             {
                 data[i] = 'a';
             }
 
             var buffer = Encoding.ASCII.GetBytes(data);
             int failed = 0;
-           
 
-            for (int i = 0; i < PingCount; i++)
+
+            for (int i = 0; i < _pingCount; i++)
             {
-                
-                var reply = Icmp.Send(this._networkInterface.IpAddress, this._networkInterface.GatewayIpAddress, TimeoutInMsec, buffer, options);
+
+                var reply = Icmp.Send(this._networkInterface.IpAddress, destinationIpAddress, _timeoutInMsec, buffer, options);
                 if (reply.Status != IPStatus.Success)
                 {
                     failed += 1;
                     Logger.Logger.AddMessage($"Ping status for {i} - {reply.Status.ToString()} ", MessageThreshold.WARNING);
                 }
-            } 
+            }
 
-            return ((double)failed / PingCount) * 100;
+            return ((double)failed / _pingCount) * 100;
         }
 
         private double ResponseTest()
         {
+            double response = 0.0d;
+            var dnsAddresses = SettingsHandler.GetInstance().DnsAddresses;
+
+            foreach (var dnsAddress in dnsAddresses)
+            {
+                response += ResponseTimeSingleTest(dnsAddress);
+            }
+
+            return response / dnsAddresses.Count;
+        }
+
+        private double ResponseTimeSingleTest(IPAddress destinationAddress)
+        {
             double meanLatency = 0;
 
-            var pingReply = Icmp.Send(this._networkInterface.IpAddress, this._networkInterface.GatewayIpAddress, TimeoutInMsec);
+            var pingReply = Icmp.Send(this._networkInterface.IpAddress, destinationAddress, _timeoutInMsec);
 
-            for (int i = 0; i < PingCount; i++)
+            for (int i = 0; i < _pingCount; i++)
             {
                 if (pingReply == null) continue;
 
-                pingReply = Icmp.Send(this._networkInterface.IpAddress, this._networkInterface.GatewayIpAddress);
+                pingReply = Icmp.Send(this._networkInterface.IpAddress, destinationAddress);
                 if (pingReply != null) meanLatency += pingReply.RoundTripTime.TotalMilliseconds;
 
             }
 
-            return meanLatency / PingCount;
+            return meanLatency / _pingCount;
         }
 
         private double ConvertBytestoMbytes(long bytes)
@@ -210,6 +234,10 @@ namespace NetworkMonitors
             try
             {
                 var response = (HttpWebResponse)request.GetResponse();
+                Stream responseStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream);
+
+                reader.ReadToEnd();
                 length = (int)response.ContentLength;
                 Logger.Logger.AddMessage($"Starting stress test ...");
 
