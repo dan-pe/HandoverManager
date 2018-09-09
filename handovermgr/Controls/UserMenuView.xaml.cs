@@ -93,24 +93,26 @@ namespace handovermgr.Controls
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
-
-            try
+            if (openFileDialog.FileName != string.Empty)
             {
-                var csvNetworksCollection = CsvReader.ReadCsvFile(openFileDialog.FileName);
+                try
+                {
+                    var csvNetworksCollection = CsvReader.ReadCsvFile(openFileDialog.FileName);
 
-                MainWindow.NetworksList.Clear();
-                foreach (var csvNetwork in csvNetworksCollection)
-                    MainWindow.NetworksList.Add(csvNetwork);
+                    MainWindow.NetworksList.Clear();
+                    foreach (var csvNetwork in csvNetworksCollection)
+                        MainWindow.NetworksList.Add(csvNetwork);
 
-                Logger.AddMessage(
-                    $"Successfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
-                    MessageThreshold.SUCCESS);
-            }
-            catch (Exception exception)
-            {
-                Logger.AddMessage(
-                    $"Error occurred while reading from {Path.GetFileName(openFileDialog.FileName)}: {exception.Message}",
-                    MessageThreshold.WARNING);
+                    Logger.AddMessage(
+                        $"Successfully loaded {Path.GetFileName(openFileDialog.FileName)}.",
+                        MessageThreshold.SUCCESS);
+                }
+                catch (Exception exception)
+                {
+                    Logger.AddMessage(
+                        $"Error occurred while reading from {Path.GetFileName(openFileDialog.FileName)}: {exception.Message}",
+                        MessageThreshold.WARNING);
+                }
             }
         }
 

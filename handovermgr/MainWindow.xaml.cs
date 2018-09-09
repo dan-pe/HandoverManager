@@ -1,10 +1,7 @@
-﻿using NetworkMonitors;
-
-namespace handovermgr
+﻿namespace handovermgr
 {
     #region Usings
 
-    using System;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Collections.Generic;
@@ -33,27 +30,6 @@ namespace handovermgr
             this.InitializeComponent();
             Logger.InitializeLogger(LogBox);
             this.BindNetworks();
-
-            // Add servers to list
-
-            var urls = new List<string>()
-            {
-                ////"ftp://speedtest.tele2.net/500MB.zip",
-                ////"https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-9.5.0-arm64-xfce-CD-1.iso",
-                //"ftp://speedtest.tele2.net/200MB.zip",
-                ////"https://download.fedoraproject.org/pub/fedora/linux/releases/28/Workstation/x86_64/iso/Fedora-Workstation-netinst-x86_64-28-1.1.iso",
-                ////"http://cdimage.kali.org/kali-2018.3/kali-linux-light-2018.3-armhf.img.xz"
-            };
-
-            var ServerList = SettingsHandler.GetInstance().ServerList;
-
-            foreach (var url in urls)
-            {
-                if (!ServerList.Contains(url))
-                {
-                    SettingsHandler.GetInstance().ServerList.Add(url);
-                }
-            }
         }
 
         #endregion
