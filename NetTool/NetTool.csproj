@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6601CADD-9426-46CC-ACC9-FB3BB3A0C549}</ProjectGuid>
+    <ProjectGuid>{1D85113F-AE5E-451B-B15C-B92E974A4921}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetworkManager</RootNamespace>
-    <AssemblyName>NetworkManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>NetTool</RootNamespace>
+    <AssemblyName>NetTool</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ManagedWifi">
-      <HintPath>..\ManagedWifi\ManagedWifi.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,21 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INetworkInterface.cs" />
-    <Compile Include="NetworkInterfaceManagerBase.cs" />
+    <Compile Include="Icmp.cs" />
+    <Compile Include="Parsers\SsidParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NdisNetworkInterfaceManager.cs" />
-    <Compile Include="WifiNetworkInterfaceManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HuaweiWebAPI\HuaweiWebAPI.csproj">
-      <Project>{4b402e3b-da63-427f-9be4-0188d76ee903}</Project>
-      <Name>HuaweiWebAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetTool\NetTool.csproj">
-      <Project>{1d85113f-ae5e-451b-b15c-b92e974a4921}</Project>
-      <Name>NetTool</Name>
-    </ProjectReference>
+    <Compile Include="TraceRoute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

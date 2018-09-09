@@ -10,7 +10,7 @@ namespace ViewModels.NetworkViewModels
 
         public int Speed { get; set; }
 
-        protected INetworkInterface NetworkInterface { get;}
+        protected INetworkInterface NetworkInterface { get; }
 
         protected NetworkBaseViewModel(INetworkInterface iNetworkInterface)
         {

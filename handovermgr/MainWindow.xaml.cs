@@ -2,7 +2,6 @@
 {
     #region Usings
 
-    using System;
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Collections.Generic;
@@ -49,65 +48,6 @@
         private void BindNetworks()
         {
             NetworksList = new ObservableCollection<RadioNetworkModel>();
-            Random random = new Random(100);
-            //NetworksList.Add(
-            //    new RadioNetworkModel
-            //    {
-            //        NetworkName = "network1",
-            //        NetworkType = NetworkType.GPRS.ToString(),
-            //        Parameters = new NetworkParameters()
-            //        {
-            //            ThroughputInMbps = random.NextDouble() ,
-            //            DelayInMsec = random.NextDouble() * 0.1d,
-            //            PacketLossPercentage = random.NextDouble(),
-            //            ResponseTimeInMsec = random.NextDouble() * 0.1d,
-            //            SecurityLevel = 1
-            //        }
-            //    });
-            //NetworksList.Add(
-            //    new RadioNetworkModel
-            //    {
-            //        NetworkName = "network2",
-            //        NetworkType = NetworkType.LTE_Advanced.ToString(),
-            //        Parameters = new NetworkParameters()
-            //        {
-            //            ThroughputInMbps = random.NextDouble() ,
-            //            DelayInMsec = random.NextDouble() * 0.1d,
-            //            PacketLossPercentage = random.NextDouble(),
-            //            ResponseTimeInMsec = random.NextDouble() * 0.1d,
-            //            SecurityLevel = 4
-
-            //        }
-            //    });
-            //NetworksList.Add(
-            //    new RadioNetworkModel
-            //    {
-            //        NetworkName = "network3",
-            //        NetworkType = NetworkType.UMTS.ToString(),
-            //        Parameters = new NetworkParameters()
-            //        {
-            //            ThroughputInMbps = random.NextDouble() ,
-            //            DelayInMsec = random.NextDouble() * 0.1d,
-            //            PacketLossPercentage = random.NextDouble(),
-            //            ResponseTimeInMsec = random.NextDouble() * 0.1d,
-            //            SecurityLevel = 3
-
-            //        }
-            //    });
-            //NetworksList.Add(
-            //    new RadioNetworkModel
-            //    {
-            //        NetworkName = "network4",
-            //        NetworkType = NetworkType.WiFi.ToString(),
-            //        Parameters = new NetworkParameters()
-            //        {
-            //            ThroughputInMbps = random.NextDouble() * 10,
-            //            DelayInMsec = random.NextDouble() * 0.1d,
-            //            PacketLossPercentage = random.NextDouble(),
-            //            ResponseTimeInMsec = random.NextDouble() * 0.1d,
-            //            SecurityLevel = 2
-            //        }
-            //    });
             NetworkListView.ItemsSource = NetworksList;
         }
 

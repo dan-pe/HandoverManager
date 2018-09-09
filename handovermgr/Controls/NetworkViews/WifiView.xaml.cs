@@ -1,13 +1,10 @@
-﻿using System.Linq;
-using System.Net.NetworkInformation;
-using NetworkManager;
+﻿using NetworkManager;
 using ViewModels.NetworkViewModels;
 
 namespace handovermgr.Controls.NetworkViews
 {
     #region Usings
 
-    using ViewModels;
     using System;
     using System.Windows.Input;
     using Logger;
@@ -25,11 +22,14 @@ namespace handovermgr.Controls.NetworkViews
 
         private readonly WifiViewModel _wifiViewModel;
 
+        private readonly WifiNetworkInterfaceManager _wifiNetworkInterfaceManager;
+
         #endregion
 
         public WifiView()
         {
-            this._wifiViewModel = new WifiViewModel(new WifiNetworkInterfaceManager());
+            this._wifiNetworkInterfaceManager = new WifiNetworkInterfaceManager();
+            this._wifiViewModel = new WifiViewModel(_wifiNetworkInterfaceManager);
             this.DataContext = _wifiViewModel;
             InitializeComponent();
         }
@@ -52,17 +52,11 @@ namespace handovermgr.Controls.NetworkViews
                     MessageThreshold.FAIL);
             }
 
-
-            var name = _wifiViewModel.WifiNetworkInterfaceManager.GetInterfaceName();
-            var interfaces = NetworkInterface.GetAllNetworkInterfaces();
-
-            //// Mock of adding evaluated network to Main View.
             MainWindow.NetworksList.Add(new RadioNetworkModel()
             {
                 NetworkName = choosenNetworkName,
                 NetworkType = _wifiViewModel.WifiNetworkInterfaceManager.GetInterfaceType().ToString(),
-                Parameters = new NetworkMonitor(NetworkInterface.GetAllNetworkInterfaces()
-                .FirstOrDefault(ni => ni.Description == _wifiViewModel.WifiNetworkInterfaceManager.GetInterfaceName()))
+                Parameters = new NetworkMonitor(this._wifiNetworkInterfaceManager)
                 .EvaluateNetwork()
             });
         }

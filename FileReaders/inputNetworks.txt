@@ -1,5 +1,5 @@
 ﻿name		, type			, throutp	,  packetloss	,  response ,  security
-DanNet		, Wireless80211	, 9.011		,  1.350		,  87.0		,  3.0
-DanNet5		, Wireless80211 , 11.180	,  2.925		,  24.70	,  3.0 
-FunBox-C275	, Wireless80211 , 2.801		,  0.475		,  1.80		,  3.0 
-EE72E		, LTE			, 14.520	,  1.533		,  32.80	,  5.0 
+Network1	, Wireless80211	, 18.256	,  3.4			,  13.92	,  3.0
+Network2	, Wireless80211 , 3.41		,  2.73			,  14.23	,  3.0 
+Network3	, Wireless80211 , 4.135		,  4.31			,  11.34	,  3.0 
+Network4	, LTE			, 7.269		,  6.273		,  36.38	,  5.0 

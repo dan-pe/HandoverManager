@@ -44,24 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Downloaders\FtpDownloader.cs" />
+    <Compile Include="Downloaders\HttpDownloader.cs" />
     <Compile Include="Interfaces\INetworkStress.cs" />
     <Compile Include="Interfaces\IParameterTest.cs" />
-    <Compile Include="Parsers\SsidParser.cs" />
+    <Compile Include="Monitors\ResponseTester.cs" />
     <Compile Include="NetworkMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{e80d676e-58fb-4063-8b80-90c6e52911d4}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NetTool\NetTool.csproj">
+      <Project>{1D85113F-AE5E-451B-B15C-B92E974A4921}</Project>
+      <Name>NetTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkManager\NetworkManager.csproj">
+      <Project>{6601cadd-9426-46cc-acc9-fb3bb3a0c549}</Project>
+      <Name>NetworkManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RadioNetworks\RadioNetworks.csproj">
       <Project>{8B6DB4AA-C274-41F2-8481-771A2AB7AAD2}</Project>
       <Name>RadioNetworks</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Monitors\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
