@@ -3,28 +3,19 @@ using ViewModels.NetworkViewModels;
 
 namespace handovermgr.Controls.NetworkViews
 {
-    #region Usings
-
-    using System;
-    using System.Windows.Input;
     using Logger;
     using NetworkMonitors;
     using RadioNetworks;
-
-    #endregion
+    using System;
+    using System.Windows.Input;
 
     /// <summary>
     /// Interaction logic for WifiView.xaml
     /// </summary>
     public partial class WifiView
     {
-        #region Private Fields
-
-        private readonly WifiViewModel _wifiViewModel;
-
         private readonly WifiNetworkInterfaceManager _wifiNetworkInterfaceManager;
-
-        #endregion
+        private readonly WifiViewModel _wifiViewModel;
 
         public WifiView()
         {

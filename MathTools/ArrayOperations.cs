@@ -1,15 +1,9 @@
 ﻿namespace MathTools
 {
-    #region Usings
-
     using System;
-
-    #endregion
 
     public static class ArrayOperations
     {
-        #region Public Methods
-
         /// <summary>
         /// Converts single dimension array of doubles to two dimensional array.
         /// </summary>
@@ -77,6 +71,34 @@
         }
 
         /// <summary>
+        /// Multiplies vector by inversion of sum.
+        /// </summary>
+        /// <param name="inputVector">
+        /// The input vector
+        /// </param>
+        /// <returns>
+        /// The result of multiplying.
+        /// </returns>
+        public static double[] MultiplyByInversionofSum(double[] inputVector)
+        {
+            int vectorRowsNumber = inputVector.GetLength(0);
+            double vectorElementsSum = 0.0d;
+            double[] resultVector = new double[vectorRowsNumber];
+
+            for (int i = 0; i < vectorRowsNumber; i++)
+            {
+                vectorElementsSum += inputVector[i];
+            }
+
+            for (int i = 0; i < vectorRowsNumber; i++)
+            {
+                resultVector[i] = inputVector[i] * (Math.Pow(vectorElementsSum, -1));
+            }
+
+            return resultVector;
+        }
+
+        /// <summary>
         /// Sums rows in two dimensional array.
         /// </summary>
         /// <param name="inputArray">
@@ -105,35 +127,5 @@
 
             return resultArray;
         }
-
-        /// <summary>
-        /// Multiplies vector by inversion of sum.
-        /// </summary>
-        /// <param name="inputVector">
-        /// The input vector
-        /// </param>
-        /// <returns>
-        /// The result of multiplying.
-        /// </returns>
-        public static double[] MultiplyByInversionofSum(double[] inputVector)
-        {
-            int vectorRowsNumber = inputVector.GetLength(0);
-            double vectorElementsSum = 0.0d;
-            double[] resultVector = new double[vectorRowsNumber];
-
-            for (int i = 0; i < vectorRowsNumber; i++)
-            {
-                vectorElementsSum += inputVector[i];
-            }
-
-            for (int i = 0; i < vectorRowsNumber; i++)
-            {
-                resultVector[i] = inputVector[i] * (Math.Pow(vectorElementsSum, -1));
-            }
-
-            return resultVector;
-        }
-
-        #endregion
     }
 }

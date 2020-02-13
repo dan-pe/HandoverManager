@@ -3,7 +3,9 @@
     public interface INetworkInterface
     {
         string GetInterfaceName();
-        string GetInterfaceType();
+
         string GetInterfaceSpeed();
+
+        string GetInterfaceType();
     }
 }

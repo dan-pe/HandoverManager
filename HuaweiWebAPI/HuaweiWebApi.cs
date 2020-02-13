@@ -1,27 +1,20 @@
-﻿using System.Collections.Generic;
-using HuaweiWebAPI.Structs;
+﻿using HuaweiWebAPI.Structs;
 using Serializers;
+using System.Collections.Generic;
 
 namespace HuaweiWebAPI
 {
     // WebAPi available here http://forum.jdtech.pl/Watek-hilink-api-dla-urzadzen-huawei
 
-
     public static class HuaweiWebApi
     {
-
         private static readonly HuaweiWebClient WebClient = new HuaweiWebClient();
 
-        public static IDictionary<string, string> GetNetworkInfo()
+        public static BasicInformation BasicInformation()
         {
-            var networkInfo = WebClient.HttpGet("api/global/module-switch");
-            return networkInfo;
-        }
+            var basicInfoXml = WebClient.XmlGet("api/device/basic_information");
+            BasicInformation basicInformation = XmlSerialization.Deserialize<BasicInformation>(basicInfoXml);
 
-        public static IDictionary<string, string> GetBasicInformationDictionary()
-        {
-            
-            var basicInformation = WebClient.HttpGet("api/device/basic_information");
             return basicInformation;
         }
 
@@ -32,12 +25,24 @@ namespace HuaweiWebAPI
             return dhcpSettings;
         }
 
-        public static BasicInformation BasicInformation()
+        public static string GatewatAddres()
         {
-            var basicInfoXml = WebClient.XmlGet("api/device/basic_information");
-            BasicInformation basicInformation = XmlSerialization.Deserialize<BasicInformation>(basicInfoXml);
+            var webRespose = WebClient.XmlGet("html/deviceinformation.html");
+            var isIppresent = webRespose.Contains("100.94.248.69");
+            var anotherResp = webRespose.Contains("<td>WAN IP Address:</td>");
+            return string.Empty;
+        }
 
+        public static IDictionary<string, string> GetBasicInformationDictionary()
+        {
+            var basicInformation = WebClient.HttpGet("api/device/basic_information");
             return basicInformation;
+        }
+
+        public static IDictionary<string, string> GetNetworkInfo()
+        {
+            var networkInfo = WebClient.HttpGet("api/global/module-switch");
+            return networkInfo;
         }
 
         public static MonitoringStatus MonitoringStatus()
@@ -47,16 +52,6 @@ namespace HuaweiWebAPI
 
             return basicInformation;
         }
-
-        public static string GatewatAddres()
-        {
-            var webRespose = WebClient.XmlGet("html/deviceinformation.html");
-            var isIppresent = webRespose.Contains("100.94.248.69");
-            var anotherResp = webRespose.Contains("<td>WAN IP Address:</td>");
-            return string.Empty;
-        }
-
-       
 
         //CurrentNetworkType, CurrentNetworkTypeEx:
         //0 - brak usługi

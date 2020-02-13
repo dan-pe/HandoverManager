@@ -7,36 +7,36 @@
         mc:Ignorable="d"
         Title="Properties" Height="300" Width="200">
 
-    <StackPanel x:Name="NetworkItemView" Orientation="Vertical" >
+    <StackPanel x:Name="NetworkItemView" Orientation="Vertical">
         <StackPanel  Orientation="Horizontal">
-            <Label Content="Network Name"  Width="100"  Margin="5"/>
-            <TextBox  Height="25" Width="80" Text="{Binding NetworkName}"/>
+            <Label Content="Network Name"  Width="100"  Margin="5" />
+            <TextBox  Height="25" Width="80" Text="{Binding NetworkName}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="Network Type" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding NetworkType}"/>
+            <Label Content="Network Type" Width="100" Margin="5" />
+            <TextBox Height="25" Width="80" Text="{Binding NetworkType}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-                <Label Content="Throughoutput" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.ThroughputInMbps}"/>
+                <Label Content="Throughoutput" Width="100" Margin="5" />
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.ThroughputInMbps}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="Packet Loss [%]" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.PacketLossPercentage}"/>
+            <Label Content="Packet Loss [%]" Width="100" Margin="5" />
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.PacketLossPercentage}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-                <Label Content="Delay [msec]" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.DelayInMsec}"/>
+                <Label Content="Delay [msec]" Width="100" Margin="5" />
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.DelayInMsec}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Response [msec]" Width="100" Margin="5"/>
-            <TextBox Height="25" Width="80" Text="{Binding Parameters.ResponseTimeInMsec}"/>
+            <Label Content="Response [msec]" Width="100" Margin="5" />
+            <TextBox Height="25" Width="80" Text="{Binding Parameters.ResponseTimeInMsec}" />
         </StackPanel>
-        
+
         <StackPanel Orientation="Vertical">
             <Button Content="Save" Margin="50 8"></Button>
         </StackPanel>

@@ -5,17 +5,11 @@ namespace NetworkMonitors
 {
     public class SettingsHandler
     {
-        #region Private Fields
-
         private static SettingsHandler _settingsHandler;
 
         private readonly List<string> _serverList;
 
         private int _pingCount;
-
-        #endregion
-
-        #region Constructors
 
         private SettingsHandler()
         {
@@ -23,28 +17,9 @@ namespace NetworkMonitors
             _pingCount = 100;
             BufferSizeInBytes = 32;
             PingTimeoutInMsec = 120;
-
         }
-
-        #endregion
-
-        public List<string> ServerList => _serverList ?? new List<string>();
-
-        public int PingTimeoutInMsec { get; set; }
 
         public int BufferSizeInBytes { get; set; }
-
-        public int PingCount
-        {
-            get => _pingCount;
-
-            set => value = _pingCount;
-        }
-
-        public static SettingsHandler GetInstance()
-        {
-            return _settingsHandler ?? (_settingsHandler = new SettingsHandler());
-        }
 
         public List<IPAddress> DnsAddresses
         {
@@ -59,6 +34,21 @@ namespace NetworkMonitors
                 };
                 return dnsAddresses;
             }
+        }
+
+        public int PingCount
+        {
+            get => _pingCount;
+
+            set => value = _pingCount;
+        }
+
+        public int PingTimeoutInMsec { get; set; }
+        public List<string> ServerList => _serverList ?? new List<string>();
+
+        public static SettingsHandler GetInstance()
+        {
+            return _settingsHandler ?? (_settingsHandler = new SettingsHandler());
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Logger;
+using NetworkMonitors;
+using System;
 using System.Collections.Generic;
 using System.Windows;
-using Logger;
-using NetworkMonitors;
 
 namespace handovermgr.Controls
 {
@@ -11,8 +11,6 @@ namespace handovermgr.Controls
     /// </summary>
     public partial class ServerListView : Window
     {
-        private List<string> ServerList => SettingsHandler.GetInstance().ServerList;
-
         public ServerListView()
         {
             InitializeComponent();
@@ -23,12 +21,13 @@ namespace handovermgr.Controls
             BufferSizeTextBox.Text = settingsHandler.BufferSizeInBytes.ToString();
         }
 
+        private List<string> ServerList => SettingsHandler.GetInstance().ServerList;
+
         private void AddServerButton_OnClick(object sender, RoutedEventArgs e)
         {
             SettingsHandler.GetInstance().ServerList.Add(ServerNameTextBox.Text);
             ServerListViewBox.Items.Refresh();
         }
-
 
         private void SavePingSettings_Click(object sender, RoutedEventArgs e)
         {
@@ -38,7 +37,7 @@ namespace handovermgr.Controls
             }
             else
             {
-                Logger.Logger.AddMessage($"Error parsing ping timeout {PingTimeoutTextBox.Text}" , MessageThreshold.FAIL);
+                Logger.Logger.AddMessage($"Error parsing ping timeout {PingTimeoutTextBox.Text}", MessageThreshold.FAIL);
             }
 
             if (Int32.TryParse(BufferSizeTextBox.Text, out var bufferSize))

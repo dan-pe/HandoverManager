@@ -5,37 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Add Network" Height="300" Width="250">
-    <StackPanel x:Name="NetworkItemView" Orientation="Vertical" >
+    <StackPanel x:Name="NetworkItemView" Orientation="Vertical">
         <StackPanel  Orientation="Horizontal">
-            <Label Content="Network Name"  Width="100"  Margin="5"/>
-            <TextBox  x:Name="AddNameBox"  Height="25" Width="80"/>
+            <Label Content="Network Name"  Width="100"  Margin="5" />
+            <TextBox  x:Name="AddNameBox"  Height="25" Width="80" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="Network Type" Width="100" Margin="5"/>
-            <ComboBox x:Name="AddTypeComboBox"  Height="25" Width="80"/>
+            <Label Content="Network Type" Width="100" Margin="5" />
+            <ComboBox x:Name="AddTypeComboBox"  Height="25" Width="80" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="Throughoutput" Width="100" Margin="5"/>
-            <TextBox x:Name="AddThroughoutputBox" Height="25" Width="80"/>
+            <Label Content="Throughoutput" Width="100" Margin="5" />
+            <TextBox x:Name="AddThroughoutputBox" Height="25" Width="80" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Packet Loss" Width="100" Margin="5"/>
-            <TextBox x:Name="AddPacketLossBox"  Height="25" Width="80"/>
+            <Label Content="Packet Loss" Width="100" Margin="5" />
+            <TextBox x:Name="AddPacketLossBox"  Height="25" Width="80" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Response" Width="100" Margin="5"/>
-            <TextBox x:Name="AddResponseBox"  Height="25" Width="80"/>
+            <Label Content="Response" Width="100" Margin="5" />
+            <TextBox x:Name="AddResponseBox"  Height="25" Width="80" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Security" Width="100" Margin="5"/>
-            <TextBox x:Name="AddSecurityBox"  Height="25" Width="80"/>
+            <Label Content="Security" Width="100" Margin="5" />
+            <TextBox x:Name="AddSecurityBox"  Height="25" Width="80" />
         </StackPanel>
-
 
         <StackPanel Orientation="Vertical">
-            <Button Content="Add Network" Margin="50 8" Click="AddNetworkButton_Click"/>
+            <Button Content="Add Network" Margin="50 8" Click="AddNetworkButton_Click" />
         </StackPanel>
     </StackPanel>
 </Window>

@@ -3,21 +3,15 @@ using RadioNetworks;
 
 namespace handovermgr.Controls
 {
-    #region Usings
-
     using System;
     using System.Linq;
     using System.Windows;
-
-    #endregion
 
     /// <summary>
     /// Interaction logic for AddNetworkView.xaml
     /// </summary>
     public partial class AddNetworkView : Window
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of AddNetworkView class.
         /// </summary>
@@ -26,10 +20,6 @@ namespace handovermgr.Controls
             InitializeComponent();
             AddTypeComboBox.ItemsSource = Enum.GetValues(typeof(RadioNetworks.NetworkType)).Cast<NetworkType>();
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Add network button interaction.
@@ -52,7 +42,6 @@ namespace handovermgr.Controls
                         SecurityLevel = double.Parse(AddSecurityBox.Text)
                         // TODO: Add security level based on network type
                     }
-
                 };
                 MainWindow.NetworksList.Add(network);
                 Logger.Logger.AddMessage($"Successfully added network {AddNameBox.Text}",
@@ -60,12 +49,10 @@ namespace handovermgr.Controls
             }
             catch (Exception exception)
             {
-               Logger.Logger.AddMessage("Error occurred while trying to add network: " +
-                                        $"{exception.Message}",
-                                        MessageThreshold.FAIL);
+                Logger.Logger.AddMessage("Error occurred while trying to add network: " +
+                                         $"{exception.Message}",
+                                         MessageThreshold.FAIL);
             }
         }
-
-        #endregion
     }
 }

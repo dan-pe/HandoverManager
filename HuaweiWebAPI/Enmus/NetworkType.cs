@@ -32,7 +32,7 @@
         TD_HSPA_plus = 65,
         IEEE_802_16E = 81,
         LTE_ = 101
-    }   
+    }
 }
 
 //13 - 1xRTT

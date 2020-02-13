@@ -1,26 +1,17 @@
 ﻿namespace handovermgr.Controls
 {
-    #region Usings
-
+    using Logger;
+    using Microsoft.Win32;
+    using Profiler;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Microsoft.Win32;
-
-    using Profiler;
-    using Logger;
-
-
-    #endregion
 
     /// <summary>
     /// Interaction logic for UserProfileView.xaml
     /// </summary>
     public partial class UserProfileView
     {
-
-        public List<UserProfile> StoredUserProfiles { get; set; }
-
         public UserProfileView()
         {
             var openFileDialog = new OpenFileDialog();
@@ -43,7 +34,8 @@
 
             this.InitializeComponent();
             //this.UserProfileDataGrid.ItemsSource = dataTable.DefaultView;
-
         }
+
+        public List<UserProfile> StoredUserProfiles { get; set; }
     }
 }

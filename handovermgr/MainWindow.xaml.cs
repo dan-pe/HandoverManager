@@ -1,22 +1,20 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using RadioNetworks;
 using System.Collections.Generic;
-
-using RadioNetworks;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace handovermgr
 {
     public partial class MainWindow : Window
     {
-        public static ObservableCollection<RadioNetworkModel> NetworksList { get; set; }
-        
-
         public MainWindow()
         {
             this.InitializeComponent();
             Logger.Logger.InitializeLogger(LogBox);
             this.BindNetworks();
         }
+
+        public static ObservableCollection<RadioNetworkModel> NetworksList { get; set; }
 
         public void SetNetworkList(List<RadioNetworkModel> radioNetworksList)
         {

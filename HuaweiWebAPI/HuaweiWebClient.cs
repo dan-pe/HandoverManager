@@ -1,40 +1,26 @@
 ﻿namespace HuaweiWebAPI
 {
-    #region Usings
-
+    using Serializers;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
-    using Serializers;
-
-    #endregion
 
     public class HuaweiWebClient
     {
-        #region Private Fields
-
-        private static string SessionId { get; set; }
-
         private static readonly string apiRoute = "http://192.168.8.1/";
-
-        #endregion
-
-        #region Constructors
 
         public HuaweiWebClient()
         {
             this.SetSessionId();
         }
 
-        #endregion
-
-        #region Public Methods
+        private static string SessionId { get; set; }
 
         public IDictionary<string, string> HttpGet(string url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest
-                .Create(string.Concat(apiRoute,url));
+                .Create(string.Concat(apiRoute, url));
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             request.Headers.Set("Cookie", SessionId);
 
@@ -61,9 +47,12 @@
             }
         }
 
-        #endregion
-
-        #region Private Methods
+        private void SetSessionId()
+        {
+            var tokenReposne = this.SimpleGet("http://192.168.8.1/api/webserver/SesTokInfo");
+            var tokenId = tokenReposne.FirstOrDefault(key => key.Key == "SesInfo").Value;
+            SessionId = tokenId;
+        }
 
         private IDictionary<string, string> SimpleGet(string url)
         {
@@ -77,14 +66,5 @@
                 return XmlSerialization.XmlToDictionary(reader.ReadToEnd());
             }
         }
-
-        private void SetSessionId()
-        {
-            var tokenReposne = this.SimpleGet("http://192.168.8.1/api/webserver/SesTokInfo");
-            var tokenId = tokenReposne.FirstOrDefault(key => key.Key == "SesInfo").Value;
-            SessionId = tokenId;
-        }
-
-        #endregion 
     }
 }

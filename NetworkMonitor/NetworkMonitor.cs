@@ -1,52 +1,101 @@
-﻿#region Usings
-
+﻿using Logger;
+using NetTool;
+using NetworkManager;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Logger;
-using NetTool;
-using NetworkManager;
-
-#endregion
 
 namespace NetworkMonitors
 {
-    #region Usings
-
+    using RadioNetworks;
     using System.Linq;
     using System.Net;
     using System.Net.NetworkInformation;
-    using RadioNetworks;
-
-    #endregion
 
     public class NetworkMonitor
     {
-        #region Constructors
+        private readonly int _bufferSizeInBytes = SettingsHandler.GetInstance().BufferSizeInBytes;
+
+        private readonly NetworkInterfaceManagerBase _networkInterface;
+
+        private readonly int _pingCount = SettingsHandler.GetInstance().PingCount;
+
+        private readonly int _timeoutInMsec = SettingsHandler.GetInstance().PingTimeoutInMsec;
 
         public NetworkMonitor(NetworkInterfaceManagerBase networkInterface)
         {
             this._networkInterface = networkInterface;
         }
 
-        #endregion
+        public double DownloadViaFtp(string urlSource)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(urlSource);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.UseBinary = true;
+            request.UsePassive = true;
+            request.Timeout = 20 * 10000;
+            request.ReadWriteTimeout = 20 * 10000;
+            request.Credentials = new NetworkCredential("anonymous", "anonymous");
 
-        #region Properties
+            request.ServicePoint.BindIPEndPointDelegate = delegate
+            {
+                return new IPEndPoint(this._networkInterface.IpAddress, 0);
+            };
 
-        private readonly NetworkInterfaceManagerBase _networkInterface;
+            var response = (FtpWebResponse)request.GetResponse();
+            var length = response.ContentLength;
+            var startTime = DateTime.Now;
 
-        #endregion
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
 
-        #region Fields
+            reader.ReadToEnd();
+            Console.WriteLine($"Download Complete via FTP, status {response.StatusDescription}");
 
-        private readonly int _timeoutInMsec = SettingsHandler.GetInstance().PingTimeoutInMsec;
-        private readonly int _bufferSizeInBytes = SettingsHandler.GetInstance().BufferSizeInBytes;
-        private readonly int _pingCount = SettingsHandler.GetInstance().PingCount;
+            reader.Close();
+            response.Close();
 
-        #endregion
+            var endTime = DateTime.Now;
+            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
+            var mBytes = this.ConvertBytestoMbytes(length);
+            Logger.Logger.AddMessage($"Testing for {this._networkInterface.IpAddress} done. Elapsed time {totalSecondsDiff}s");
+            return mBytes / totalSecondsDiff;
+        }
 
-        #region Public Methods
+        public double DownloadViaHttp(string urlSource)
+        {
+            var startTime = DateTime.Now;
+            var length = 0;
+            var request = (HttpWebRequest)WebRequest.Create(urlSource);
+            request.ServicePoint.BindIPEndPointDelegate = delegate
+            {
+                return new IPEndPoint(this._networkInterface.IpAddress, 0);
+            };
+
+            Logger.Logger.AddMessage($"Binding EndPoint to: {this._networkInterface.IpAddress}");
+
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+                Stream responseStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream);
+
+                reader.ReadToEnd();
+                length = (int)response.ContentLength;
+                Logger.Logger.AddMessage($"Starting stress test ...");
+            }
+            catch (Exception e)
+            {
+                Logger.Logger.AddMessage($"Error occurred while getting: {request.RequestUri} message {e.Message}");
+            }
+
+            var endTime = DateTime.Now;
+            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
+            var mBytes = this.ConvertBytestoMbytes(length);
+            Logger.Logger.AddMessage($"Testing for {this._networkInterface.IpAddress} done.");
+            return mBytes / totalSecondsDiff;
+        }
 
         public NetworkParameters EvaluateNetwork()
         {
@@ -61,20 +110,24 @@ namespace NetworkMonitors
             return networkParameters;
         }
 
+        private double ConvertBytestoMbytes(long bytes)
+        {
+            const double bytesToMegaBytesConst = 1024f;
+
+            return (bytes / bytesToMegaBytesConst) / bytesToMegaBytesConst;
+        }
+
         private double GetSecurityLevel()
         {
             switch (this._networkInterface.NetworkInterface.NetworkInterfaceType)
             {
                 case NetworkInterfaceType.Wireless80211:
                     return 3;
+
                 default:
                     return 5;
             }
         }
-
-        #endregion
-
-        #region Private Fields
 
         private double PacketLossTest()
         {
@@ -106,10 +159,8 @@ namespace NetworkMonitors
             var buffer = Encoding.ASCII.GetBytes(data);
             int failed = 0;
 
-
             for (int i = 0; i < _pingCount; i++)
             {
-
                 var reply = Icmp.Send(this._networkInterface.IpAddress, destinationIpAddress, _timeoutInMsec, buffer, options);
                 if (reply.Status != IPStatus.Success)
                 {
@@ -146,17 +197,9 @@ namespace NetworkMonitors
 
                 pingReply = Icmp.Send(this._networkInterface.IpAddress, destinationAddress);
                 if (pingReply != null) meanLatency += pingReply.RoundTripTime.TotalMilliseconds;
-
             }
 
             return meanLatency / _pingCount;
-        }
-
-        private double ConvertBytestoMbytes(long bytes)
-        {
-            const double bytesToMegaBytesConst = 1024f;
-
-            return (bytes / bytesToMegaBytesConst) / bytesToMegaBytesConst;
         }
 
         private double ThroughoutputTestNew()
@@ -184,76 +227,5 @@ namespace NetworkMonitors
             var result = results.Sum() / results.Count;
             return result;
         }
-
-        public double DownloadViaFtp(string urlSource)
-        {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(urlSource);
-            request.Method = WebRequestMethods.Ftp.DownloadFile;
-            request.UseBinary = true;
-            request.UsePassive = true;
-            request.Timeout = 20 * 10000;
-            request.ReadWriteTimeout = 20 * 10000;
-            request.Credentials = new NetworkCredential("anonymous", "anonymous");
-
-            request.ServicePoint.BindIPEndPointDelegate = delegate
-            {
-                return new IPEndPoint(this._networkInterface.IpAddress, 0);
-            };
-
-            var response = (FtpWebResponse)request.GetResponse();
-            var length = response.ContentLength;
-            var startTime = DateTime.Now;
-
-            Stream responseStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(responseStream);
-
-            reader.ReadToEnd();
-            Console.WriteLine($"Download Complete via FTP, status {response.StatusDescription}");
-
-            reader.Close();
-            response.Close();
-
-            var endTime = DateTime.Now;
-            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
-            var mBytes = this.ConvertBytestoMbytes(length);
-            Logger.Logger.AddMessage($"Testing for {this._networkInterface.IpAddress} done. Elapsed time {totalSecondsDiff}s" );
-            return mBytes / totalSecondsDiff;
-        }
-
-        public double DownloadViaHttp(string urlSource)
-        {
-            var startTime = DateTime.Now;
-            var length = 0;
-            var request = (HttpWebRequest)WebRequest.Create(urlSource);
-            request.ServicePoint.BindIPEndPointDelegate = delegate {
-                return new IPEndPoint(this._networkInterface.IpAddress, 0);
-            };
-
-            Logger.Logger.AddMessage($"Binding EndPoint to: {this._networkInterface.IpAddress}");
-
-            try
-            {
-                var response = (HttpWebResponse)request.GetResponse();
-                Stream responseStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(responseStream);
-
-                reader.ReadToEnd();
-                length = (int)response.ContentLength;
-                Logger.Logger.AddMessage($"Starting stress test ...");
-
-            }
-            catch (Exception e)
-            {
-                Logger.Logger.AddMessage($"Error occurred while getting: {request.RequestUri} message {e.Message}");
-            }
-
-            var endTime = DateTime.Now;
-            var totalSecondsDiff = (endTime - startTime).TotalSeconds;
-            var mBytes = this.ConvertBytestoMbytes(length);
-            Logger.Logger.AddMessage($"Testing for {this._networkInterface.IpAddress} done.");
-            return mBytes / totalSecondsDiff;
-        }
-        
-        #endregion
     }
 }

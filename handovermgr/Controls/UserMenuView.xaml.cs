@@ -2,48 +2,23 @@
 
 namespace handovermgr.Controls
 {
-    #region Usings
-
+    using FileReaders;
+    using Logger;
+    using Microsoft.Win32;
+    using Profiler;
     using System;
+    using System.Collections.ObjectModel;
     using System.IO;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Collections.ObjectModel;
-
-    using Microsoft.Win32;
     using ViewModels;
-    using FileReaders;
-    using Logger;
-    using Profiler;
-
-    #endregion
 
     /// <summary>
     ///     Interaction logic for UserMenu.xaml
     /// </summary>
     public partial class UserMenu
     {
-        #region Fields
-
         private UserMenuViewModel _userMenuViewModel;
-
-        #endregion
-
-        #region Properties
-
-        public ObservableCollection<UserProfile> UserProfiles
-        {
-            //TODO: Extract to view model and implement INotify members
-            set
-            {
-                this.NovelProfileComboBox.ItemsSource = value;
-                this.NovelProfileComboBox.DisplayMemberPath = "Name";
-            }
-        }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         ///     Initialize user menu.
@@ -55,9 +30,15 @@ namespace handovermgr.Controls
             this.DataContext = this;
         }
 
-        #endregion
-
-        #region Private Methods
+        public ObservableCollection<UserProfile> UserProfiles
+        {
+            //TODO: Extract to view model and implement INotify members
+            set
+            {
+                this.NovelProfileComboBox.ItemsSource = value;
+                this.NovelProfileComboBox.DisplayMemberPath = "Name";
+            }
+        }
 
         /// <summary>
         ///     Interaction for add network button.
@@ -116,7 +97,6 @@ namespace handovermgr.Controls
             }
         }
 
-
         /// <summary>
         ///     Interaction for manage user profiles button click.
         /// </summary>
@@ -129,9 +109,8 @@ namespace handovermgr.Controls
 
             try
             {
-
                 this.UserProfiles = new ObservableCollection<UserProfile>(
-                    ProfileManager.Instance.LoadFromFile(openFileDialog.FileName));  
+                    ProfileManager.Instance.LoadFromFile(openFileDialog.FileName));
                 Logger.AddMessage($"Successfully loaded user profiles from: {fileName}");
             }
             catch (Exception)
@@ -140,8 +119,6 @@ namespace handovermgr.Controls
             }
         }
 
-        #endregion
-
         /// <summary>
         ///     On selected profile change event.
         /// </summary>
@@ -149,12 +126,6 @@ namespace handovermgr.Controls
         {
             ProfileManager.Instance
                 .SetProfile((sender as ComboBox)?.SelectedItem as string);
-        }
-
-        private void WifiNetworks_OnClick(object sender, RoutedEventArgs e)
-        {
-            var wifiNetworksView = new WifiNetworksView();
-            wifiNetworksView.Show();
         }
 
         private void RadioNetworks_OnClick(object sender, RoutedEventArgs e)
@@ -175,6 +146,12 @@ namespace handovermgr.Controls
         {
             var serverListView = new ServerListView();
             serverListView.Show();
+        }
+
+        private void WifiNetworks_OnClick(object sender, RoutedEventArgs e)
+        {
+            var wifiNetworksView = new WifiNetworksView();
+            wifiNetworksView.Show();
         }
     }
 }

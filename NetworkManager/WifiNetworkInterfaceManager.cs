@@ -1,52 +1,17 @@
-﻿#region Usings
-
+﻿using NativeWifi;
+using NetworkMonitors.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading;
-using NativeWifi;
-using NetworkMonitors.Parsers;
-
-#endregion
 
 namespace NetworkManager
 {
     public class WifiNetworkInterfaceManager : NetworkInterfaceManagerBase, INetworkInterface
     {
-        #region Public Properties
-
-        public WlanClient WlanClient { get; }
-
-        public WlanClient.WlanInterface ActiveInterface => this.WlanClient.Interfaces.FirstOrDefault();
-
-        #endregion
-
-        #region Implementation of INetworkInterface
-
-        public string GetInterfaceName()
-        {
-            var description = ActiveInterface.InterfaceDescription;
-            return description;
-        }
-
-        public string GetInterfaceType()
-        {
-            return ActiveInterface.NetworkInterface.NetworkInterfaceType.ToString();
-        }
-
-        public string GetInterfaceSpeed()
-        {
-            return ActiveInterface.NetworkInterface.Speed.ToString();
-        }
-
-        #endregion
-
-        #region Constructor
-
         public WifiNetworkInterfaceManager()
         {
-
             this.WlanClient = new WlanClient();
             this.NetworkInterface = NetworkInterface.GetAllNetworkInterfaces()
                 .FirstOrDefault(ni => ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 && ni.OperationalStatus == OperationalStatus.Up);
@@ -55,9 +20,22 @@ namespace NetworkManager
             this.GatewayIpAddress = NetworkInterface?.GetIPProperties().GatewayAddresses.FirstOrDefault()?.Address;
         }
 
-        #endregion
+        public WlanClient.WlanInterface ActiveInterface => this.WlanClient.Interfaces.FirstOrDefault();
+        public WlanClient WlanClient { get; }
 
-        #region Public Methods
+        public bool ConnectToNetwork(string profileName)
+        {
+            try
+            {
+                this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
+                Thread.Sleep(TimeSpan.FromSeconds(3));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         public List<string> GetAvailableNetworkSsids()
         {
@@ -74,20 +52,20 @@ namespace NetworkManager
             return networkSsiDs;
         }
 
-        public bool ConnectToNetwork(string profileName)
+        public string GetInterfaceName()
         {
-            try
-            {
-                this.ActiveInterface.Connect(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, profileName);
-                Thread.Sleep(TimeSpan.FromSeconds(3));
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var description = ActiveInterface.InterfaceDescription;
+            return description;
         }
 
-        #endregion
+        public string GetInterfaceSpeed()
+        {
+            return ActiveInterface.NetworkInterface.Speed.ToString();
+        }
+
+        public string GetInterfaceType()
+        {
+            return ActiveInterface.NetworkInterface.NetworkInterfaceType.ToString();
+        }
     }
 }

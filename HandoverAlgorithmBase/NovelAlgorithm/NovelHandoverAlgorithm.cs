@@ -1,44 +1,18 @@
-﻿#region Usings
-
+﻿using MathTools;
+using Profiler;
+using RadioNetworks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Profiler;
-using MathTools;
-using RadioNetworks;
-
-#endregion
 
 namespace HandoverAlgorithmBase.NovelAlgorithm
 {
     public class NovelHandoverAlgorithm : HandoverAlgorithmBase
     {
-        #region Properties
-
-        /// <summary>
-        /// List of GRC Factors
-        /// </summary>
-        public List<float> NetworkGraFactors { get; set; }
-
-        /// <summary>
-        /// List of Novel network models.
-        /// </summary>
-        public List<NovelNetworkModel> NovelNetworkModels { get; set; }
-
-        /// <summary>
-        /// The result network.
-        /// </summary>
-        public RadioNetworkModel ResultNetwork { get; set; }
-
         /// <summary>
         /// Selected network profile.
         /// </summary>
         private readonly UserProfile _networkProfile;
-
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Instantiate Novel Handover Algorithm.
@@ -66,9 +40,20 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
             }
         }
 
-        #endregion
+        /// <summary>
+        /// List of GRC Factors
+        /// </summary>
+        public List<float> NetworkGraFactors { get; set; }
 
-        #region Public Methods
+        /// <summary>
+        /// List of Novel network models.
+        /// </summary>
+        public List<NovelNetworkModel> NovelNetworkModels { get; set; }
+
+        /// <summary>
+        /// The result network.
+        /// </summary>
+        public RadioNetworkModel ResultNetwork { get; set; }
 
         /// <summary>
         /// Run Selection.
@@ -102,10 +87,6 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
             return network;
         }
 
-        #endregion
-
-        #region Private Methods
-
         /// <summary>
         /// Calculate decisive factors for current networks.
         /// </summary>
@@ -115,7 +96,6 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
             var packtloses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.PacketLossPercentage).ToArray();
             var responses = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.ResponseTimeInMsec).ToArray();
             var sec = this.NovelNetworkModels.Select(p => p.RadioNetworkModel.Parameters.SecurityLevel).ToArray();
-
 
             AhpModel ahpModel = new AhpModel(this._networkProfile.ProfileWeights);
 
@@ -131,13 +111,10 @@ namespace HandoverAlgorithmBase.NovelAlgorithm
                     GraTools.NormalizeSmallerTheBetter(responses,
                         networkModel.RadioNetworkModel.Parameters.ResponseTimeInMsec) * ahpWeights[2] +
                     GraTools.NormalizeLargerTheBetter(sec,
-                        networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[3]; 
+                        networkModel.RadioNetworkModel.Parameters.SecurityLevel) * ahpWeights[3];
 
                 networkModel.GrcFactor = grc;
             }
         }
-
-        #endregion  
     }
 }
-

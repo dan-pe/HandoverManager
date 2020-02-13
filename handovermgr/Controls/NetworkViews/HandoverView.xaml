@@ -13,5 +13,4 @@
                 <Button x:Name="GenerateXlsButton" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Click="GenerateXlsButton_Click">Generate XLS</Button>
             </StackPanel>
     </StackPanel>
-    
 </Window>

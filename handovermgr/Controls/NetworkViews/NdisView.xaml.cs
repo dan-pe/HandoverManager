@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Net.NetworkInformation;
-using NetworkManager;
+﻿using NetworkManager;
 using NetworkMonitors;
 using RadioNetworks;
 using ViewModels.NetworkViewModels;
@@ -12,9 +10,8 @@ namespace handovermgr.Controls.NetworkViews
     /// </summary>
     public partial class NdisView
     {
-        private readonly NdisViewModel _ndisViewModel;
-
         private readonly NdisNetworkInterfaceManager _ndisNetworkInterfaceManager;
+        private readonly NdisViewModel _ndisViewModel;
 
         public NdisView()
         {
@@ -33,7 +30,6 @@ namespace handovermgr.Controls.NetworkViews
                 Parameters = new NetworkMonitor(_ndisNetworkInterfaceManager)
                     .EvaluateNetwork()
             });
-
         }
     }
 }

@@ -1,18 +1,22 @@
 ﻿namespace MathTools
 {
-    #region Usings
-
     using System;
-    using System.Linq;
-
-    #endregion
 
     /// <summary>
     /// The Analytic Hierarchy Model.
     /// </summary>
     public class AhpModel
     {
-        #region Private Fields
+        /// <summary>
+        /// The value of "zbieznosc".
+        /// </summary>
+        private const double Epsilion = 0.001d;
+
+        public AhpModel(double[,] inputWeights)
+        {
+            this.InputWeights = inputWeights;
+            this.NumberOfCriteria = (int)Math.Sqrt(inputWeights.Length);
+        }
 
         /// <summary>
         /// Input weights.
@@ -23,56 +27,6 @@
         /// Number of criteria.
         /// </summary>
         private int NumberOfCriteria { get; }
-
-        /// <summary>
-        /// The value of "zbieznosc".
-        /// </summary>
-        private const double Epsilion = 0.001d;
-
-        #endregion
-
-        #region Constructors
-
-        public AhpModel(double[,] inputWeights)
-        {
-            this.InputWeights = inputWeights;
-            this.NumberOfCriteria = (int)Math.Sqrt(inputWeights.Length);
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Computes AHP weights.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="double[]"/>
-        /// Output weights computed with AHP method.
-        /// </returns>
-        public double[] GetOutputWeights()
-        {
-            //var meansVector = new double[NumberOfCriteria];
-            //var criteriaVector = new double[NumberOfCriteria];
-            //var weightCoefficients = new double[NumberOfCriteria];
-
-            //for (var i = 0; i < NumberOfCriteria; i++)
-            //{
-            //    for (var j = 0; j < NumberOfCriteria; j++)
-            //    {
-            //        criteriaVector[j] = InputWeights[i, j];
-            //    }
-            //    meansVector[i] = GeometricMean(criteriaVector);
-            //}
-
-            //for (var i = 0; i < NumberOfCriteria; i++)
-            //{
-            //    weightCoefficients[i] = meansVector[i] / meansVector.Sum();
-            //}
-
-            //return weightCoefficients;
-            return ComputeNormalizedVector(this.InputWeights);
-        }
 
         /// <summary>
         /// Computes normalized array vector (versor).
@@ -113,15 +67,41 @@
 
                 stepThreeOriginal = stepThree;
                 stepOneOriginal = stepOne;
-
             }
 
             return stepThreeOriginal;
         }
 
-        #endregion
+        /// <summary>
+        /// Computes AHP weights.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="double[]"/>
+        /// Output weights computed with AHP method.
+        /// </returns>
+        public double[] GetOutputWeights()
+        {
+            //var meansVector = new double[NumberOfCriteria];
+            //var criteriaVector = new double[NumberOfCriteria];
+            //var weightCoefficients = new double[NumberOfCriteria];
 
-        #region Private Methods
+            //for (var i = 0; i < NumberOfCriteria; i++)
+            //{
+            //    for (var j = 0; j < NumberOfCriteria; j++)
+            //    {
+            //        criteriaVector[j] = InputWeights[i, j];
+            //    }
+            //    meansVector[i] = GeometricMean(criteriaVector);
+            //}
+
+            //for (var i = 0; i < NumberOfCriteria; i++)
+            //{
+            //    weightCoefficients[i] = meansVector[i] / meansVector.Sum();
+            //}
+
+            //return weightCoefficients;
+            return ComputeNormalizedVector(this.InputWeights);
+        }
 
         /// <summary>
         /// Calculates geometric mean of input vector.
@@ -160,7 +140,5 @@
 
             return isSmaller;
         }
-
-        #endregion
     }
 }

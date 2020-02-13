@@ -1,22 +1,15 @@
 ﻿namespace FileReaders
 {
-    #region Usings
-
-    using System.IO;
-    using System.Globalization;
-    using System.Collections.Generic;
-
     using RadioNetworks;
-
-    #endregion
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
 
     /// <summary>
     /// The CSV file reader.
     /// </summary>
     public static class CsvReader
     {
-        #region Public Methods
-
         /// <summary>
         /// Reads the specified CSV file and prints
         /// output to console.
@@ -38,18 +31,13 @@
                     line = streamReader.ReadLine();
 
                     radioNetworkModels.Add(
-                    
-                        ParseCsvLineForNetworkModel(line));
 
+                        ParseCsvLineForNetworkModel(line));
                 }
 
                 return radioNetworkModels;
             }
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Parses CSV file line to Network Model.
@@ -75,11 +63,8 @@
                     ResponseTimeInMsec = double.Parse(networkElements[4], CultureInfo.InvariantCulture),
                     SecurityLevel = double.Parse(networkElements[5], CultureInfo.InvariantCulture),
                 }
-
             };
             return radioNetworkModel;
         }
-
-        #endregion
     }
 }

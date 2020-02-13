@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetworkMonitors.Parsers
+﻿namespace NetworkMonitors.Parsers
 {
     public static class SsidParser
     {

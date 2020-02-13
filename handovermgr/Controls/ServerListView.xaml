@@ -11,11 +11,10 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        
         <TabControl>
             <TabItem Header="Server List">
                 <StackPanel>
-                    <DockPanel >
+                    <DockPanel>
                         <DockPanel VerticalAlignment="Center">
                             <TextBox x:Name="ServerNameTextBox"
                                      Width="240">
@@ -28,7 +27,6 @@
                     <ListView x:Name="ServerListViewBox" DisplayMemberPath="">
                     </ListView>
                 </DockPanel>
-                
                 </StackPanel>
             </TabItem>
 

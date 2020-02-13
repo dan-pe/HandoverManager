@@ -1,33 +1,12 @@
 ﻿namespace Profiler
 {
-    #region Usings
-
+    using RadioNetworks;
     using System;
     using System.Collections.Generic;
     using System.Reflection;
 
-    using RadioNetworks;
-
-    #endregion
-
     public class UserProfile
     {
-        #region Private Fields
-
-        /// <summary>
-        /// The profile name.
-        /// </summary>
-        public string Name { get;}
-
-        /// <summary>
-        /// The user profile weights.
-        /// </summary>
-        public double[,] ProfileWeights { get; set; }
-
-        #endregion
-
-        #region Constructors
-
         public UserProfile(string sectionHeader, double[,] profileDoubleValues)
         {
             //if (!this.IsValidProfile(profileDoubleValues))
@@ -39,9 +18,53 @@
             this.ProfileWeights = profileDoubleValues;
         }
 
-        #endregion
+        /// <summary>
+        /// The profile name.
+        /// </summary>
+        public string Name { get; }
 
-        #region Private Methods
+        /// <summary>
+        /// The user profile weights.
+        /// </summary>
+        public double[,] ProfileWeights { get; set; }
+
+        /// <summary>
+        /// Registers weights to parameter dictionary.
+        /// </summary>
+        /// <param name="weightsArray">
+        /// The weights array.
+        /// </param>
+        /// <returns>
+        /// Dictionary with profile values.
+        /// </returns>
+        private static Dictionary<Dictionary<string, string>, double> RegisterDictionariesValues(double[,] weightsArray)
+        {
+            throw new NotImplementedException();
+
+            Type t = typeof(NetworkParameters);
+
+            PropertyInfo[] properties = t.GetProperties();
+
+            var propertiesNames = new List<string>();
+
+            foreach (var propertyInfo in properties)
+            {
+                propertiesNames.Add(propertyInfo.Name);
+            }
+
+            var helperDictionary = new Dictionary<string, string>();
+            var registeredDictionary = new Dictionary<Dictionary<string, string>, double>();
+
+            //TODO: sort out this dictionary issue ..
+
+            foreach (var keyA in propertiesNames)
+            {
+                foreach (var keyB in propertiesNames)
+                {
+                    helperDictionary.Add(keyA, keyB);
+                }
+            }
+        }
 
         private bool IsValidProfile(double[,] inputWeights)
         {
@@ -77,47 +100,5 @@
 
             return true;
         }
-
-        /// <summary>
-        /// Registers weights to parameter dictionary. 
-        /// </summary>
-        /// <param name="weightsArray">
-        /// The weights array.
-        /// </param>
-        /// <returns>
-        /// Dictionary with profile values.
-        /// </returns>
-        private static Dictionary<Dictionary<string, string>, double> RegisterDictionariesValues(double[,] weightsArray)
-        {
-            throw new NotImplementedException();
-
-            Type t = typeof(NetworkParameters);
-
-            PropertyInfo[] properties = t.GetProperties();
-
-            var propertiesNames = new List<string>();
-
-            foreach (var propertyInfo in properties)
-            {
-                propertiesNames.Add(propertyInfo.Name);
-            }
-
-            var helperDictionary = new Dictionary<string,string>();
-            var registeredDictionary = new Dictionary<Dictionary<string, string>, double>();
-
-            //TODO: sort out this dictionary issue ..
-
-            foreach (var keyA in propertiesNames)
-            {
-                foreach (var keyB in propertiesNames)
-                {
-                    helperDictionary.Add(keyA, keyB);
-
-                }
-            }
-
-        }
-
-        #endregion
     }
 }

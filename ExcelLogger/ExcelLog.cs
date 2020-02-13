@@ -1,36 +1,23 @@
-﻿#region Usings
-
+﻿using HandoverAlgorithmBase.NovelAlgorithm;
+using Microsoft.Office.Interop.Excel;
+using Profiler;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Office.Interop.Excel;
-
-using HandoverAlgorithmBase.NovelAlgorithm;
-using Profiler;
-
-#endregion
 
 namespace ExcelLogger
 {
     public class ExcelLog
     {
-        #region Private Fields
-        
         private readonly Application _excelApp;
 
         private readonly Workbook workbook;
 
-        #endregion
-
-        #region Constructors
-        
         public ExcelLog(string fileName, List<NovelNetworkModel> novelNetworks, UserProfile profileName)
         {
             this._excelApp = new Application();
             this.workbook = this._excelApp.Workbooks.Add();
             object nullValue = System.Reflection.Missing.Value;
-
 
             this.GenerateContent(novelNetworks, profileName);
 
@@ -41,13 +28,11 @@ namespace ExcelLogger
             Marshal.ReleaseComObject(this._excelApp);
         }
 
-        #endregion
-
         private void GenerateContent(List<NovelNetworkModel> novelNetworks, UserProfile profileName)
         {
             var workSheet = (Worksheet)this._excelApp.Worksheets.Item[1];
             // Title
-            workSheet.Cells[3,3] = "Evaluated Networks";
+            workSheet.Cells[3, 3] = "Evaluated Networks";
 
             const int anchorRowId = 5;
             const int anchorColumnId = 2;
@@ -77,8 +62,8 @@ namespace ExcelLogger
             // Evaluation result
             int moveOffset = anchorRowId + novelNetworks.Count + 5;
             workSheet.Cells[moveOffset, anchorColumnId] = "Evaluation result";
-            workSheet.Cells[moveOffset+1, anchorColumnId] = "Network Name";
-            workSheet.Cells[moveOffset+1, anchorColumnId + 1] = "GRC Factor";
+            workSheet.Cells[moveOffset + 1, anchorColumnId] = "Network Name";
+            workSheet.Cells[moveOffset + 1, anchorColumnId + 1] = "GRC Factor";
             i = moveOffset + 2;
             foreach (var novelNetwork in novelNetworks)
             {
@@ -89,19 +74,16 @@ namespace ExcelLogger
 
             // Generate Chart
 
-            var charts = (ChartObjects) workSheet.ChartObjects(Type.Missing);
+            var charts = (ChartObjects)workSheet.ChartObjects(Type.Missing);
             var chartObject = charts.Add(200, 200, 200, 200);
             var chart = chartObject.Chart;
 
-
             var chartRange = workSheet.Range[
-                workSheet.Cells[moveOffset ,anchorColumnId],
-                workSheet.Cells[i-1, anchorColumnId + 1]];
+                workSheet.Cells[moveOffset, anchorColumnId],
+                workSheet.Cells[i - 1, anchorColumnId + 1]];
             chart.SetSourceData(chartRange, System.Reflection.Missing.Value);
             chart.ChartType = XlChartType.xlColumnClustered;
             chart.ChartTitle.Caption = "Networks GRC Factor";
-            }
-
-       
+        }
     }
 }

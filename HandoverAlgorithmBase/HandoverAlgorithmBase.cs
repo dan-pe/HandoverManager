@@ -1,26 +1,10 @@
-﻿#region Usings
-
-using System;
+﻿using RadioNetworks;
 using System.Collections.Generic;
-using RadioNetworks;
-
-#endregion
 
 namespace HandoverAlgorithmBase
 {
     public abstract class HandoverAlgorithmBase
     {
-        #region Properties
-
-        /// <summary>
-        /// The radio networks list.
-        /// </summary>
-        protected List<RadioNetworkModel> RadioNetworksList { get; set; }
-
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// The Handover algorithm base
         /// </summary>
@@ -32,14 +16,13 @@ namespace HandoverAlgorithmBase
             RadioNetworksList = radioNetworksList;
         }
 
-        #endregion
-
-        #region Methods
+        /// <summary>
+        /// The radio networks list.
+        /// </summary>
+        protected List<RadioNetworkModel> RadioNetworksList { get; set; }
 
         public virtual void RunSelection()
         {
         }
-
-        #endregion
     }
 }

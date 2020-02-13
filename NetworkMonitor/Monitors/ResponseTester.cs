@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.NetworkInformation;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NetworkMonitors.Monitors
 {
@@ -35,7 +32,6 @@ namespace NetworkMonitors.Monitors
                 pingReply = ping.Send(this.testedAddress ?? throw new InvalidOperationException());
                 //Thread.Sleep(TimeSpan.FromSeconds(SettingsHandler.GetInstance().PingInterval));
                 if (pingReply != null) meanLatency += pingReply.RoundtripTime;
-
             }
 
             return meanLatency / iterations;
@@ -68,7 +64,7 @@ namespace NetworkMonitors.Monitors
         //    }
         //    if (!onetaskCompleted)
         //    {
-        //        //execute code 
+        //        //execute code
         //    }
         //}
     }

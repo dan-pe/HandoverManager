@@ -1,20 +1,17 @@
-﻿using System.ComponentModel;
-
-namespace Profiler
+﻿namespace Profiler
 {
-    #region Usings
-
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    #endregion
-
     public sealed class ProfileManager
     {
-        #region Private Static Fields
+        /// <summary>
+        /// The locker.
+        /// </summary>
+        private static readonly object Locker = new object();
 
         /// <summary>
         /// The profiler.
@@ -22,31 +19,11 @@ namespace Profiler
         private static volatile ProfileManager _profileManager;
 
         /// <summary>
-        /// The locker.
-        /// </summary>
-        private static readonly object Locker = new object();
-
-        /// <summary>
-        /// The stored user profile.
-        /// </summary>
-        public List<UserProfile> StoredUserProfiles { get; set; }
-
-        public string SelectedUserProfileName { get; set; }
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// 
+        ///
         /// </summary>
         private ProfileManager()
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// The profiler instance.
@@ -66,26 +43,12 @@ namespace Profiler
             }
         }
 
-        #endregion
-
-        #region Public Methods
+        public string SelectedUserProfileName { get; set; }
 
         /// <summary>
-        /// Sets the user profile.
+        /// The stored user profile.
         /// </summary>
-        /// <param name="userProfile">
-        /// The user profile to set.
-        /// </param>
-        public void SetProfile(string userProfileName)
-        {
-            this.SelectedUserProfileName = userProfileName;
-        }
-
-        public UserProfile GetSelectedProfile()
-
-        {
-            return Instance.GetProfileByName(this.SelectedUserProfileName);
-        }
+        public List<UserProfile> StoredUserProfiles { get; set; }
 
         /// <summary>
         /// Loads the stored user profile.
@@ -96,7 +59,13 @@ namespace Profiler
         public UserProfile GetProfileByName(string profileName)
         {
             return this.StoredUserProfiles.
-                FirstOrDefault( profile => profile.Name == profileName);
+                FirstOrDefault(profile => profile.Name == profileName);
+        }
+
+        public UserProfile GetSelectedProfile()
+
+        {
+            return Instance.GetProfileByName(this.SelectedUserProfileName);
         }
 
         /// <summary>
@@ -142,6 +111,17 @@ namespace Profiler
             return loadedUserProfiles;
         }
 
+        /// <summary>
+        /// Sets the user profile.
+        /// </summary>
+        /// <param name="userProfile">
+        /// The user profile to set.
+        /// </param>
+        public void SetProfile(string userProfileName)
+        {
+            this.SelectedUserProfileName = userProfileName;
+        }
+
         private static double UserProfileConverter(string input)
         {
             if (input.Length == 1)
@@ -152,13 +132,7 @@ namespace Profiler
             var one = double.Parse(input[0].ToString());
             var twp = double.Parse(input[2].ToString());
 
-            return  one / twp;
+            return one / twp;
         }
-
-
-
-        #endregion
     }
-
-  
 }

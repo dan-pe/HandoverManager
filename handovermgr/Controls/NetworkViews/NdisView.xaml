@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="handovermgr.Controls.NetworkViews.NdisView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
 
@@ -9,10 +9,10 @@
     <Border BorderBrush="Black" BorderThickness="1">
         <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        
+
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
             <DockPanel>
                 <Label HorizontalAlignment="Center" FontWeight="Bold">
@@ -23,19 +23,19 @@
                 <Label Width="100">Name:</Label>
                 <TextBlock x:Name="RDIInterfaceNameTextBox"
                            VerticalAlignment="Center"
-                           Text="{Binding Path=Name}"/>
+                           Text="{Binding Path=Name}" />
             </DockPanel>
             <DockPanel>
                 <Label Width="100">Type:</Label>
                 <TextBlock x:Name="RDIInterfaceTypeTextBox"
                            VerticalAlignment="Center"
-                           Text="{Binding Path=Type}"/>
+                           Text="{Binding Path=Type}" />
             </DockPanel>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
-           
-            <Button 
+
+            <Button
                 x:Name="EvaluteButton"
                 Width="120" Click="EvaluteButton_Click">
                  Evaluate Connection

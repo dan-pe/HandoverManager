@@ -1,18 +1,14 @@
-﻿#region Usings
-
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using ExcelLogger;
+﻿using ExcelLogger;
 using HandoverAlgorithmBase.NovelAlgorithm;
 using Logger;
 using Microsoft.Win32;
 using Profiler;
 using RadioNetworks;
-
-#endregion
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace handovermgr.Controls.NetworkViews
 {
@@ -21,23 +17,18 @@ namespace handovermgr.Controls.NetworkViews
     /// </summary>
     public sealed partial class HandoverView : Window
     {
-        #region Private Fields
-
         /// <summary>
         /// Radio networks list.
         /// </summary>
         private readonly List<RadioNetworkModel> _radioNetworksList;
-
-        private List<NovelNetworkModel> _novelNetworksList;
 
         /// <summary>
         /// Margins thickness.
         /// </summary>
         private int _marginThickness = 5;
 
-        UserProfile selectedUserProfile;
-
-        #endregion
+        private List<NovelNetworkModel> _novelNetworksList;
+        private UserProfile selectedUserProfile;
 
         /// <summary>
         /// The Handover window.
@@ -54,34 +45,6 @@ namespace handovermgr.Controls.NetworkViews
         }
 
         /// <summary>
-        /// Populates handover view window with networks,
-        /// based on the Novel Handover.
-        /// </summary>
-        /// <param name="radioNetworksList">
-        /// Radio networks list.
-        /// </param>
-        /// <param name="novelProfileComboBox">
-        /// Combo box indicating chosen profile.
-        /// </param>
-        private void PrepareHandoverNetworksView(List<RadioNetworkModel> radioNetworksList, ComboBox novelProfileComboBox)
-        {
-            Logger.Logger.AddMessage("Handover evaluation started.");
-
-            this.selectedUserProfile = Profiler.ProfileManager.Instance.GetProfileByName(novelProfileComboBox.Text);
-
-            NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList,this.selectedUserProfile);
-
-            novelHandover.RunSelection();
-            var resultNetwork = novelHandover.SelectResultNetwork();
-            this._novelNetworksList = novelHandover.NovelNetworkModels;
-
-            foreach (var radioNetwork in novelHandover.NovelNetworkModels)
-            {
-                AddHandoverViewItem(radioNetwork, resultNetwork);
-            }
-        }
-
-        /// <summary>
         /// Adds single handover item to view.
         /// </summary>
         /// <param name="radioNetwork"></param>
@@ -91,7 +54,7 @@ namespace handovermgr.Controls.NetworkViews
             var stackpanel = new StackPanel();
             stackpanel.Orientation = Orientation.Horizontal;
 
-            var label = new Label {Content = radioNetwork.RadioNetworkModel.NetworkName};
+            var label = new Label { Content = radioNetwork.RadioNetworkModel.NetworkName };
             label.Margin = new Thickness(_marginThickness);
             label.Width = 90;
 
@@ -130,6 +93,34 @@ namespace handovermgr.Controls.NetworkViews
             saveFileDialog.ShowDialog();
 
             ExcelLog excelLog = new ExcelLog(saveFileDialog.FileName, this._novelNetworksList, this.selectedUserProfile);
+        }
+
+        /// <summary>
+        /// Populates handover view window with networks,
+        /// based on the Novel Handover.
+        /// </summary>
+        /// <param name="radioNetworksList">
+        /// Radio networks list.
+        /// </param>
+        /// <param name="novelProfileComboBox">
+        /// Combo box indicating chosen profile.
+        /// </param>
+        private void PrepareHandoverNetworksView(List<RadioNetworkModel> radioNetworksList, ComboBox novelProfileComboBox)
+        {
+            Logger.Logger.AddMessage("Handover evaluation started.");
+
+            this.selectedUserProfile = Profiler.ProfileManager.Instance.GetProfileByName(novelProfileComboBox.Text);
+
+            NovelHandoverAlgorithm novelHandover = new NovelHandoverAlgorithm(_radioNetworksList, this.selectedUserProfile);
+
+            novelHandover.RunSelection();
+            var resultNetwork = novelHandover.SelectResultNetwork();
+            this._novelNetworksList = novelHandover.NovelNetworkModels;
+
+            foreach (var radioNetwork in novelHandover.NovelNetworkModels)
+            {
+                AddHandoverViewItem(radioNetwork, resultNetwork);
+            }
         }
     }
 }

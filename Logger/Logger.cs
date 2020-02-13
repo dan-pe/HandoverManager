@@ -1,32 +1,22 @@
 ﻿namespace Logger
 {
-    #region Usings
-
     using System;
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    #endregion
-
     public class Logger
     {
-        #region Private Fields
+        /// <summary>
+        /// The log box.
+        /// </summary>
+        private static ListBox _logBox;
 
         /// <summary>
         /// The logger instance.
         /// </summary>
         private static Logger _logger;
 
-        /// <summary>
-        /// The log box.
-        /// </summary>
-        private static ListBox _logBox;
-
         //private
-
-        #endregion
-
-        #region Constructors and Destructor
 
         /// <summary>
         /// The Logger.
@@ -38,25 +28,6 @@
             _logger = this;
             AddMessage("Logger Initialized!");
         }
-
-        #endregion
-
-        #region Publics Methods
-
-        /// <summary>
-        /// Initializes logger for passed log box.
-        /// </summary>
-        /// <param name="logBox">
-        /// Log box that logger attaches to.
-        /// </param>
-        /// <returns>
-        /// Logger Instance.
-        /// </returns>
-        public static Logger InitializeLogger(ListBox logBox)
-        {
-            return _logger ?? (_logger = new Logger(logBox));
-        }
-
 
         /// <summary>
         /// Add message.
@@ -78,6 +49,20 @@
             };
 
             _logBox.Items.Add(listBoxItem);
+        }
+
+        /// <summary>
+        /// Initializes logger for passed log box.
+        /// </summary>
+        /// <param name="logBox">
+        /// Log box that logger attaches to.
+        /// </param>
+        /// <returns>
+        /// Logger Instance.
+        /// </returns>
+        public static Logger InitializeLogger(ListBox logBox)
+        {
+            return _logger ?? (_logger = new Logger(logBox));
         }
 
         /// <summary>
@@ -109,7 +94,5 @@
                     throw new ArgumentOutOfRangeException(nameof(threshold), threshold, null);
             }
         }
-
-        #endregion
     }
 }

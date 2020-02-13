@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="handovermgr.Controls.UserMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              d:DesignHeight="340" d:DesignWidth="200">
-    
+
     <StackPanel Orientation="Vertical">
         <DockPanel>
             <Button Margin="4 20 4 10" Click="LoadFile_Click">Load from file</Button>
@@ -26,18 +26,17 @@
             <Button Margin="4 0 4 5" Click="ServerList_OnCLick">Settings</Button>
         </DockPanel>
         <DockPanel>
-            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 70 4 0"/>
+            <Label  Content="Select profile: " FontWeight="Bold" Margin="4 70 4 0" />
         </DockPanel>
         <DockPanel>
-            <ComboBox x:Name="NovelProfileComboBox" 
+            <ComboBox x:Name="NovelProfileComboBox"
                       ItemsSource="{Binding Path=UserProfiles}"
                       DisplayMemberPath ="Name"
                       SelectedValuePath="Name"
-                      Margin="4 10 4 10" SelectionChanged="OnSelectedProfileChange"/>
+                      Margin="4 10 4 10" SelectionChanged="OnSelectedProfileChange" />
         </DockPanel>
         <DockPanel>
             <Button Margin="4 0 4 0" Click="Handover_Click">HandOver</Button>
         </DockPanel>
     </StackPanel>
-    
 </UserControl>

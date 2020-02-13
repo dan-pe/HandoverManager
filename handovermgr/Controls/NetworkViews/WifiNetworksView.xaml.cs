@@ -1,5 +1,4 @@
-﻿
-namespace handovermgr.Controls
+﻿namespace handovermgr.Controls
 {
     /// <summary>
     /// Interaction logic for RadioNetworkView.xaml

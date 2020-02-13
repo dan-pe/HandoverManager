@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using RadioNetworks;
+﻿using RadioNetworks;
+using System.Windows;
 
 namespace handovermgr
 {

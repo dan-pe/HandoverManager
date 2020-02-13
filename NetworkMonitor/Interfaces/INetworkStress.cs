@@ -1,6 +1,6 @@
 ﻿namespace NetworkMonitors.Interfaces
 {
-    interface INetworkStress
+    internal interface INetworkStress
     {
-    } 
+    }
 }

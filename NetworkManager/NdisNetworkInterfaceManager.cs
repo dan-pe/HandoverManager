@@ -1,13 +1,9 @@
-﻿#region Usings
-
+﻿using HuaweiWebAPI;
+using HuaweiWebAPI.Structs;
+using NetTool;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using HuaweiWebAPI;
-using HuaweiWebAPI.Structs;
-using NetTool;
-
-#endregion
 
 namespace NetworkManager
 {
@@ -34,15 +30,14 @@ namespace NetworkManager
             return _basicInformation.DeviceName;
         }
 
-        public string GetInterfaceType()
-        {
-            return ((NetworkType)HuaweiWebApi.MonitoringStatus().CurrentNetworkType).ToString();
-        }
-
         public string GetInterfaceSpeed()
         {
             return "NotImplemented";
         }
-    }
 
+        public string GetInterfaceType()
+        {
+            return ((NetworkType)HuaweiWebApi.MonitoringStatus().CurrentNetworkType).ToString();
+        }
+    }
 }

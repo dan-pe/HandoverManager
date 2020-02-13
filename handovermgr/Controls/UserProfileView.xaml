@@ -8,7 +8,7 @@
         Title="UserProfileView" Height="300" Width="300">
     <Grid>
         <StackPanel>
-        <DataGrid x:Name="UserProfileDataGrid" Height="200"/>
+        <DataGrid x:Name="UserProfileDataGrid" Height="200" />
         </StackPanel>
     </Grid>
 </Window>
