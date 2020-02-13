@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandoverManagerApp", "handovermgr\HandoverManagerApp.csproj", "{7C64E5A7-024C-4BA6-A905-57E4AB4B6E70}"
 EndProject
@@ -58,6 +58,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelLogger", "ExcelLogger\ExcelLogger.csproj", "{6747ED1B-8286-4EE4-87C1-FA7271851A29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTool", "NetTool\NetTool.csproj", "{1D85113F-AE5E-451B-B15C-B92E974A4921}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{E004ADD6-48D6-46B1-8F10-3F6AEEBB0014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyContainer", "DependencyContainer\DependencyContainer.csproj", "{5E734B51-8E0A-4980-8DDE-619E22C28730}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +125,10 @@ Global
 		{1D85113F-AE5E-451B-B15C-B92E974A4921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D85113F-AE5E-451B-B15C-B92E974A4921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D85113F-AE5E-451B-B15C-B92E974A4921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E734B51-8E0A-4980-8DDE-619E22C28730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E734B51-8E0A-4980-8DDE-619E22C28730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E734B51-8E0A-4980-8DDE-619E22C28730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E734B51-8E0A-4980-8DDE-619E22C28730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +156,7 @@ Global
 		{91EBFF46-B522-4734-917A-E9DEB4C28A46} = {F0AE4AF1-0E44-4CCD-AEE4-0CEAA2A41DB9}
 		{6747ED1B-8286-4EE4-87C1-FA7271851A29} = {DD19DEDE-DBB5-4ABD-AD1B-EF47312424D0}
 		{1D85113F-AE5E-451B-B15C-B92E974A4921} = {DD19DEDE-DBB5-4ABD-AD1B-EF47312424D0}
+		{5E734B51-8E0A-4980-8DDE-619E22C28730} = {E004ADD6-48D6-46B1-8F10-3F6AEEBB0014}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11D1D1FA-8554-4FF9-A9AD-5DB8196F2CA6}
